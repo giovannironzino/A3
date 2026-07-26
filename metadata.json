@@ -1,0 +1,6 @@
+{
+  "name": "Êxodo - Acompanhamento Estratégico Trimestral (AE3)",
+  "description": "Diagnóstico e Acompanhamento Estratégico de Negócio para clínicas de nutrição com simulador de assinatura interativo e agendamento.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

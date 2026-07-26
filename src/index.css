@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+:root {
+  --exodo-red: #D71920;
+  --preto: #111111;
+  --cinza-escuro: #333333;
+  --cinza-medio: #666666;
+  --cinza-claro: #E5E5E5;
+  --branco: #FFFFFF;
+  --accent-tint: #FBE6E7;
+  
+  --surface-page: var(--branco);
+  --surface-card: var(--cinza-claro);
+  --surface-inverse: var(--preto);
+  
+  --text-primary: var(--preto);
+  --text-secondary: var(--cinza-escuro);
+  --text-tertiary: var(--cinza-medio);
+  --text-on-inverse: var(--branco);
+  --text-accent: var(--exodo-red);
+  
+  --border-default: var(--cinza-claro);
+  --border-strong: var(--preto);
+  --accent: var(--exodo-red);
+
+  --font-display: 'Anton', Impact, sans-serif;
+  --font-subtitle: 'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --text-question: clamp(1.75rem, 5.5vw, 5.25rem);
+  --text-display: clamp(1.5rem, 4.5vw, 3.25rem);
+  --text-h1: 2rem;
+  --text-h2: 1.5rem;
+  --text-h3: 1.125rem;
+  --text-body-lg: 1.125rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+
+  --lh-tight: 0.98;
+  --lh-snug: 1.15;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.65;
+
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.06em;
+  --tracking-wider: 0.12em;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-8: 48px;
+  --space-10: 64px;
+  --space-12: 96px;
+  --space-16: 128px;
+  --page-margin: 64px;
+  --grid-gutter: 24px;
+  --radius-none: 0px;
+  --radius-sm: 2px;
+  --hairline: 1px;
+}
+
+body {
+  margin: 0;
+  background-color: var(--branco);
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+}
+
+.font-subtitle {
+  font-family: var(--font-subtitle);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--cinza-claro);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--cinza-medio);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--exodo-red);
+}
+
+/* Print CSS */
+@media print {
+  @page {
+    size: A4;
+    margin: 0.6in;
+  }
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}

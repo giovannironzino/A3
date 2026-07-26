@@ -1,0 +1,41 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Information about registered nutricionist or clinic owner",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Unique auth UID" },
+        "name": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 128 },
+        "clinicName": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "email"]
+    },
+    "A3Answer": {
+      "title": "A3 Step Answer",
+      "description": "Structured answer recorded during A3 strategic wizard steps",
+      "type": "object",
+      "properties": {
+        "questionId": { "type": "string", "maxLength": 128 },
+        "value": { "type": "string", "maxLength": 1000 },
+        "isEstimate": { "type": "boolean" },
+        "savedAt": { "type": "string", "format": "date-time" },
+        "userId": { "type": "string", "maxLength": 128 }
+      },
+      "required": ["questionId", "savedAt", "userId"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "User profile document indexed by auth UID"
+    },
+    "/users/{userId}/a3_answers/{answerId}": {
+      "schema": { "$ref": "#/entities/A3Answer" },
+      "description": "Structured A3 wizard step answers subcollection for each user"
+    }
+  }
+}
