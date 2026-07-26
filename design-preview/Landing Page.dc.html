@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/xodo-design-system-8f1e864a-902d-46f9-a3ec-df4e7dbf1545/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/xodo-design-system-8f1e864a-902d-46f9-a3ec-df4e7dbf1545/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/xodo-design-system-8f1e864a-902d-46f9-a3ec-df4e7dbf1545/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/xodo-design-system-8f1e864a-902d-46f9-a3ec-df4e7dbf1545/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/xodo-design-system-8f1e864a-902d-46f9-a3ec-df4e7dbf1545/styles.css">
+  <script src="_ds/xodo-design-system-8f1e864a-902d-46f9-a3ec-df4e7dbf1545/_ds_bundle.js"></script>
+  <style>
+    body { margin: 0; background: var(--branco); }
+    a { color: var(--exodo-red); }
+    a:hover { color: var(--preto); }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--cinza-claro); }
+    ::-webkit-scrollbar-thumb { background: var(--cinza-medio); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--exodo-red); }
+  </style>
+</helmet>
+
+<div style="min-height:100vh;background:var(--branco);color:var(--preto);font-family:var(--font-body);">
+
+  <!-- HEADER -->
+  <nav style="position:sticky;top:0;z-index:40;background:var(--branco);border-bottom:1px solid var(--border-default);">
+    <div style="max-width:1120px;margin:0 auto;padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:76px;gap:16px;">
+      <a href="#hero" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+        <div style="display:inline-flex;flex-direction:column;align-items:flex-start;height:42px;">
+          <svg viewBox="0 0 320 80" style="height:28px;width:auto;">
+            <path d="M 32 22 L 48 6 L 64 22 L 56 22 L 48 14 L 40 22 Z" fill="var(--exodo-red)"></path>
+            <text x="10" y="72" font-family="'Montserrat', sans-serif" font-weight="800" font-size="68" letter-spacing="-2" fill="var(--exodo-red)">êxodo</text>
+          </svg>
+          <div style="font-family:var(--font-subtitle);font-weight:700;font-size:0.55rem;letter-spacing:0.18em;text-transform:uppercase;display:flex;align-items:center;gap:6px;margin-top:4px;color:var(--preto);">
+            <span>ESTRATÉGIA</span><span style="color:var(--exodo-red);">•</span><span>DIAGNÓSTICO</span><span style="color:var(--exodo-red);">•</span><span>CRESCIMENTO</span>
+          </div>
+        </div>
+      </a>
+
+      <div style="display:flex;align-items:center;gap:28px;">
+        <a href="#fase1" style="font-family:var(--font-subtitle);font-size:0.8rem;font-weight:700;letter-spacing:var(--tracking-wide);color:var(--preto);text-decoration:none;text-transform:uppercase;">Fase 01</a>
+        <a href="#fase2" style="font-family:var(--font-subtitle);font-size:0.8rem;font-weight:700;letter-spacing:var(--tracking-wide);color:var(--preto);text-decoration:none;text-transform:uppercase;">Fase 02</a>
+        <a href="#preco" style="font-family:var(--font-subtitle);font-size:0.8rem;font-weight:700;letter-spacing:var(--tracking-wide);color:var(--preto);text-decoration:none;text-transform:uppercase;">Investimento</a>
+        <a href="#simulador" style="font-family:var(--font-subtitle);font-size:0.8rem;font-weight:700;letter-spacing:var(--tracking-wide);color:var(--preto);text-decoration:none;text-transform:uppercase;">Simulador</a>
+        <a href="#faq" style="font-family:var(--font-subtitle);font-size:0.8rem;font-weight:700;letter-spacing:var(--tracking-wide);color:var(--preto);text-decoration:none;text-transform:uppercase;">Dúvidas</a>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:12px;">
+        <a href="#" style="display:inline-flex;align-items:center;gap:6px;padding:10px 14px;font-family:var(--font-subtitle);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:var(--tracking-wide);background:var(--preto);color:var(--branco);text-decoration:none;">Sistema A3</a>
+        <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Button" variant="primary" size="sm" hint-size="auto,40px">Agendar diagnóstico</x-import>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero" style="position:relative;padding:80px 0 96px;border-bottom:1px solid var(--border-default);overflow:hidden;">
+    <div style="max-width:1120px;margin:0 auto;padding:0 48px;position:relative;">
+      <div style="position:absolute;top:-32px;right:48px;pointer-events:none;">
+        <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.CornerAccent" variant="arredondado" size="100" hint-size="100px,100px"></x-import>
+      </div>
+
+      <div style="max-width:820px;position:relative;z-index:1;display:flex;flex-direction:column;gap:24px;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:var(--tracking-wider);color:var(--exodo-red);">AE3</span>
+          <div style="width:24px;height:1px;background:var(--preto);"></div>
+          <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:var(--tracking-wider);color:var(--cinza-escuro);">Acompanhamento Estratégico Trimestral</span>
+        </div>
+
+        <h1 style="font-family:var(--font-display);font-size:var(--text-question);line-height:1.08;letter-spacing:var(--tracking-tight);color:var(--preto);margin:0;">Sua clínica de nutrição cresce por decisão, ou por acaso?</h1>
+
+        <p style="font-family:var(--font-body);font-size:1.25rem;line-height:var(--lh-relaxed);color:var(--cinza-escuro);margin:0;max-width:680px;">O AE3 é o programa de entrada da Êxodo: 3 encontros individuais que transformam o diagnóstico do seu negócio em um plano de ação executável nos próximos 90 dias.</p>
+
+        <div style="display:flex;align-items:center;gap:16px;margin-top:16px;">
+          <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Button" variant="primary" size="lg" hint-size="auto,48px">Agendar diagnóstico</x-import>
+          <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Button" variant="tertiary" size="lg" hint-size="auto,48px">Ver como funciona ↓</x-import>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px;padding-top:32px;border-top:1px solid var(--border-default);">
+          <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="4">
+            <div style="display:flex;align-items:start;gap:12px;">
+              <span style="width:20px;height:20px;flex-shrink:0;color:var(--exodo-red);font-weight:700;">✓</span>
+              <div>
+                <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.75rem;text-transform:uppercase;letter-spacing:var(--tracking-wide);display:block;color:var(--preto);">{{ p.title }}</span>
+                <span style="font-size:0.75rem;color:var(--cinza-medio);">{{ p.sub }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEXTO -->
+  <section id="contexto" style="padding:80px 0;border-bottom:1px solid var(--border-default);">
+    <div style="max-width:1120px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:5fr 7fr;gap:48px;align-items:start;">
+      <div>
+        <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.SectionTopic" label="Contexto" hint-size="100%,auto">Gestão informal tem um limite</x-import>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:24px;">
+        <p style="font-size:1.125rem;line-height:var(--lh-relaxed);color:var(--cinza-escuro);margin:0;">A maioria das nutricionistas administra a clínica no improviso: decisões tomadas por urgência, indicadores que não existem em nenhum lugar, e uma meta de faturamento que nunca virou plano.</p>
+        <p style="font-size:1.125rem;line-height:var(--lh-relaxed);color:var(--cinza-escuro);margin:0;">O AE3 não vende cursos nem fórmulas prontas. É um processo estruturado, individual, para transformar o cenário atual do seu negócio em decisões e ações concretas para os próximos 90 dias.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px;">
+          <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Card" title="Sem Teoria Vazia" hint-size="100%,140px">Foco no seu cenário real, nos números da sua clínica e na sua rotina atual.</x-import>
+          <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Card" title="Ações Mapeadas" hint-size="100%,140px">Metas transformadas em entregáveis semanais claros para a equipe e gestão.</x-import>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESTRUTURA DO PROGRAMA -->
+  <section style="padding:80px 0;background:var(--cinza-claro);border-bottom:1px solid var(--border-default);">
+    <div style="max-width:1120px;margin:0 auto;padding:0 48px;">
+      <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.SectionTopic" label="Estrutura do Programa" hint-size="100%,auto">Duas fases, um único objetivo: sair da intenção para o plano de ação</x-import>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px;">
+        <a href="#fase1" style="text-decoration:none;color:inherit;">
+          <div style="background:var(--branco);border:1px solid var(--border-default);padding:24px;display:flex;flex-direction:column;gap:12px;">
+            <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Tag" tone="diagnostico" hint-size="auto,28px">3 encontros · 10 dias</x-import>
+            <h3 style="font-family:var(--font-subtitle);font-weight:700;font-size:1.125rem;text-transform:uppercase;letter-spacing:var(--tracking-wide);color:var(--preto);margin:0;">Fase 01 — Diagnóstico e Plano</h3>
+            <p style="font-size:1rem;line-height:var(--lh-normal);color:var(--cinza-escuro);margin:0;">3 encontros individuais com o estrategista, 45 minutos cada, terminam num plano de ação trimestral claro e objetivo.</p>
+          </div>
+        </a>
+        <a href="#fase2" style="text-decoration:none;color:inherit;">
+          <div style="background:var(--branco);border:1px solid var(--border-default);padding:24px;display:flex;flex-direction:column;gap:12px;">
+            <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Tag" tone="evidencia" hint-size="auto,28px">Ritmo semanal + ritual mensal</x-import>
+            <h3 style="font-family:var(--font-subtitle);font-weight:700;font-size:1.125rem;text-transform:uppercase;letter-spacing:var(--tracking-wide);color:var(--preto);margin:0;">Fase 02 — Execução Semanal</h3>
+            <p style="font-size:1rem;line-height:var(--lh-normal);color:var(--cinza-escuro);margin:0;">Cadência semanal de execução com o consultor disponível, mais um Ritual de Gestão mensal para medir avanços e ajustar o rumo.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FASE 1 -->
+  <section id="fase1" style="padding:80px 0;border-bottom:1px solid var(--border-default);">
+    <div style="max-width:1120px;margin:0 auto;padding:0 48px;">
+      <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.SectionTopic" label="Fase 01 — Diagnóstico e Plano" hint-size="100%,auto">3 encontros, 3 decisões</x-import>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px;">
+        <sc-for list="{{ phase1Cards }}" as="c" hint-placeholder-count="3">
+          <div style="background:var(--branco);border:1px solid var(--border-default);border-top:4px solid {{ c.accent }};padding:24px;display:flex;flex-direction:column;gap:4px;">
+            <div style="font-family:var(--font-display);font-size:2.25rem;color:{{ c.numColor }};opacity:0.5;">{{ c.num }}</div>
+            <h4 style="font-family:var(--font-subtitle);font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:var(--tracking-wide);color:var(--cinza-medio);margin:0 0 4px;">{{ c.eyebrow }}</h4>
+            <p style="font-weight:700;font-size:1.125rem;line-height:var(--lh-normal);color:var(--preto);margin:0 0 12px;">{{ c.question }}</p>
+            <div style="padding-top:12px;border-top:1px solid var(--border-default);">
+              <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.75rem;text-transform:uppercase;color:var(--exodo-red);display:block;margin-bottom:4px;">Entrega:</span>
+              <p style="font-size:0.875rem;color:var(--cinza-escuro);margin:0;">{{ c.delivery }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="margin-top:40px;">
+        <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Callout" label="Como funciona na prática" hint-size="100%,auto">Os 3 encontros são individuais, com o estrategista, online, com data e horário pré-agendados. Acontecem numa janela de até 10 dias corridos, 45 minutos cada. Ao final, você tem um plano de ação para o trimestre.</x-import>
+      </div>
+    </div>
+  </section>
+
+  <!-- FASE 2 -->
+  <section id="fase2" style="padding:80px 0;background:var(--cinza-claro);border-bottom:1px solid var(--border-default);">
+    <div style="max-width:1120px;margin:0 auto;padding:0 48px;">
+      <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.SectionTopic" label="Fase 02 — Execução Semanal" hint-size="100%,auto">O ritmo que sustenta o plano</x-import>
+
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:40px;">
+        <sc-for list="{{ phase2Days }}" as="d" hint-placeholder-count="5">
+          <div style="background:var(--branco);border:1px solid var(--border-default);padding:20px;display:flex;flex-direction:column;gap:8px;">
+            <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Tag" tone="processo" hint-size="auto,26px">{{ d.day }}</x-import>
+            <h4 style="font-family:var(--font-subtitle);font-weight:700;font-size:0.85rem;text-transform:uppercase;color:var(--preto);margin:4px 0 0;">{{ d.title }}</h4>
+            <p style="font-size:0.8rem;color:var(--cinza-escuro);margin:0;line-height:var(--lh-normal);">{{ d.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="margin-top:32px;">
+        <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Callout" label="Ritual de Gestão · mensal" tone="accent" hint-size="100%,auto">Uma vez por mês, entre a última semana do mês e a primeira semana seguinte, 45 minutos com o consultor: panorama geral do mês, medição de progresso do plano de ação, ajustes de metas e análise de indicadores medidos de forma objetiva.</x-import>
+      </div>
+    </div>
+  </section>
+
+  <!-- PULL QUOTE -->
+  <section style="padding:96px 0;border-bottom:1px solid var(--border-default);background:var(--branco);">
+    <div style="max-width:840px;margin:0 auto;padding:0 48px;">
+      <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.PullQuote" attribution="Êxodo" hint-size="100%,auto">Ao término do acompanhamento, você terá passado por uma experiência de gestão profissional — a base para o próximo nível do seu negócio.</x-import>
+    </div>
+  </section>
+
+  <!-- SOBRE A ÊXODO (dark) -->
+  <section style="background:var(--preto);color:var(--branco);padding:96px 0;border-bottom:2px solid var(--preto);">
+    <div style="max-width:1120px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:4fr 8fr;gap:48px;align-items:start;">
+      <div>
+        <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.75rem;text-transform:uppercase;letter-spacing:var(--tracking-wider);color:var(--exodo-red);display:block;margin-bottom:8px;">Sobre a Êxodo</span>
+        <h3 style="font-family:var(--font-display);font-size:1.875rem;line-height:1.2;color:var(--branco);margin:0;">Gestão estratégica aplicada à saúde</h3>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <p style="font-size:1.125rem;line-height:var(--lh-relaxed);color:var(--branco);margin:0;">A Êxodo aplica um método exclusivo de diagnóstico e gestão estratégica a clínicas de nutrição, com estrategistas dedicados ao acompanhamento individual de cada negócio.</p>
+        <p style="font-size:1.125rem;line-height:var(--lh-relaxed);color:var(--cinza-claro);margin:0;">O AE3 é o ponto de entrada: um trimestre para sair do improviso, blindar a operação contra urgências diárias e instalar um ritmo de gestão profissional na clínica.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREÇO / INVESTIMENTO -->
+  <section id="preco" style="padding:96px 0;border-bottom:1px solid var(--border-default);background:var(--branco);">
+    <div style="max-width:1120px;margin:0 auto;padding:0 48px;">
+      <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.SectionTopic" label="Investimento & Esteira" hint-size="100%,auto">O que você investe para sair do improviso</x-import>
+
+      <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:24px;margin-top:40px;align-items:stretch;">
+        <div style="background:var(--preto);color:var(--branco);padding:40px;display:flex;flex-direction:column;gap:16px;">
+          <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Tag" tone="evidencia" hint-size="auto,28px">Programa de Entrada</x-import>
+          <h3 style="font-family:var(--font-display);font-size:2.25rem;margin:0;color:var(--branco);">AE3 — Trimestre Completo</h3>
+          <p style="font-size:1rem;color:var(--cinza-claro);margin:0;max-width:520px;">3 encontros de diagnóstico e plano (Fase 01) + acompanhamento semanal por 90 dias (Fase 02).</p>
+          <div style="display:flex;align-items:baseline;gap:12px;margin-top:12px;">
+            <span style="font-family:var(--font-display);font-size:2.5rem;color:var(--branco);">R$ 599,66</span>
+            <span style="font-family:var(--font-subtitle);font-size:0.85rem;color:var(--cinza-claro);">x3 no cartão</span>
+          </div>
+          <p style="font-size:0.85rem;color:var(--cinza-claro);margin:0;">ou <strong style="color:var(--branco);">R$ 1.799,00 à vista no PIX</strong> (sem juros no cartão)</p>
+          <p style="font-size:0.8rem;margin:0;"><span style="text-decoration:line-through;color:var(--cinza-medio);">Valor avulso: R$ 5.480,00</span> <span style="color:var(--exodo-red);font-weight:700;"> · Economia de R$ 3.681,00</span></p>
+          <div style="margin-top:16px;"><x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Button" variant="primary" size="lg" hint-size="auto,48px">Agendar diagnóstico</x-import></div>
+        </div>
+
+        <div style="background:var(--cinza-claro);padding:32px;display:flex;flex-direction:column;gap:12px;justify-content:center;">
+          <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Tag" tone="informacao" hint-size="auto,26px">Pós-AE3</x-import>
+          <h4 style="font-family:var(--font-subtitle);font-weight:700;font-size:1rem;text-transform:uppercase;color:var(--preto);margin:0;">Comunidade Êxodo</h4>
+          <p style="font-size:0.9rem;color:var(--cinza-escuro);margin:0;">Após o trimestre, siga com acesso à rede e itens básicos por uma assinatura simples.</p>
+          <span style="font-family:var(--font-display);font-size:1.5rem;color:var(--preto);">R$ 349,00 <span style="font-family:var(--font-subtitle);font-size:0.85rem;color:var(--cinza-medio);">/mês</span></span>
+        </div>
+      </div>
+
+      <!-- SIMULADOR -->
+      <div id="simulador" style="background:var(--cinza-claro);padding:48px;margin-top:48px;border:1px solid var(--border-default);">
+        <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.SectionTopic" label="Simulador de Assinatura" hint-size="100%,auto">Monte seu ritmo de acompanhamento recorrente</x-import>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;margin-top:32px;">
+          <div>
+            <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.75rem;text-transform:uppercase;letter-spacing:var(--tracking-wide);color:var(--preto);display:block;margin-bottom:12px;">Rituais mensais (Nutri)</span>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <sc-for list="{{ ritualOptions }}" as="opt" hint-placeholder-count="4">
+                <button onclick="{{ opt.select }}" style="{{ opt.style }}">{{ opt.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+
+          <div>
+            <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.75rem;text-transform:uppercase;letter-spacing:var(--tracking-wide);color:var(--preto);display:block;margin-bottom:12px;">Suporte semanal (WhatsApp)</span>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <sc-for list="{{ supportOptions }}" as="opt" hint-placeholder-count="3">
+                <button onclick="{{ opt.select }}" style="{{ opt.style }}">{{ opt.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+
+          <div>
+            <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.75rem;text-transform:uppercase;letter-spacing:var(--tracking-wide);color:var(--preto);display:block;margin-bottom:12px;">SOS emergencial / mês</span>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <sc-for list="{{ sosOptions }}" as="opt" hint-placeholder-count="4">
+                <button onclick="{{ opt.select }}" style="{{ opt.style }}">{{ opt.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:40px;padding-top:32px;border-top:1px solid var(--cinza-medio);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+          <div>
+            <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.75rem;text-transform:uppercase;letter-spacing:var(--tracking-wide);color:var(--cinza-medio);display:block;">Sua assinatura mensal estimada</span>
+            <span style="font-family:var(--font-display);font-size:2.5rem;color:var(--exodo-red);">R$ {{ formattedTotal }}</span>
+            <span style="font-size:0.75rem;color:var(--cinza-medio);"> /mês</span>
+          </div>
+          <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Button" variant="primary" size="lg" hint-size="auto,48px">Falar com um estrategista</x-import>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" style="padding:96px 0;background:var(--cinza-claro);border-bottom:1px solid var(--border-default);">
+    <div style="max-width:820px;margin:0 auto;padding:0 48px;">
+      <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.SectionTopic" label="Dúvidas Frequentes" hint-size="100%,auto">O que perguntam antes de começar</x-import>
+
+      <div style="margin-top:40px;display:flex;flex-direction:column;border-top:1px solid var(--border-default);">
+        <sc-for list="{{ faqItems }}" as="item" hint-placeholder-count="6">
+          <div style="border-bottom:1px solid var(--border-default);background:var(--branco);padding:16px 20px;">
+            <button onclick="{{ item.toggle }}" style="width:100%;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:12px;background:transparent;border:none;cursor:pointer;padding:4px 0;">
+              <span style="font-family:var(--font-subtitle);font-weight:700;font-size:1.05rem;color:var(--preto);">{{ item.q }}</span>
+              <span style="font-family:var(--font-subtitle);font-size:1.25rem;font-weight:700;color:var(--exodo-red);flex-shrink:0;">{{ item.icon }}</span>
+            </button>
+            <sc-if value="{{ item.isOpen }}" hint-placeholder-val="{{ false }}">
+              <p style="font-size:0.95rem;line-height:var(--lh-relaxed);color:var(--cinza-escuro);margin:8px 0 4px;padding-top:10px;border-top:1px solid var(--border-default);">{{ item.a }}</p>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER CTA -->
+  <footer>
+    <section style="padding:96px 0;position:relative;overflow:hidden;background:var(--branco);border-bottom:1px solid var(--border-default);">
+      <div style="position:absolute;bottom:0;left:0;pointer-events:none;">
+        <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.CornerAccent" variant="diagonal" size="120" hint-size="120px,120px"></x-import>
+      </div>
+      <div style="max-width:1120px;margin:0 auto;padding:0 48px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:24px;position:relative;z-index:1;">
+        <h2 style="font-family:var(--font-display);font-size:var(--text-display);color:var(--preto);max-width:680px;line-height:var(--lh-tight);margin:0;">Comece o trimestre com um plano, não com intenções.</h2>
+        <p style="font-size:1rem;color:var(--cinza-escuro);max-width:520px;margin:0;">Três encontros para redefinir o ritmo da sua clínica de nutrição.</p>
+        <div style="display:flex;gap:16px;margin-top:8px;">
+          <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Button" variant="primary" size="lg" hint-size="auto,48px">Agendar diagnóstico</x-import>
+          <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Button" variant="tertiary" size="lg" hint-size="auto,48px">Visualizar Relatório Executivo A4</x-import>
+        </div>
+      </div>
+    </section>
+
+    <div style="background:var(--branco);padding:32px 0;border-top:1px solid var(--border-default);">
+      <div style="max-width:1120px;margin:0 auto;padding:0 48px;display:flex;align-items:center;justify-content:space-between;gap:16px;">
+        <div style="display:inline-flex;flex-direction:column;align-items:flex-start;height:33px;">
+          <svg viewBox="0 0 320 80" style="height:22px;width:auto;">
+            <path d="M 32 22 L 48 6 L 64 22 L 56 22 L 48 14 L 40 22 Z" fill="var(--preto)"></path>
+            <text x="10" y="72" font-family="'Montserrat', sans-serif" font-weight="800" font-size="68" letter-spacing="-2" fill="var(--preto)">êxodo</text>
+          </svg>
+        </div>
+        <span style="font-family:var(--font-subtitle);font-size:0.75rem;color:var(--cinza-medio);">Êxodo — Diagnóstico Estratégico de Negócio © 2026. Todos os direitos reservados.</span>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const RITUAL_PRICE = 379, SUPPORT_PRICE = 94.75, SOS_PRICE = 189.5, BASE_FEE = 240;
+
+class Component extends DCLogic {
+  state = {
+    rituals: 1,
+    supportFrequency: 1,
+    sosCount: 0,
+    faqOpen: 0,
+  };
+
+  selectRitual(n) { this.setState({ rituals: n }); }
+  selectSupport(n) { this.setState({ supportFrequency: n }); }
+  selectSos(n) { this.setState({ sosCount: n }); }
+  toggleFaq(i) { this.setState(s => ({ faqOpen: s.faqOpen === i ? null : i })); }
+
+  buttonStyle(active) {
+    return {
+      textAlign: 'left', padding: '12px 14px', fontFamily: 'var(--font-body)', fontSize: '0.85rem',
+      border: active ? '2px solid var(--exodo-red)' : '1px solid var(--border-default)',
+      background: 'var(--branco)',
+      color: active ? 'var(--exodo-red)' : 'var(--cinza-escuro)',
+      fontWeight: active ? 700 : 400, cursor: 'pointer'
+    };
+  }
+
+  renderVals() {
+    const { rituals, supportFrequency, sosCount, faqOpen } = this.state;
+    const total = BASE_FEE + rituals * RITUAL_PRICE + supportFrequency * SUPPORT_PRICE + sosCount * SOS_PRICE;
+    const formattedTotal = total.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+    const faqData = [
+      { q: 'Para quem é o AE3?', a: 'Para nutricionistas que já têm uma clínica em funcionamento e precisam de um plano de ação claro para os próximos 90 dias, com acompanhamento individual de um estrategista.' },
+      { q: 'Quanto tempo dura o acompanhamento?', a: 'A Fase 01 acontece em até 10 dias, com 3 encontros. A Fase 02 segue por um trimestre, com ritmo semanal e um Ritual de Gestão mensal.' },
+      { q: 'Os encontros são individuais ou em grupo?', a: 'Individuais. Todos os encontros e rituais são feitos diretamente com o seu estrategista, online e agendados de forma personalizada.' },
+      { q: 'O que acontece ao final do trimestre?', a: 'Você pode encerrar o acompanhamento ou seguir com uma assinatura recorrente personalizada (usando nosso simulador), escolhendo a quantidade de Rituais de Gestão e o tipo de suporte.' },
+      { q: 'Preciso ter experiência com gestão para participar?', a: 'Não. O processo parte do cenário real da sua clínica hoje, sem exigir conhecimento prévio de gestão ou finanças complexas.' },
+      { q: 'Como funciona o pagamento?', a: 'O AE3 custa R$ 1.799,00 à vista no PIX, ou em até 3x no cartão. A assinatura recorrente pós-AE3, quando ativada, é cobrada mensalmente.' },
+    ];
+
+    return {
+      pillars: [
+        { title: '3 Encontros', sub: '100% Individuais' },
+        { title: 'Até 10 Dias', sub: 'Fase de Diagnóstico' },
+        { title: 'Plano Trimestral', sub: '90 Dias de Foco' },
+        { title: 'Acompanhado', sub: 'Estrategista Dedicado' },
+      ],
+      phase1Cards: [
+        { num: '01', numColor: 'var(--cinza-medio)', accent: 'var(--preto)', eyebrow: 'Encontro 1 — Cenário Atual', question: 'Qual o cenário do seu negócio hoje?', delivery: 'Diagnóstico completo do cenário atual da sua clínica (faturamento, margem, retenção, gargalos).' },
+        { num: '02', numColor: 'var(--exodo-red)', accent: 'var(--exodo-red)', eyebrow: 'Encontro 2 — Cenários Possíveis', question: 'Quais os 3 melhores cenários para atingir sua meta em 90 dias?', delivery: '3 caminhos estratégicos com probabilidade de sucesso, exigência de esforço e retorno esperado.' },
+        { num: '03', numColor: 'var(--cinza-medio)', accent: 'var(--preto)', eyebrow: 'Encontro 3 — Plano de Ação', question: 'Escolhido o cenário, quais ações táticas para os próximos 90 dias?', delivery: 'Plano de ação trimestral pronto, detalhado semana a semana com metas, responsáveis e prioridades.' },
+      ],
+      phase2Days: [
+        { day: 'Segunda', title: 'Envio das Ações', desc: 'Recebe as ações prioritárias da semana e inicia a execução na clínica com a equipe.' },
+        { day: 'Terça', title: 'Alinhamento Tático', desc: 'Consultor disponível para alinhamento tático, ajustes de rota e esclarecimento de dúvidas.' },
+        { day: 'Sexta', title: 'Prestação de Contas', desc: 'Reporta o que foi e o que não foi realizado na semana, atualizando métricas e indicadores.' },
+        { day: 'Domingo', title: 'Análise & Consolidação', desc: 'Consultor analisa os relatórios de sexta-feira e consolida o panorama tático da clínica.' },
+        { day: 'Segunda (Próx.)', title: 'Novo Ciclo', desc: 'Lançamento do novo lote de prioridades com correções de rota aplicadas do ciclo anterior.' },
+      ],
+      ritualOptions: [1, 2, 3, 4].map(n => ({
+        label: `${n}x/mês · R$ ${(n * RITUAL_PRICE).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`,
+        select: () => this.selectRitual(n),
+        style: this.buttonStyle(rituals === n),
+      })),
+      supportOptions: [1, 2, 3].map(n => ({
+        label: `${n}x/semana · R$ ${(n * SUPPORT_PRICE).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}/mês`,
+        select: () => this.selectSupport(n),
+        style: this.buttonStyle(supportFrequency === n),
+      })),
+      sosOptions: [0, 1, 2, 3].map(n => ({
+        label: n === 0 ? 'Nenhum' : `${n}x/mês · R$ ${(n * SOS_PRICE).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`,
+        select: () => this.selectSos(n),
+        style: this.buttonStyle(sosCount === n),
+      })),
+      formattedTotal,
+      faqItems: faqData.map((f, i) => ({
+        q: f.q, a: f.a, isOpen: faqOpen === i, icon: faqOpen === i ? '−' : '+',
+        toggle: () => this.toggleFaq(i),
+      })),
+    };
+  }
+}
+</script>
+</body>
+</html>

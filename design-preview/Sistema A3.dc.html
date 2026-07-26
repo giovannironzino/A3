@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/xodo-design-system-8f1e864a-902d-46f9-a3ec-df4e7dbf1545/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/xodo-design-system-8f1e864a-902d-46f9-a3ec-df4e7dbf1545/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/xodo-design-system-8f1e864a-902d-46f9-a3ec-df4e7dbf1545/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/xodo-design-system-8f1e864a-902d-46f9-a3ec-df4e7dbf1545/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/xodo-design-system-8f1e864a-902d-46f9-a3ec-df4e7dbf1545/styles.css">
+  <script src="_ds/xodo-design-system-8f1e864a-902d-46f9-a3ec-df4e7dbf1545/_ds_bundle.js"></script>
+  <style>
+    body { margin: 0; background: var(--branco); }
+    input, textarea { font-family: var(--font-body); }
+    input:focus, textarea:focus { outline: none; border-color: var(--exodo-red) !important; }
+    a { color: var(--exodo-red); }
+    a:hover { color: var(--preto); }
+  </style>
+</helmet>
+
+<div style="min-height:100vh;background:var(--branco);font-family:var(--font-body);color:var(--preto);">
+
+  <!-- REVIEW NAV — internal screen switcher for this review pass -->
+  <div style="position:sticky;top:0;z-index:50;background:var(--preto);padding:10px 24px;display:flex;align-items:center;gap:8px;overflow-x:auto;">
+    <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.65rem;text-transform:uppercase;letter-spacing:var(--tracking-wide);color:var(--cinza-medio);margin-right:8px;flex-shrink:0;">Telas:</span>
+    <sc-for list="{{ screens }}" as="s" hint-placeholder-count="7">
+      <button onclick="{{ s.select }}" style="{{ s.style }}">{{ s.label }}</button>
+    </sc-for>
+  </div>
+
+  <!-- ========== TELA 1 · LOGIN ========== -->
+  <sc-if value="{{ isScreen.login }}" hint-placeholder-val="{{ true }}">
+    <div data-screen-label="01 Login" style="min-height:calc(100vh - 45px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 16px;background:var(--cinza-claro);">
+      <div style="width:100%;max-width:420px;background:var(--branco);border:2px solid var(--preto);padding:40px;position:relative;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border-default);">
+          <a href="#" style="font-family:var(--font-subtitle);font-weight:700;font-size:0.7rem;color:var(--cinza-escuro);text-decoration:none;">← Voltar ao site</a>
+          <span style="background:var(--exodo-red);color:var(--branco);font-family:var(--font-subtitle);font-weight:700;font-size:0.62rem;padding:4px 10px;text-transform:uppercase;letter-spacing:var(--tracking-wide);">Área Exclusiva A3</span>
+        </div>
+
+        <div style="text-align:center;margin-bottom:24px;">
+          <div style="display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;background:var(--preto);color:var(--branco);margin-bottom:12px;">
+            <span style="font-family:var(--font-display);font-size:1.4rem;">A3</span>
+          </div>
+          <h1 style="font-family:var(--font-display);font-size:1.5rem;color:var(--preto);margin:0;letter-spacing:var(--tracking-tight);">Acesso ao Sistema A3</h1>
+          <p style="font-size:0.8rem;color:var(--cinza-escuro);margin:4px 0 0;">Apoio à Decisão Estratégica e Direcionamento Tático para Nutricionistas.</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div>
+            <label style="display:block;font-family:var(--font-subtitle);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:var(--tracking-wide);color:var(--cinza-escuro);margin-bottom:6px;">Seu Nome</label>
+            <input type="text" placeholder="Ex: Dra. Juliana Costa" style="width:100%;padding:12px 14px;border:1px solid var(--border-strong);font-size:0.9rem;box-sizing:border-box;">
+          </div>
+          <div>
+            <label style="display:block;font-family:var(--font-subtitle);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:var(--tracking-wide);color:var(--cinza-escuro);margin-bottom:6px;">E-mail Cadastrado</label>
+            <input type="email" placeholder="seu@email.com" style="width:100%;padding:12px 14px;border:1px solid var(--border-strong);font-size:0.9rem;box-sizing:border-box;">
+          </div>
+          <div>
+            <label style="display:block;font-family:var(--font-subtitle);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:var(--tracking-wide);color:var(--cinza-escuro);margin-bottom:6px;">Nome da Clínica (Opcional)</label>
+            <input type="text" placeholder="Ex: Instituto Nutri & Saúde" style="width:100%;padding:12px 14px;border:1px solid var(--border-strong);font-size:0.9rem;box-sizing:border-box;">
+          </div>
+
+          <div style="margin-top:4px;">
+            <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Button" variant="primary" size="lg" on-click="{{ goWelcome }}" hint-size="100%,48px" style="width:100%;justify-content:center;">Entrar no A3 →</x-import>
+          </div>
+        </div>
+
+        <div style="text-align:center;margin:24px 0;position:relative;">
+          <div style="border-top:1px solid var(--border-default);"></div>
+          <span style="position:relative;top:-10px;background:var(--branco);padding:0 12px;font-family:var(--font-subtitle);font-size:0.65rem;font-weight:700;text-transform:uppercase;color:var(--cinza-medio);">ou entre com</span>
+        </div>
+
+        <button style="width:100%;padding:12px;background:var(--branco);border:1px solid var(--border-strong);font-family:var(--font-subtitle);font-weight:700;font-size:0.8rem;cursor:pointer;">Entrar com Conta Google</button>
+
+        <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border-default);text-align:center;">
+          <p style="font-size:0.7rem;color:var(--cinza-medio);font-family:var(--font-subtitle);font-weight:700;text-transform:uppercase;letter-spacing:var(--tracking-wide);margin:0 0 8px;">Primeiro acesso para testes?</p>
+          <button onclick="{{ goWelcome }}" style="width:100%;padding:12px;background:var(--cinza-claro);border:1px solid var(--border-default);font-family:var(--font-subtitle);font-weight:700;font-size:0.8rem;cursor:pointer;color:var(--preto);">Acessar com Perfil de Teste (Dra. Amanda)</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- APP SHELL for all logged-in screens -->
+  <sc-if value="{{ isScreen.appShell }}" hint-placeholder-val="{{ false }}">
+    <header style="background:var(--branco);border-bottom:1px solid var(--border-default);padding:12px 32px;">
+      <div style="max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <svg viewBox="0 0 320 80" style="height:22px;width:auto;">
+              <path d="M 32 22 L 48 6 L 64 22 L 56 22 L 48 14 L 40 22 Z" fill="var(--exodo-red)"></path>
+              <text x="10" y="72" font-family="'Montserrat', sans-serif" font-weight="800" font-size="68" letter-spacing="-2" fill="var(--exodo-red)">êxodo</text>
+            </svg>
+            <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.65rem;text-transform:uppercase;padding:3px 8px;background:var(--preto);color:var(--branco);letter-spacing:var(--tracking-wide);">Sistema A3</span>
+          </div>
+          <div style="border-left:1px solid var(--border-default);padding-left:16px;">
+            <span style="font-family:var(--font-subtitle);font-size:0.6rem;font-weight:700;color:var(--cinza-medio);text-transform:uppercase;letter-spacing:var(--tracking-wide);display:block;">Módulo do Assinante</span>
+            <span style="font-family:var(--font-subtitle);font-size:0.8rem;font-weight:700;color:var(--preto);">Consultório de Nutrição</span>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <sc-for list="{{ navBlocks }}" as="b" hint-placeholder-count="3">
+            <button onclick="{{ b.select }}" style="padding:8px 14px;font-family:var(--font-subtitle);font-weight:700;font-size:0.7rem;text-transform:uppercase;letter-spacing:var(--tracking-wide);border:1px solid {{ b.borderColor }};color:{{ b.color }};background:{{ b.bg }};cursor:pointer;">{{ b.label }}</button>
+          </sc-for>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="display:flex;align-items:center;gap:6px;padding:6px 12px;border:1px solid var(--border-default);font-family:var(--font-subtitle);font-size:0.7rem;font-weight:700;color:var(--cinza-escuro);">Dra. Amanda Silva</span>
+          <button onclick="{{ goLogin }}" style="padding:8px 14px;background:var(--preto);color:var(--branco);font-family:var(--font-subtitle);font-weight:700;font-size:0.7rem;text-transform:uppercase;letter-spacing:var(--tracking-wide);border:none;cursor:pointer;">Sair do Módulo</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ========== TELA 2 · BOAS-VINDAS ========== -->
+    <sc-if value="{{ isScreen.welcome }}" hint-placeholder-val="{{ false }}">
+      <main data-screen-label="02 Boas-vindas" style="max-width:820px;margin:0 auto;padding:48px 32px;">
+        <div style="border:2px solid var(--preto);padding:40px;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:-32px;right:-32px;pointer-events:none;">
+            <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.CornerAccent" variant="arredondado" size="120" hint-size="120px,120px"></x-import>
+          </div>
+          <div style="position:relative;z-index:1;">
+            <div style="margin-bottom:16px;">
+              <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Tag" tone="evidencia" hint-size="auto,28px">Diagnóstico & Plano Tático A3</x-import>
+            </div>
+            <h1 style="font-family:var(--font-display);font-size:2rem;color:var(--preto);letter-spacing:var(--tracking-tight);line-height:1.2;margin:0 0 12px;">Olá, Amanda! Vamos desenhar o rumo estratégico do seu negócio.</h1>
+            <p style="font-size:1rem;color:var(--cinza-escuro);line-height:var(--lh-relaxed);margin:0 0 24px;max-width:640px;">O <strong>A3</strong> é o seu assistente de apoio à decisão. Vamos conduzir uma conversa simples, etapa por etapa, para analisar os pilares do seu consultório e montar um <strong>Plano Tático Sob Medida</strong>.</p>
+
+            <div style="background:var(--cinza-claro);padding:24px;margin-bottom:32px;display:flex;flex-direction:column;gap:12px;">
+              <h3 style="font-family:var(--font-subtitle);font-weight:700;font-size:0.75rem;text-transform:uppercase;letter-spacing:var(--tracking-wide);color:var(--preto);margin:0;">Como funciona a nossa conversa:</h3>
+              <sc-for list="{{ principles }}" as="p" hint-placeholder-count="4">
+                <div style="display:flex;align-items:start;gap:10px;">
+                  <span style="color:var(--exodo-red);font-weight:700;flex-shrink:0;">✓</span>
+                  <span style="font-size:0.85rem;color:var(--cinza-escuro);"><strong style="color:var(--preto);">{{ p.strong }}:</strong> {{ p.rest }}</span>
+                </div>
+              </sc-for>
+            </div>
+
+            <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Button" variant="primary" size="lg" on-click="{{ goTrilha }}" hint-size="auto,52px">Iniciar Diagnóstico A3 →</x-import>
+          </div>
+        </div>
+      </main>
+    </sc-if>
+
+    <!-- ========== TELA 3 · TRILHA DA JORNADA ========== -->
+    <sc-if value="{{ isScreen.trilha }}" hint-placeholder-val="{{ false }}">
+      <main data-screen-label="03 Trilha da Jornada" style="max-width:1280px;margin:0 auto;padding:32px;">
+        <div style="border:1px solid var(--border-strong);padding:20px;margin-bottom:32px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--border-default);padding-bottom:12px;margin-bottom:16px;flex-wrap:wrap;">
+            <div>
+              <h2 style="font-family:var(--font-subtitle);font-weight:700;font-size:0.95rem;color:var(--preto);margin:0;text-transform:uppercase;letter-spacing:var(--tracking-wide);">Trilha da Jornada — Fase 1</h2>
+              <p style="font-size:0.75rem;color:var(--cinza-medio);margin:2px 0 0;">Três blocos que se encadeiam: o Retrato de Hoje vira as opções do Caminho Possível, e o caminho escolhido vira o Plano em Movimento.</p>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+            <sc-for list="{{ journeyBlocks }}" as="block" hint-placeholder-count="3">
+              <div style="border:1px solid {{ block.borderColor }};padding:16px;display:flex;flex-direction:column;gap:10px;background:{{ block.bg }};cursor:pointer;" onclick="{{ block.onClick }}">
+                <div style="display:flex;align-items:center;justify-content:space-between;">
+                  <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.68rem;text-transform:uppercase;letter-spacing:var(--tracking-wide);color:{{ block.labelColor }};">{{ block.eyebrow }}</span>
+                  <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.6rem;text-transform:uppercase;color:{{ block.statusColor }};">{{ block.status }}</span>
+                </div>
+                <div>
+                  <h3 style="font-family:var(--font-subtitle);font-weight:700;font-size:0.95rem;color:var(--preto);margin:0 0 4px;">{{ block.title }}</h3>
+                  <p style="font-size:0.75rem;color:var(--cinza-escuro);line-height:var(--lh-normal);margin:0;">{{ block.desc }}</p>
+                </div>
+                <div style="display:flex;flex-wrap:wrap;gap:4px;">
+                  <sc-for list="{{ block.steps }}" as="step" hint-placeholder-count="3">
+                    <span style="padding:3px 8px;font-size:0.62rem;font-family:var(--font-subtitle);font-weight:700;border:1px solid var(--border-default);color:var(--cinza-escuro);background:var(--branco);">{{ step }}</span>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Callout" label="Sobre esta trilha" hint-size="100%,auto">Cada bloco só se abre depois que o anterior é aprovado — o Bloco B "O Caminho Possível" e o Bloco C "O Plano em Movimento" ficam bloqueados até você concluir a etapa que vem antes. Nada aqui é isolado: cada resposta alimenta a próxima decisão.</x-import>
+      </main>
+    </sc-if>
+
+    <!-- ========== TELA 4 · PERGUNTA (ETAPA DO DIAGNÓSTICO) ========== -->
+    <sc-if value="{{ isScreen.pergunta }}" hint-placeholder-val="{{ false }}">
+      <main data-screen-label="04 Pergunta do Diagnóstico" style="max-width:720px;margin:0 auto;padding:48px 32px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px;">
+          <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Tag" tone="diagnostico" hint-size="auto,26px">Bloco A · Passo 2 de 5</x-import>
+          <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.75rem;color:var(--cinza-medio);">Quem você atende</span>
+        </div>
+
+        <div style="height:4px;background:var(--cinza-claro);margin-bottom:32px;">
+          <div style="height:100%;width:40%;background:var(--exodo-red);"></div>
+        </div>
+
+        <h1 style="font-family:var(--font-display);font-size:clamp(1.75rem,3vw,2.25rem);line-height:1.2;color:var(--preto);letter-spacing:var(--tracking-tight);margin:0 0 12px;">Quantos pacientes ativos você atende hoje em cada serviço?</h1>
+        <p style="font-size:0.95rem;color:var(--cinza-escuro);line-height:var(--lh-relaxed);margin:0 0 32px;">Não precisa ser exato — uma estimativa já ajuda a calcular sua carga clínica semanal real. Preencha por produto/serviço cadastrado.</p>
+
+        <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:32px;">
+          <sc-for list="{{ patientFields }}" as="f" hint-placeholder-count="3">
+            <div style="border:1px solid var(--border-default);padding:16px;display:flex;align-items:center;justify-content:space-between;gap:16px;">
+              <div>
+                <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.85rem;color:var(--preto);display:block;">{{ f.name }}</span>
+                <span style="font-size:0.75rem;color:var(--cinza-medio);">{{ f.hint }}</span>
+              </div>
+              <input type="number" placeholder="0" style="width:90px;padding:10px;border:1px solid var(--border-strong);text-align:center;font-size:1rem;font-weight:700;box-sizing:border-box;">
+            </div>
+          </sc-for>
+        </div>
+
+        <label style="display:flex;align-items:center;gap:8px;margin-bottom:32px;font-size:0.8rem;color:var(--cinza-escuro);cursor:pointer;">
+          <input type="checkbox" style="width:16px;height:16px;">
+          Estes números são uma estimativa aproximada
+        </label>
+
+        <div style="display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border-default);padding-top:24px;">
+          <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Button" variant="tertiary" size="md" hint-size="auto,44px">← Voltar</x-import>
+          <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Button" variant="primary" size="md" on-click="{{ goGio }}" hint-size="auto,44px">Salvar e continuar →</x-import>
+        </div>
+      </main>
+    </sc-if>
+
+    <!-- ========== TELA 4B · GIO · CONSULTOR ESTRATÉGICO ========== -->
+    <sc-if value="{{ isScreen.gio }}" hint-placeholder-val="{{ false }}">
+      <main data-screen-label="04b Gio Consultor Estratégico" style="max-width:900px;margin:0 auto;padding:32px;display:flex;flex-direction:column;height:calc(100vh - 140px);">
+
+        <!-- Cabeçalho da conversa -->
+        <div style="border:1px solid var(--border-strong);background:var(--preto);color:var(--branco);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="width:40px;height:40px;background:var(--exodo-red);color:var(--branco);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.1rem;flex-shrink:0;">G</div>
+            <div>
+              <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.95rem;display:block;">Gio · Consultor Estratégico</span>
+              <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.65rem;text-transform:uppercase;letter-spacing:var(--tracking-wide);color:var(--cinza-medio);">04. Para onde esse tempo vai · Bloco A</span>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;">
+            <sc-for list="{{ gioAxes }}" as="ax" hint-placeholder-count="6">
+              <span style="{{ ax.style }}" title="{{ ax.title }}"></span>
+            </sc-for>
+          </div>
+        </div>
+
+        <!-- Trilha de eixos -->
+        <div style="display:flex;align-items:center;gap:8px;padding:12px 4px;overflow-x:auto;">
+          <sc-for list="{{ gioAxes }}" as="ax" hint-placeholder-count="6">
+            <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.62rem;text-transform:uppercase;letter-spacing:var(--tracking-wide);padding:4px 10px;flex-shrink:0;border:1px solid {{ ax.pillBorder }};color:{{ ax.pillColor }};background:{{ ax.pillBg }};">{{ ax.label }}</span>
+          </sc-for>
+        </div>
+
+        <!-- Transcrição do chat -->
+        <div style="flex:1;overflow-y:auto;border:1px solid var(--border-default);background:var(--branco);padding:24px;display:flex;flex-direction:column;gap:16px;min-height:320px;">
+          <sc-for list="{{ gioMessages }}" as="m" hint-placeholder-count="4">
+            <div style="{{ m.wrapStyle }}">
+              <div style="{{ m.bubbleStyle }}">{{ m.text }}</div>
+              <span style="{{ m.timeStyle }}">{{ m.time }}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <!-- Respostas rápidas -->
+        <sc-if value="{{ gioHasQuickReplies }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;padding:16px 0 0;">
+            <sc-for list="{{ gioQuickReplies }}" as="q" hint-placeholder-count="3">
+              <button onclick="{{ q.select }}" style="font-family:var(--font-subtitle);font-weight:700;font-size:0.8rem;padding:10px 18px;border:1px solid var(--border-strong);background:var(--branco);color:var(--preto);cursor:pointer;">{{ q.label }}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <!-- Campo de digitação -->
+        <div style="display:flex;gap:10px;padding-top:16px;">
+          <input type="text" placeholder="Digite sua resposta aqui..." style="flex:1;padding:14px 16px;border:1px solid var(--border-strong);font-size:0.9rem;box-sizing:border-box;">
+          <button style="width:48px;height:48px;flex-shrink:0;background:var(--preto);color:var(--branco);border:none;cursor:pointer;font-family:var(--font-subtitle);font-weight:700;">→</button>
+          <button onclick="{{ toggleDrawer }}" style="height:48px;padding:0 18px;flex-shrink:0;white-space:nowrap;background:var(--branco);color:var(--preto);border:1px solid var(--border-strong);cursor:pointer;font-family:var(--font-subtitle);font-weight:700;font-size:0.7rem;text-transform:uppercase;letter-spacing:var(--tracking-wide);">Resumo</button>
+        </div>
+      </main>
+
+      <!-- Painel de resumo estruturado -->
+      <sc-if value="{{ drawerOpen }}" hint-placeholder-val="{{ false }}">
+        <div onclick="{{ toggleDrawer }}" style="position:fixed;inset:0;background:rgba(13,13,13,0.5);z-index:60;">
+          <div onclick="{{ stop }}" style="position:absolute;top:0;right:0;height:100%;width:380px;background:var(--branco);border-left:2px solid var(--preto);padding:32px;overflow-y:auto;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;border-bottom:1px solid var(--border-default);padding-bottom:16px;">
+              <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.8rem;text-transform:uppercase;letter-spacing:var(--tracking-wide);color:var(--preto);">Resumo Estruturado</span>
+              <button onclick="{{ toggleDrawer }}" style="background:none;border:none;cursor:pointer;font-size:1.1rem;color:var(--cinza-medio);">✕</button>
+            </div>
+            <sc-for list="{{ gioSummary }}" as="s" hint-placeholder-count="5">
+              <div style="border-bottom:1px solid var(--border-default);padding:12px 0;">
+                <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.65rem;text-transform:uppercase;letter-spacing:var(--tracking-wide);color:var(--cinza-medio);display:block;margin-bottom:4px;">{{ s.label }}</span>
+                <span style="font-size:0.85rem;color:var(--preto);">{{ s.value }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+    </sc-if>
+
+    <!-- ========== TELA 5 · ESCOLHA DA CONFIGURAÇÃO ========== -->
+    <sc-if value="{{ isScreen.configuracao }}" hint-placeholder-val="{{ false }}">
+      <main data-screen-label="05 Escolha da Configuração" style="max-width:1280px;margin:0 auto;padding:32px;">
+        <div style="border:1px solid var(--border-strong);padding:32px;margin-bottom:32px;">
+          <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.SectionTopic" label="O Caminho Possível · Passo 3 de 3" hint-size="100%,auto">Qual caminho é o seu?</x-import>
+          <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Callout" label="Como ler estes caminhos" tone="accent" hint-size="100%,auto" style="margin-top:24px;">Encontramos formas diferentes de organizar sua clínica pelos próximos 90 dias. Nenhuma delas é a certa ou a errada — são só caminhos diferentes. Você escolhe qual se parece mais com o que você quer para sua rotina.</x-import>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:32px;">
+          <sc-for list="{{ configOptions }}" as="c" hint-placeholder-count="3">
+            <div onclick="{{ c.select }}" style="{{ c.style }}">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+                <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.65rem;text-transform:uppercase;letter-spacing:var(--tracking-wide);color:var(--cinza-medio);border:1px solid var(--border-default);padding:3px 8px;">Caminho 0{{ c.num }} · {{ c.days }} dias úteis</span>
+                <sc-if value="{{ c.isSelected }}" hint-placeholder-val="{{ false }}">
+                  <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.65rem;text-transform:uppercase;color:var(--branco);background:var(--preto);padding:3px 10px;">Selecionado</span>
+                </sc-if>
+              </div>
+              <h4 style="font-family:var(--font-subtitle);font-weight:700;font-size:1.05rem;color:var(--preto);margin:0 0 12px;">{{ c.name }}</h4>
+              <div style="border-left:3px solid var(--exodo-red);padding-left:12px;margin-bottom:16px;">
+                <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.62rem;text-transform:uppercase;letter-spacing:var(--tracking-wide);color:var(--cinza-medio);display:block;margin-bottom:4px;">Assinatura Estrutural</span>
+                <p style="font-family:var(--font-display);font-size:0.95rem;color:var(--preto);margin:0;line-height:1.35;">"{{ c.phrase }}"</p>
+              </div>
+              <p style="font-size:0.8rem;color:var(--cinza-escuro);line-height:var(--lh-normal);margin:0 0 16px;">{{ c.impact }}</p>
+              <div style="border-top:1px solid var(--border-default);padding-top:12px;display:flex;flex-direction:column;gap:6px;font-size:0.75rem;color:var(--cinza-escuro);">
+                <div style="display:flex;justify-content:space-between;"><span>Ocupação da agenda</span><strong style="color:var(--preto);">{{ c.occupancy }}%</strong></div>
+                <div style="display:flex;justify-content:space-between;"><span>Capacidade máxima</span><strong style="color:var(--preto);">até {{ c.capacity }} pacientes</strong></div>
+                <div style="display:flex;justify-content:space-between;"><span>Captação semanal</span><strong style="color:var(--exodo-red);">{{ c.acquisitionHours }}h</strong></div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="border:2px solid var(--preto);padding:32px;text-align:center;max-width:640px;margin:0 auto;">
+          <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.7rem;text-transform:uppercase;letter-spacing:var(--tracking-wide);color:var(--exodo-red);display:block;margin-bottom:8px;">Pergunta Final de Decisão</span>
+          <h3 style="font-family:var(--font-display);font-size:1.375rem;color:var(--preto);line-height:1.3;margin:0 0 16px;">"Qual desses jeitos de organizar a clínica mais parece com o que você imagina pro seu dia a dia?"</h3>
+          <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Button" variant="primary" size="lg" on-click="{{ goPlano }}" hint-size="auto,48px">Confirmar Escolha da Configuração →</x-import>
+        </div>
+      </main>
+    </sc-if>
+
+    <!-- ========== TELA 6 · PLANO TÁTICO ========== -->
+    <sc-if value="{{ isScreen.plano }}" hint-placeholder-val="{{ false }}">
+      <main data-screen-label="06 Plano Tático 90 Dias" style="max-width:1120px;margin:0 auto;padding:32px;">
+        <div style="border:1px solid var(--border-strong);padding:32px;margin-bottom:24px;">
+          <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.SectionTopic" label="O Plano em Movimento · Bloco C" hint-size="100%,auto">Como isso vira rotina</x-import>
+          <div style="margin-top:24px;">
+            <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.PullQuote" attribution="Módulo Plano Tático" hint-size="100%,auto">O Plano Tático transforma a Configuração escolhida no Navegador de Promessas em um roteiro claro de prioridades, etapas e atividades para os próximos 90 dias.</x-import>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:8px;margin-bottom:24px;">
+          <sc-for list="{{ planStages }}" as="st" hint-placeholder-count="3">
+            <button onclick="{{ st.select }}" style="{{ st.style }}">{{ st.label }}</button>
+          </sc-for>
+        </div>
+
+        <div style="border:2px solid var(--border-strong);padding:32px;">
+          <div style="background:var(--cinza-claro);padding:20px;margin-bottom:24px;">
+            <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.65rem;text-transform:uppercase;letter-spacing:var(--tracking-wide);color:var(--exodo-red);display:block;margin-bottom:6px;">{{ activeStage.eyebrow }}</span>
+            <h4 style="font-family:var(--font-display);font-size:1.5rem;color:var(--preto);margin:0 0 8px;">{{ activeStage.title }}</h4>
+            <p style="font-size:0.85rem;color:var(--cinza-escuro);margin:0;"><strong style="color:var(--preto);">Objetivo:</strong> {{ activeStage.objective }}</p>
+          </div>
+
+          <sc-for list="{{ activeStage.activities }}" as="act" hint-placeholder-count="3">
+            <div style="border:1px solid var(--border-default);padding:20px;margin-bottom:12px;">
+              <div style="display:flex;gap:8px;margin-bottom:8px;">
+                <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.62rem;text-transform:uppercase;background:var(--preto);color:var(--branco);padding:3px 8px;">Semana {{ act.week }}</span>
+                <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.62rem;text-transform:uppercase;border:1px solid var(--border-default);color:var(--cinza-escuro);padding:3px 8px;">{{ act.time }}</span>
+              </div>
+              <h5 style="font-family:var(--font-subtitle);font-weight:700;font-size:1rem;color:var(--preto);margin:0 0 6px;">{{ act.title }}</h5>
+              <p style="font-size:0.85rem;color:var(--cinza-escuro);line-height:var(--lh-normal);margin:0;">{{ act.desc }}</p>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="text-align:center;margin-top:32px;">
+          <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Button" variant="primary" size="lg" on-click="{{ goEntrega }}" hint-size="auto,48px">Aprovar e Oficializar Plano Tático →</x-import>
+        </div>
+      </main>
+    </sc-if>
+
+    <!-- ========== TELA 7 · ENTREGA FORMAL ========== -->
+    <sc-if value="{{ isScreen.entrega }}" hint-placeholder-val="{{ false }}">
+      <main data-screen-label="07 Entrega Formal" style="max-width:820px;margin:0 auto;padding:48px 32px;">
+        <div style="border:2px solid var(--preto);padding:48px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <svg viewBox="0 0 320 80" style="height:24px;width:auto;">
+                <path d="M 32 22 L 48 6 L 64 22 L 56 22 L 48 14 L 40 22 Z" fill="var(--exodo-red)"></path>
+                <text x="10" y="72" font-family="'Montserrat', sans-serif" font-weight="800" font-size="68" letter-spacing="-2" fill="var(--exodo-red)">êxodo</text>
+              </svg>
+            </div>
+            <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.65rem;text-transform:uppercase;letter-spacing:var(--tracking-wide);color:var(--cinza-medio);">Diagnóstico Estratégico de Negócio</span>
+          </div>
+
+          <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.7rem;text-transform:uppercase;letter-spacing:var(--tracking-wider);color:var(--exodo-red);display:block;margin-bottom:8px;">Entrega Formal · Bloco C</span>
+          <h1 style="font-family:var(--font-display);font-size:2rem;color:var(--preto);line-height:1.15;letter-spacing:var(--tracking-tight);margin:0 0 24px;">Seu Plano de Ação — Próximos 90 Dias</h1>
+
+          <p style="font-size:1rem;color:var(--cinza-escuro);line-height:var(--lh-relaxed);margin:0 0 24px;">Amanda Silva, Consultório de Nutrição, aprovou a configuração <strong style="color:var(--preto);">Agenda Reequilibrada com Foco em Captação</strong> como rota oficial para os próximos 90 dias. Este documento consolida o diagnóstico da Fase 1 e o plano tático que sustenta a execução na Fase 2.</p>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px;">
+            <div style="border:1px solid var(--border-default);padding:20px;">
+              <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.65rem;text-transform:uppercase;color:var(--cinza-medio);display:block;margin-bottom:4px;">Ocupação de agenda projetada</span>
+              <span style="font-family:var(--font-display);font-size:1.75rem;color:var(--preto);">78%</span>
+            </div>
+            <div style="border:1px solid var(--border-default);padding:20px;">
+              <span style="font-family:var(--font-subtitle);font-weight:700;font-size:0.65rem;text-transform:uppercase;color:var(--cinza-medio);display:block;margin-bottom:4px;">Capacidade máxima</span>
+              <span style="font-family:var(--font-display);font-size:1.75rem;color:var(--preto);">até 46 pacientes</span>
+            </div>
+          </div>
+
+          <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Callout" label="Leitura Estratégica" hint-size="100%,auto">O plano aprovado prioriza a captação nas primeiras semanas antes de expandir a carteira ativa — reduzindo o risco de sobrecarregar a agenda sem uma base de pacientes correspondente.</x-import>
+
+          <div style="display:flex;gap:16px;margin-top:32px;border-top:1px solid var(--border-default);padding-top:24px;">
+            <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Button" variant="tertiary" size="md" on-click="{{ goTrilha }}" hint-size="auto,44px">← Voltar à Trilha</x-import>
+            <x-import component-from-global-scope="XodoReportsDesignSystem_8f1e86.Button" variant="primary" size="md" hint-size="auto,44px">Baixar PDF do Relatório</x-import>
+          </div>
+        </div>
+      </main>
+    </sc-if>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const SCREEN_ORDER = ['login', 'welcome', 'trilha', 'pergunta', 'gio', 'configuracao', 'plano', 'entrega'];
+const SCREEN_LABELS = {
+  login: '1. Login', welcome: '2. Boas-vindas', trilha: '3. Trilha', pergunta: '4. Pergunta',
+  gio: '4b. Gio · Consultor', configuracao: '5. Configuração', plano: '6. Plano Tático', entrega: '7. Entrega Formal',
+};
+const GIO_CONVERSATION = [
+  { sender: 'gio', text: 'Vi que você tem 6 horas livres por semana fora do atendimento direto. Quero entender o que acontece nesse tempo e no resto do seu negócio. Vamos uma coisa por vez.\n\nNuma frase, o que você promete a um paciente que começa com você?', time: '09:12' },
+  { sender: 'user', text: 'Ajudar a criar uma rotina alimentar que a pessoa consiga manter de verdade, sem dietas restritivas.', time: '09:13' },
+  { sender: 'gio', text: 'Por que um paciente escolheria você e não outro nutricionista?', time: '09:13' },
+  { sender: 'user', text: 'Acho que pelo acompanhamento próximo — respondo rápido no WhatsApp entre as consultas.', time: '09:14' },
+  { sender: 'gio', text: 'Isso é algo que você já ouviu de algum paciente, ou é sua percepção?', time: '09:14' },
+];
+const GIO_SUMMARY = [
+  { label: 'Eixo 1 · Promessa ao paciente', value: 'Rotina alimentar sustentável, sem dietas restritivas.' },
+  { label: 'Eixo 1 · Diferencial percebido', value: 'Acompanhamento próximo via WhatsApp entre consultas.' },
+  { label: 'Eixo 1 · Origem do diferencial', value: 'Em definição na conversa atual.' },
+  { label: 'Eixo 2 · Canais de captação', value: 'Ainda não mapeado.' },
+  { label: 'Eixo 5 · Faturamento (3 meses)', value: 'Ainda não mapeado.' },
+];
+
+class Component extends DCLogic {
+  state = { screen: 'login', selectedConfig: 0, activeStageNum: 1, gioDrawerOpen: false, gioAnswered: false };
+
+  goTo(s) { this.setState({ screen: s }); }
+
+  renderVals() {
+    const { screen, selectedConfig, activeStageNum, gioDrawerOpen, gioAnswered } = this.state;
+    const isScreen = {};
+    SCREEN_ORDER.forEach(s => { isScreen[s] = screen === s; });
+    isScreen.appShell = screen !== 'login';
+
+    const pillStyle = (active) => ({
+      fontFamily: 'var(--font-subtitle)', fontWeight: 700, fontSize: '0.72rem', textTransform: 'uppercase',
+      letterSpacing: 'var(--tracking-wide)', padding: '7px 14px', border: 'none', cursor: 'pointer', flexShrink: 0,
+      background: active ? 'var(--exodo-red)' : 'transparent', color: active ? 'var(--branco)' : 'var(--cinza-medio)',
+    });
+
+    const configs = [
+      { name: 'Rotina Estável e Previsível', phrase: 'Sua semana continua com o ritmo de hoje, só mais organizada.', impact: 'Mantém a carga clínica atual, redistribuindo horários para reduzir buracos na agenda.', occupancy: 64, capacity: 32, acquisitionHours: 2 },
+      { name: 'Agenda Reequilibrada com Foco em Captação', phrase: 'Você abre espaço deliberado na semana para trazer pacientes novos.', impact: 'Reserva blocos fixos de captação nas primeiras semanas antes de crescer a carteira ativa.', occupancy: 78, capacity: 46, acquisitionHours: 6 },
+      { name: 'Expansão Acelerada da Carteira', phrase: 'Sua clínica cresce rápido, mesmo com a agenda mais cheia.', impact: 'Empurra a ocupação da agenda ao limite e assume um ritmo de captação intenso desde a semana 1.', occupancy: 91, capacity: 58, acquisitionHours: 9 },
+    ];
+
+    const stages = [
+      { num: 1, label: 'Mês 1 · Fundação', eyebrow: 'Etapa 1 de 3', title: 'Fundação — Reorganizar a base', objective: 'reestruturar a agenda e abrir espaço de captação sem perder atendimento clínico.',
+        activities: [
+          { week: 1, time: '2h/semana', title: 'Bloquear horários fixos de captação', desc: 'Reservar 2 blocos semanais na agenda dedicados exclusivamente a ações de captação de novos pacientes.' },
+          { week: 2, time: '1h/semana', title: 'Revisar contratos de entrega em vigor', desc: 'Conferir se os pacotes atuais de acompanhamento ainda cabem no novo desenho de agenda.' },
+        ] },
+      { num: 2, label: 'Mês 2 · Tração', eyebrow: 'Etapa 2 de 3', title: 'Tração — Acelerar a captação', objective: 'converter os blocos de captação em pacientes ativos na carteira.',
+        activities: [
+          { week: 5, time: '3h/semana', title: 'Rodar campanha de captação segmentada', desc: 'Executar as ações de marketing definidas para o canal com melhor retorno identificado no diagnóstico.' },
+          { week: 7, time: '1.5h/semana', title: 'Fazer follow-up de leads não convertidos', desc: 'Retomar contato com pacientes que demonstraram interesse mas não agendaram avaliação inicial.' },
+        ] },
+      { num: 3, label: 'Mês 3 · Consolidação', eyebrow: 'Etapa 3 de 3', title: 'Consolidação — Estabilizar o novo modelo', objective: 'consolidar a ocupação-alvo da agenda e revisar indicadores do trimestre.',
+        activities: [
+          { week: 10, time: '2h/semana', title: 'Medir ocupação real vs. projetada', desc: 'Comparar a taxa de ocupação atingida com a meta de 78% definida na Configuração escolhida.' },
+          { week: 12, time: '1h', title: 'Preparar Ritual de Gestão do trimestre', desc: 'Consolidar indicadores para a reunião mensal de avaliação de resultados com o consultor.' },
+        ] },
+    ];
+    const activeStage = stages.find(s => s.num === activeStageNum) || stages[0];
+
+    return {
+      screens: SCREEN_ORDER.map(s => ({ label: SCREEN_LABELS[s], select: () => this.goTo(s), style: pillStyle(screen === s) })),
+      isScreen,
+      goWelcome: () => this.goTo('welcome'),
+      goTrilha: () => this.goTo('trilha'),
+      goPlano: () => this.goTo('plano'),
+      goEntrega: () => this.goTo('entrega'),
+      goLogin: () => this.goTo('login'),
+      goGio: () => this.goTo('gio'),
+      toggleDrawer: () => this.setState(s => ({ gioDrawerOpen: !s.gioDrawerOpen })),
+      stop: (e) => e && e.stopPropagation && e.stopPropagation(),
+      drawerOpen: gioDrawerOpen,
+      gioSummary: GIO_SUMMARY,
+      gioAxes: ['Promessa', 'Marketing', 'Vendas', 'Entrega', 'Financeiro', 'Equipe'].map((label, i) => ({
+        label, title: label,
+        pillBorder: i === 0 ? 'var(--exodo-red)' : 'var(--border-default)',
+        pillColor: i === 0 ? 'var(--exodo-red)' : 'var(--cinza-medio)',
+        pillBg: i === 0 ? 'var(--accent-tint)' : 'var(--branco)',
+        style: { width: '8px', height: '8px', borderRadius: '50%', background: i === 0 ? 'var(--exodo-red)' : 'var(--cinza-medio)', display: 'inline-block' },
+      })),
+      gioMessages: (gioAnswered ? GIO_CONVERSATION : GIO_CONVERSATION.slice(0, 3)).map(m => ({
+        text: m.text, time: m.time,
+        wrapStyle: { display: 'flex', flexDirection: 'column', alignItems: m.sender === 'user' ? 'flex-end' : 'flex-start', gap: '4px' },
+        bubbleStyle: {
+          maxWidth: '75%', padding: '14px 16px', fontSize: '0.9rem', lineHeight: 'var(--lh-normal)', whiteSpace: 'pre-line',
+          background: m.sender === 'user' ? 'var(--preto)' : 'var(--cinza-claro)',
+          color: m.sender === 'user' ? 'var(--branco)' : 'var(--preto)',
+          borderLeft: m.sender === 'gio' ? '3px solid var(--exodo-red)' : 'none',
+        },
+        timeStyle: { fontSize: '0.65rem', color: 'var(--cinza-medio)', fontFamily: 'var(--font-subtitle)' },
+      })),
+      gioHasQuickReplies: !gioAnswered,
+      gioQuickReplies: [
+        { label: 'Já ouvi de um paciente', select: () => this.setState({ gioAnswered: true }) },
+        { label: 'É minha percepção', select: () => this.setState({ gioAnswered: true }) },
+      ],
+      navBlocks: [
+        { label: 'Bloco A: O Retrato de Hoje', color: 'var(--preto)', borderColor: 'var(--exodo-red)', bg: 'var(--accent-tint)', select: () => this.goTo('pergunta') },
+        { label: 'Bloco B: O Caminho Possível', color: 'var(--preto)', borderColor: 'var(--border-default)', bg: 'var(--branco)', select: () => this.goTo('configuracao') },
+        { label: 'Bloco C: O Plano em Movimento', color: 'var(--preto)', borderColor: 'var(--border-default)', bg: 'var(--branco)', select: () => this.goTo('plano') },
+      ],
+      principles: [
+        { strong: 'Uma pergunta por vez', rest: 'sem formulários longos ou cansativos.' },
+        { strong: 'Estimativas são bem-vindas', rest: 'se não souber um número exato, responda com um valor aproximado.' },
+        { strong: 'Transparência total', rest: 'sempre explicamos o porquê de cada pergunta antes de fazê-la.' },
+        { strong: 'Salvamento automático', rest: 'cada escolha é gravada instantaneamente e com segurança.' },
+      ],
+      journeyBlocks: [
+        {
+          eyebrow: 'Bloco A · Call 01', status: 'Em Andamento', statusColor: 'var(--exodo-red)',
+          borderColor: 'var(--exodo-red)', bg: 'var(--accent-tint)', labelColor: 'var(--exodo-red)',
+          title: 'O Retrato do Negócio Hoje', desc: 'Cinco perguntas que se somam: o que você vende, quem atende, quanto tempo tem — até fechar no seu Modelo Atual.',
+          steps: ['01. O que você vende', '02. Quem você atende', '03. Quanto tempo você tem', '04. Para onde esse tempo vai', '05. Como tudo se conecta'],
+          onClick: () => this.goTo('pergunta'),
+        },
+        {
+          eyebrow: 'Bloco B · Call 02', status: 'Liberado', statusColor: 'var(--cinza-medio)',
+          borderColor: 'var(--border-default)', bg: 'var(--branco)', labelColor: 'var(--cinza-escuro)',
+          title: 'O Caminho Possível', desc: 'A partir do Retrato de Hoje, você diz o que espera e o que não pode mudar — e escolhe entre os caminhos que fazem sentido.',
+          steps: ['06. O que você espera', '07. O que não pode mudar', '08. Qual caminho é seu'],
+          onClick: () => this.goTo('configuracao'),
+        },
+        {
+          eyebrow: 'Bloco C · Call 03', status: 'Liberado', statusColor: 'var(--cinza-medio)',
+          borderColor: 'var(--border-default)', bg: 'var(--branco)', labelColor: 'var(--cinza-escuro)',
+          title: 'O Plano em Movimento', desc: 'O caminho escolhido no Bloco B se transforma na rotina concreta dos próximos 90 dias.',
+          steps: ['09. Como isso vira rotina'],
+          onClick: () => this.goTo('plano'),
+        },
+      ],
+      patientFields: [
+        { name: 'Consulta Individual', hint: 'Acompanhamento nutricional padrão' },
+        { name: 'Programa 90 Dias', hint: 'Pacote de acompanhamento trimestral' },
+        { name: 'Avaliação Esportiva', hint: 'Consulta especializada de performance' },
+      ],
+      configOptions: configs.map((c, i) => ({
+        num: i + 1, days: 60 + i * 5, ...c, isSelected: selectedConfig === i,
+        select: () => this.setState({ selectedConfig: i }),
+        style: {
+          border: selectedConfig === i ? '2px solid var(--preto)' : '1px solid var(--border-default)',
+          padding: '24px', cursor: 'pointer', background: selectedConfig === i ? 'var(--cinza-claro)' : 'var(--branco)',
+        },
+      })),
+      planStages: stages.map(s => ({
+        label: s.label, select: () => this.setState({ activeStageNum: s.num }), style: pillStyle(activeStageNum === s.num),
+      })),
+      activeStage,
+    };
+  }
+}
+</script>
+</body>
+</html>
