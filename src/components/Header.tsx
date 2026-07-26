@@ -88,7 +88,7 @@ export const Header: React.FC<HeaderProps> = ({
             }`}
             title="Acessar Área do Cliente / Sistema A3"
           >
-            <Compass className="w-3.5 h-3.5 text-amber-400" />
+            <Compass className="w-3.5 h-3.5 text-[var(--exodo-red)]" />
             <span>{viewMode === 'a3-app' ? 'Ver Site' : 'Sistema A3'}</span>
           </button>
 
@@ -128,7 +128,7 @@ export const Header: React.FC<HeaderProps> = ({
             }}
             className="flex items-center gap-2 bg-neutral-900 text-white font-subtitle font-bold text-xs uppercase px-4 py-3.5 border-none cursor-pointer min-h-[44px] mb-2"
           >
-            <Compass className="w-4 h-4 text-amber-400" />
+            <Compass className="w-4 h-4 text-[var(--exodo-red)]" />
             <span>Acessar Sistema A3 (Área do Cliente)</span>
           </button>
           <button

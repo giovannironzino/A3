@@ -41,7 +41,7 @@ const A3_STAGES = [
     title: 'MÊS 1 — DIAGNÓSTICO PROFUNDO & PLANO MESTRE',
     period: 'Semanas 1 a 4',
     badge: 'Fase de Ativação',
-    badgeBg: 'bg-red-50 text-[var(--exodo-red)] border-red-200',
+    badgeBg: 'bg-[var(--accent-tint)] text-[var(--exodo-red)] border-[var(--exodo-red)]',
     microProducts: [
       {
         id: 'mp-1',
@@ -77,7 +77,7 @@ const A3_STAGES = [
     title: 'MÊS 2 — ACELERAÇÃO DE VENDAS & RITUAIS DE GESTÃO',
     period: 'Semanas 5 a 8',
     badge: 'Fase de Execução',
-    badgeBg: 'bg-amber-50 text-amber-800 border-amber-200',
+    badgeBg: 'bg-[var(--cinza-claro)] text-[var(--preto)] border-[var(--border-default)]',
     microProducts: [
       {
         id: 'mp-4',
@@ -113,7 +113,7 @@ const A3_STAGES = [
     title: 'MÊS 3 — CONSOLIDAÇÃO, AUTONOMIA & PREPARAÇÃO PÓS-A3',
     period: 'Semanas 9 a 12',
     badge: 'Fase de Consolidação',
-    badgeBg: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+    badgeBg: 'bg-[var(--cinza-claro)] text-[var(--preto)] border-[var(--border-default)]',
     microProducts: [
       {
         id: 'mp-7',
@@ -332,7 +332,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
         <div className="mt-8 md:mt-10 mb-14 flex flex-col gap-8">
           
           {/* Main Unboxing Hero Card */}
-          <div className="bg-[var(--preto)] text-white p-6 sm:p-8 md:p-10 border-2 border-[var(--exodo-red)] shadow-lg relative overflow-hidden">
+          <div className="bg-[var(--preto)] text-white p-6 sm:p-8 md:p-10 border-2 border-[var(--exodo-red)] relative overflow-hidden">
             {/* Background Glow Effect */}
             <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-[var(--exodo-red)] opacity-10 rounded-full blur-3xl pointer-events-none" />
             
@@ -343,7 +343,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                   <ShoppingBag className="w-3.5 h-3.5" />
                   <span>Porta de Entrada Obrigatória</span>
                 </span>
-                <span className="px-2.5 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/40 font-subtitle font-bold text-xs uppercase tracking-wider flex items-center gap-1">
+                <span className="px-2.5 py-1 bg-transparent text-white border border-white/40 font-subtitle font-bold text-xs uppercase tracking-wider flex items-center gap-1">
                   <BadgePercent className="w-3.5 h-3.5" />
                   <span>Pacote Completo 67% OFF</span>
                 </span>
@@ -351,9 +351,9 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
               
               <button
                 onClick={() => setIsUnboxingOpen(true)}
-                className="flex items-center gap-2 text-xs font-subtitle text-emerald-400 hover:text-white bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 px-3 py-1.5 transition-all cursor-pointer"
+                className="flex items-center gap-2 text-xs font-subtitle text-[var(--exodo-red)] hover:text-white bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 px-3 py-1.5 transition-all cursor-pointer"
               >
-                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                <ShieldCheck className="w-4 h-4 text-[var(--exodo-red)] shrink-0" />
                 <span><strong>12 Entregas Inclusas</strong> — Abrir Unboxing completo</span>
                 <Maximize2 className="w-3.5 h-3.5 text-neutral-400 ml-1" />
               </button>
@@ -376,7 +376,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
 
               {/* Price Tag Box */}
               <div className="lg:col-span-5 bg-neutral-900/90 border border-neutral-700 p-6 flex flex-col justify-center items-center text-center relative shadow-inner">
-                <div className="absolute -top-3 bg-emerald-600 text-white font-subtitle text-[0.65rem] uppercase font-bold tracking-wider px-3 py-0.5 rounded-full shadow-xs">
+                <div className="absolute -top-3 bg-[var(--exodo-red)] text-white font-subtitle text-[0.65rem] uppercase font-bold tracking-wider px-3 py-0.5">
                   💡 Apenas ~R$ 19,90/dia!
                 </div>
 
@@ -385,7 +385,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                 </span>
 
                 <div className="flex items-baseline justify-center gap-1.5 my-1">
-                  <span className="font-subtitle text-lg text-emerald-400 font-bold">3x de</span>
+                  <span className="font-subtitle text-lg text-[var(--exodo-red)] font-bold">3x de</span>
                   <span className="font-display text-4xl sm:text-5xl text-white font-bold tracking-tight">
                     R$ 599,66
                   </span>
@@ -398,7 +398,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                   </span>
                   <div className="mt-2 pt-2 border-t border-neutral-800 w-full flex items-center justify-between text-[0.7rem] text-neutral-400">
                     <span className="line-through text-neutral-500">Valor avulso: R$ 5.480,00</span>
-                    <span className="text-emerald-400 font-bold bg-emerald-950/80 px-2 py-0.5 border border-emerald-800">
+                    <span className="text-[var(--exodo-red)] font-bold bg-[var(--preto)] px-2 py-0.5 border border-[var(--cinza-escuro)]">
                       Economia de R$ 3.681,00
                     </span>
                   </div>
@@ -408,7 +408,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                   variant="primary" 
                   size="lg" 
                   onClick={onOpenBooking} 
-                  className="w-full mt-5 justify-center py-3.5 bg-[var(--exodo-red)] hover:bg-[var(--exodo-red-hover)] text-white shadow-md font-bold"
+                  className="w-full mt-5 justify-center py-3.5 bg-[var(--exodo-red)] hover:bg-[var(--preto)] text-white font-bold"
                 >
                   <Calendar className="w-4 h-4 mr-2" />
                   <span>Agendar Diagnóstico & Garantir o A3</span>
@@ -424,9 +424,9 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
               >
                 <div className="flex items-center justify-between">
                   <span className="font-display text-xl text-white">12 Entregas</span>
-                  <Maximize2 className="w-4 h-4 text-emerald-400 group-hover:scale-110 transition-transform" />
+                  <Maximize2 className="w-4 h-4 text-[var(--exodo-red)] group-hover:scale-110 transition-transform" />
                 </div>
-                <span className="font-subtitle text-[0.65rem] text-emerald-400 font-bold uppercase tracking-wider block mt-1">
+                <span className="font-subtitle text-[0.65rem] text-[var(--exodo-red)] font-bold uppercase tracking-wider block mt-1">
                   Clique p/ ver o Unboxing
                 </span>
               </button>
@@ -442,7 +442,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
               </div>
 
               <div className="bg-neutral-900/50 p-3.5 border border-neutral-800 text-left flex flex-col justify-between">
-                <span className="font-display text-xl text-emerald-400 block">IA + SOPs</span>
+                <span className="font-display text-xl text-[var(--exodo-red)] block">IA + SOPs</span>
                 <span className="font-subtitle text-[0.65rem] text-neutral-400 uppercase tracking-wider block mt-1">Acesso Imediato Bônus</span>
               </div>
             </div>
@@ -482,7 +482,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                   className="bg-[var(--branco)] hover:bg-neutral-100 text-[var(--text-primary)] border border-[var(--border-strong)] font-subtitle font-bold text-xs uppercase tracking-wide px-3.5 py-3 flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-xs"
                   title="Abrir em modal pop-up"
                 >
-                  <Maximize2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <Maximize2 className="w-3.5 h-3.5 text-[var(--exodo-red)] shrink-0" />
                   <span className="hidden sm:inline">Modal</span>
                 </button>
               </div>
@@ -503,7 +503,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                       <span className="font-subtitle font-bold text-xs text-[var(--exodo-red)] uppercase tracking-wider block">
                         Jornada Minimizada (12 Entregas)
                       </span>
-                      <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 font-subtitle font-bold text-[0.65rem] uppercase tracking-wider border border-emerald-300">
+                      <span className="px-2 py-0.5 bg-[var(--accent-tint)] text-[var(--exodo-red)] font-subtitle font-bold text-[0.65rem] uppercase tracking-wider border border-[var(--exodo-red)]">
                         100% Inclusas no A3
                       </span>
                     </div>
@@ -584,11 +584,11 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
 
                               {/* Card Bottom Included Tag */}
                               <div className="mt-4 pt-3 border-t border-[var(--border-default)] flex items-center justify-between text-xs">
-                                <span className="font-subtitle font-bold text-[0.7rem] text-emerald-700 flex items-center gap-1">
-                                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                                <span className="font-subtitle font-bold text-[0.7rem] text-[var(--exodo-red)] flex items-center gap-1">
+                                  <CheckCircle2 className="w-3.5 h-3.5 text-[var(--exodo-red)] shrink-0" />
                                   <span>INCLUSO NO PACOTE A3</span>
                                 </span>
-                                <span className="font-subtitle font-bold text-[0.65rem] text-emerald-700 bg-emerald-50 px-1.5 py-0.5 border border-emerald-200">
+                                <span className="font-subtitle font-bold text-[0.65rem] text-[var(--exodo-red)] bg-[var(--accent-tint)] px-1.5 py-0.5 border border-[var(--exodo-red)]">
                                   R$ 0,00 (100% OFF)
                                 </span>
                               </div>
@@ -601,16 +601,16 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                 </div>
 
                 {/* Unboxing Footer Summary Bar */}
-                <div className="mt-10 bg-[var(--branco)] border-2 border-emerald-600 p-6 flex flex-col md:flex-row items-center justify-between gap-4 shadow-sm">
+                <div className="mt-10 bg-[var(--branco)] border-2 border-[var(--exodo-red)] p-6 flex flex-col md:flex-row items-center justify-between gap-4 shadow-sm">
                   <div className="flex items-center gap-3">
-                    <div className="p-3 bg-emerald-100 text-emerald-800 rounded-full shrink-0">
-                      <Gift className="w-6 h-6 text-emerald-700" />
+                    <div className="p-3 bg-[var(--accent-tint)] text-[var(--exodo-red)] shrink-0">
+                      <Gift className="w-6 h-6 text-[var(--exodo-red)]" />
                     </div>
                     <div>
-                      <strong className="font-subtitle text-sm text-emerald-950 block">
+                      <strong className="font-subtitle text-sm text-[var(--preto)] block">
                         🎉 Resumo da Oferta: 12 Entregas pelo preço de um único diagnóstico!
                       </strong>
-                      <span className="font-body text-xs text-emerald-800 block mt-0.5">
+                      <span className="font-body text-xs text-[var(--exodo-red)] block mt-0.5">
                         Valor total acumulado dos entregáveis: R$ 5.480,00 → Você investe apenas 3x de R$ 599,66 (R$ 1.799,00 à vista).
                       </span>
                     </div>
@@ -621,7 +621,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                       variant="tertiary" 
                       size="md" 
                       onClick={() => setIsUnboxingOpen(true)} 
-                      className="shrink-0 text-xs font-bold border-emerald-600 text-emerald-900 hover:bg-emerald-50"
+                      className="shrink-0 text-xs font-bold border-[var(--exodo-red)] text-[var(--preto)] hover:bg-[var(--accent-tint)]"
                     >
                       <Maximize2 className="w-3.5 h-3.5 mr-1" />
                       <span>Ver Modal Unboxing</span>
@@ -630,7 +630,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                       variant="primary" 
                       size="lg" 
                       onClick={onOpenBooking} 
-                      className="shrink-0 w-full md:w-auto bg-emerald-700 hover:bg-emerald-800 text-white font-bold"
+                      className="shrink-0 w-full md:w-auto bg-[var(--exodo-red)] hover:bg-[var(--preto)] text-white font-bold"
                     >
                       <Calendar className="w-4 h-4 mr-1.5" />
                       <span>Garantir Minhas 12 Entregas</span>
@@ -665,7 +665,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                     <span className="font-subtitle font-bold text-[0.65rem] uppercase tracking-wider px-2 py-0.5 bg-[var(--accent-tint)] text-[var(--exodo-red)] border border-[var(--border-strong)]">
                       CAMINHO A — CONSULTORIA CONTINUADA
                     </span>
-                    <span className="font-subtitle text-xs text-emerald-800 font-bold bg-emerald-50 px-2 py-0.5 border border-emerald-200">
+                    <span className="font-subtitle text-xs text-[var(--exodo-red)] font-bold bg-[var(--accent-tint)] px-2 py-0.5 border border-[var(--exodo-red)]">
                       Rituais + Acompanhamento
                     </span>
                   </div>
@@ -701,7 +701,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                   }}
                   className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-[var(--preto)] text-white font-subtitle font-bold text-xs uppercase tracking-wider hover:bg-neutral-800 transition-colors"
                 >
-                  <Sparkles className="w-4 h-4 text-amber-400" />
+                  <Sparkles className="w-4 h-4 text-[var(--exodo-red)]" />
                   <span>Usar Simulador Pós-A3</span>
                 </a>
               </div>
@@ -727,15 +727,15 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
 
                   <ul className="flex flex-col gap-2 text-xs text-[var(--text-primary)] mb-6">
                     <li className="flex items-center gap-2">
-                      <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                      <Check className="w-3.5 h-3.5 text-[var(--exodo-red)] shrink-0" />
                       <span>Acesso à Área de Membros, Gravações e SOPs</span>
                     </li>
                     <li className="flex items-center gap-2">
-                      <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                      <Check className="w-3.5 h-3.5 text-[var(--exodo-red)] shrink-0" />
                       <span>Rede de Nutricionistas & Comunidade no WhatsApp</span>
                     </li>
                     <li className="flex items-center gap-2">
-                      <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                      <Check className="w-3.5 h-3.5 text-[var(--exodo-red)] shrink-0" />
                       <span>Uso contínuo do ÊXODO Intelligence (I.A. Nutri)</span>
                     </li>
                   </ul>
@@ -774,7 +774,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
             {/* ========================================================= */}
             <div id="step-1" className="bg-[var(--branco)] border border-[var(--border-default)] p-6 md:p-8 flex flex-col gap-5 relative overflow-hidden scroll-mt-24">
               <div className="flex items-start gap-3">
-                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[var(--preto)] text-[var(--branco)] font-subtitle font-bold text-xs shrink-0 mt-0.5">
+                <span className="flex items-center justify-center w-7 h-7 bg-[var(--preto)] text-[var(--branco)] font-subtitle font-bold text-xs shrink-0 mt-0.5">
                   1
                 </span>
                 <div>
@@ -807,7 +807,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                     d: 90,
                     title: '90 dias — Ciclo Trimestral Clássico (3 Meses)',
                     badge: '3% de Desconto Progressivo',
-                    badgeColor: 'bg-blue-50 text-blue-700 border-blue-200',
+                    badgeColor: 'bg-[var(--cinza-claro)] text-[var(--cinza-escuro)] border-[var(--border-default)]',
                     desc: 'O tempo perfeito para implementar uma nova rotina tática e medir a evolução do faturamento.',
                     benefits: [
                       '3 meses de gestão acompanhada',
@@ -820,7 +820,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                     d: 180,
                     title: '180 dias — Consolidação & Escala (6 Meses — Recomendado)',
                     badge: '8% OFF + Bônus Equipe Liberado',
-                    badgeColor: 'bg-emerald-50 text-emerald-800 border-emerald-300 font-bold',
+                    badgeColor: 'bg-[var(--accent-tint)] text-[var(--exodo-red)] border-[var(--exodo-red)] font-bold',
                     desc: 'Tempo suficiente para que sua equipe trabalhe de forma autônoma sem depender de você para tudo.',
                     benefits: [
                       '6 meses de previsibilidade e acompanhamento',
@@ -833,7 +833,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                     d: 360,
                     title: '360 dias — Gestão Anual de Elite (12 Meses)',
                     badge: '15% OFF + Bônus 4 SOS',
-                    badgeColor: 'bg-amber-50 text-amber-800 border-amber-300 font-bold',
+                    badgeColor: 'bg-[var(--cinza-claro)] text-[var(--preto)] border-[var(--border-strong)] font-bold',
                     desc: 'Transformação cultural profunda na clínica, com planejamento de expansão e governança plena.',
                     benefits: [
                       '12 meses de blindagem de gestão',
@@ -846,7 +846,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                     d: 720,
                     title: '720 dias — Parceria de Longo Prazo (24 Meses)',
                     badge: '25% OFF + Combo Bônus Completo',
-                    badgeColor: 'bg-purple-50 text-purple-800 border-purple-300 font-bold',
+                    badgeColor: 'bg-[var(--cinza-claro)] text-[var(--preto)] border-[var(--border-strong)] font-bold',
                     desc: 'Parceria continuada para clínicas consolidadas que buscam liderança de mercado regional.',
                     benefits: [
                       '24 meses de consultoria contínua',
@@ -895,8 +895,8 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                         </p>
                         <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1 text-[0.7rem] font-subtitle text-[var(--text-tertiary)]">
                           {opt.benefits.map((b, i) => (
-                            <span key={i} className="flex items-center gap-1 text-emerald-800 font-medium">
-                              <Check className="w-3 h-3 text-emerald-600 shrink-0" />
+                            <span key={i} className="flex items-center gap-1 text-[var(--exodo-red)] font-medium">
+                              <Check className="w-3 h-3 text-[var(--exodo-red)] shrink-0" />
                               <span>{b}</span>
                             </span>
                           ))}
@@ -923,7 +923,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
             {/* ========================================================= */}
             <div id="step-2" className="bg-[var(--branco)] border border-[var(--border-default)] p-6 md:p-8 flex flex-col gap-5 relative overflow-hidden scroll-mt-24">
               <div className="flex items-start gap-3">
-                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[var(--preto)] text-[var(--branco)] font-subtitle font-bold text-xs shrink-0 mt-0.5">
+                <span className="flex items-center justify-center w-7 h-7 bg-[var(--preto)] text-[var(--branco)] font-subtitle font-bold text-xs shrink-0 mt-0.5">
                   2
                 </span>
                 <div>
@@ -1001,7 +1001,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
             {/* ========================================================= */}
             <div id="step-3" className="bg-[var(--branco)] border border-[var(--border-default)] p-6 md:p-8 flex flex-col gap-5 relative overflow-hidden scroll-mt-24">
               <div className="flex items-start gap-3">
-                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[var(--preto)] text-[var(--branco)] font-subtitle font-bold text-xs shrink-0 mt-0.5">
+                <span className="flex items-center justify-center w-7 h-7 bg-[var(--preto)] text-[var(--branco)] font-subtitle font-bold text-xs shrink-0 mt-0.5">
                   3
                 </span>
                 <div className="w-full">
@@ -1015,13 +1015,13 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                       </span>
                     </div>
                     {!isTeamUnlocked ? (
-                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-amber-100 text-amber-900 border border-amber-300 font-subtitle font-bold text-[0.65rem] uppercase tracking-wider">
-                        <Lock className="w-3 h-3 text-amber-700" />
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-[var(--cinza-claro)] text-[var(--cinza-escuro)] border border-[var(--border-default)] font-subtitle font-bold text-[0.65rem] uppercase tracking-wider">
+                        <Lock className="w-3 h-3 text-[var(--cinza-medio)]" />
                         <span>Desbloqueado para Planos de 180+ dias</span>
                       </span>
                     ) : (
-                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-emerald-100 text-emerald-900 border border-emerald-300 font-subtitle font-bold text-[0.65rem] uppercase tracking-wider">
-                        <Unlock className="w-3 h-3 text-emerald-700" />
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-[var(--accent-tint)] text-[var(--preto)] border border-[var(--exodo-red)] font-subtitle font-bold text-[0.65rem] uppercase tracking-wider">
+                        <Unlock className="w-3 h-3 text-[var(--exodo-red)]" />
                         <span>Recurso Desbloqueado!</span>
                       </span>
                     )}
@@ -1033,14 +1033,14 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
               </div>
 
               {!isTeamUnlocked ? (
-                <div className="bg-amber-50/80 border border-amber-200 p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs">
-                  <div className="flex items-start gap-2.5 text-amber-950">
-                    <Lock className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
+                <div className="bg-[var(--cinza-claro)] border border-[var(--border-default)] p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs">
+                  <div className="flex items-start gap-2.5 text-[var(--preto)]">
+                    <Lock className="w-4 h-4 text-[var(--cinza-medio)] shrink-0 mt-0.5" />
                     <div>
-                      <strong className="font-subtitle block text-amber-950">
+                      <strong className="font-subtitle block text-[var(--preto)]">
                         🔒 Rituais de Equipe requerem maturidade de plano (180 dias ou mais).
                       </strong>
-                      <span className="text-amber-800 text-[0.75rem] block mt-0.5">
+                      <span className="text-[var(--cinza-escuro)] text-[0.75rem] block mt-0.5">
                         Para alinhar secretárias e equipe comercial, selecione a opção de 180, 360 ou 720 dias no Passo 01.
                       </span>
                     </div>
@@ -1050,7 +1050,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                       setSimState((prev) => ({ ...prev, duration: 180 }));
                       scrollToStep('step-3');
                     }}
-                    className="shrink-0 px-3 py-2 bg-amber-700 hover:bg-amber-800 text-white font-subtitle font-bold text-[0.7rem] uppercase tracking-wider transition-colors cursor-pointer"
+                    className="shrink-0 px-3 py-2 bg-[var(--preto)] hover:bg-[var(--exodo-red)] text-white font-subtitle font-bold text-[0.7rem] uppercase tracking-wider transition-colors cursor-pointer"
                   >
                     Ativar 180 dias (Desbloquear)
                   </button>
@@ -1117,7 +1117,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
             {/* ========================================================= */}
             <div id="step-4" className="bg-[var(--branco)] border border-[var(--border-default)] p-6 md:p-8 flex flex-col gap-5 relative overflow-hidden scroll-mt-24">
               <div className="flex items-start gap-3">
-                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[var(--preto)] text-[var(--branco)] font-subtitle font-bold text-xs shrink-0 mt-0.5">
+                <span className="flex items-center justify-center w-7 h-7 bg-[var(--preto)] text-[var(--branco)] font-subtitle font-bold text-xs shrink-0 mt-0.5">
                   4
                 </span>
                 <div>
@@ -1136,19 +1136,19 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
               </div>
 
               {is720Plan && (
-                <div className="bg-emerald-50 border border-emerald-200 p-3.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs">
-                  <div className="flex items-start gap-2 text-emerald-950">
-                    <Gift className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                <div className="bg-[var(--accent-tint)] border border-[var(--exodo-red)] p-3.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs">
+                  <div className="flex items-start gap-2 text-[var(--preto)]">
+                    <Gift className="w-4 h-4 text-[var(--exodo-red)] shrink-0 mt-0.5" />
                     <div>
-                      <strong className="font-subtitle text-emerald-950 block">
+                      <strong className="font-subtitle text-[var(--preto)] block">
                         🎁 REGRA DO BÔNUS 720 DIAS: Suporte WhatsApp Nutri 2x/semana é 100% Grátis!
                       </strong>
-                      <span className="text-emerald-800 text-[0.7rem] block mt-0.5">
+                      <span className="text-[var(--cinza-escuro)] text-[0.7rem] block mt-0.5">
                         O plano de 24 meses já inclui 2 disparos semanais de acompanhamento direto no seu WhatsApp sem nenhum custo adicional.
                       </span>
                     </div>
                   </div>
-                  <span className="shrink-0 bg-emerald-700 text-white font-subtitle font-bold text-[0.65rem] uppercase px-2 py-1">
+                  <span className="shrink-0 bg-[var(--exodo-red)] text-white font-subtitle font-bold text-[0.65rem] uppercase px-2 py-1">
                     Bônus 720d Ativo (R$ 0)
                   </span>
                 </div>
@@ -1231,7 +1231,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
             {/* ========================================================= */}
             <div id="step-5" className="bg-[var(--branco)] border border-[var(--border-default)] p-6 md:p-8 flex flex-col gap-5 relative overflow-hidden scroll-mt-24">
               <div className="flex items-start gap-3">
-                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[var(--preto)] text-[var(--branco)] font-subtitle font-bold text-xs shrink-0 mt-0.5">
+                <span className="flex items-center justify-center w-7 h-7 bg-[var(--preto)] text-[var(--branco)] font-subtitle font-bold text-xs shrink-0 mt-0.5">
                   5
                 </span>
                 <div className="w-full">
@@ -1245,13 +1245,13 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                       </span>
                     </div>
                     {!isTeamUnlocked ? (
-                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-amber-100 text-amber-900 border border-amber-300 font-subtitle font-bold text-[0.65rem] uppercase tracking-wider">
-                        <Lock className="w-3 h-3 text-amber-700" />
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-[var(--cinza-claro)] text-[var(--cinza-escuro)] border border-[var(--border-default)] font-subtitle font-bold text-[0.65rem] uppercase tracking-wider">
+                        <Lock className="w-3 h-3 text-[var(--cinza-medio)]" />
                         <span>Indisponível para 60/90 Dias</span>
                       </span>
                     ) : (
-                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-emerald-100 text-emerald-900 border border-emerald-300 font-subtitle font-bold text-[0.65rem] uppercase tracking-wider">
-                        <Unlock className="w-3 h-3 text-emerald-700" />
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-[var(--accent-tint)] text-[var(--preto)] border border-[var(--exodo-red)] font-subtitle font-bold text-[0.65rem] uppercase tracking-wider">
+                        <Unlock className="w-3 h-3 text-[var(--exodo-red)]" />
                         <span>Recurso Desbloqueado!</span>
                       </span>
                     )}
@@ -1263,14 +1263,14 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
               </div>
 
               {!isTeamUnlocked ? (
-                <div className="bg-amber-50/80 border border-amber-200 p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs">
-                  <div className="flex items-start gap-2.5 text-amber-950">
-                    <Lock className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
+                <div className="bg-[var(--cinza-claro)] border border-[var(--border-default)] p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs">
+                  <div className="flex items-start gap-2.5 text-[var(--preto)]">
+                    <Lock className="w-4 h-4 text-[var(--cinza-medio)] shrink-0 mt-0.5" />
                     <div>
-                      <strong className="font-subtitle block text-amber-950">
+                      <strong className="font-subtitle block text-[var(--preto)]">
                         🔒 Acompanhamento WhatsApp Equipe não está disponível nos planos de 60 e 90 dias.
                       </strong>
-                      <span className="text-amber-800 text-[0.75rem] block mt-0.5">
+                      <span className="text-[var(--cinza-escuro)] text-[0.75rem] block mt-0.5">
                         Nos ciclos de 60 dias (Arrancada Rápida) e 90 dias (Ciclo Trimestral), o suporte via WhatsApp é exclusivo para você (Nutri/Gestor). Para incluir o acompanhamento tático de recepcionistas/secretárias, selecione um plano de 180 dias ou mais no Passo 01.
                       </span>
                     </div>
@@ -1280,7 +1280,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                       setSimState((prev) => ({ ...prev, duration: 180 }));
                       scrollToStep('step-5');
                     }}
-                    className="shrink-0 px-3 py-2 bg-amber-700 hover:bg-amber-800 text-white font-subtitle font-bold text-[0.7rem] uppercase tracking-wider transition-colors cursor-pointer"
+                    className="shrink-0 px-3 py-2 bg-[var(--preto)] hover:bg-[var(--exodo-red)] text-white font-subtitle font-bold text-[0.7rem] uppercase tracking-wider transition-colors cursor-pointer"
                   >
                     Ativar 180 dias (Desbloquear)
                   </button>
@@ -1289,38 +1289,38 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                 <>
                   {is720Plan ? (
                     <div className="flex flex-col gap-2">
-                      <div className="bg-emerald-50 border border-emerald-200 p-3.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs">
-                        <div className="flex items-start gap-2 text-emerald-950">
-                          <Gift className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                      <div className="bg-[var(--accent-tint)] border border-[var(--exodo-red)] p-3.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs">
+                        <div className="flex items-start gap-2 text-[var(--preto)]">
+                          <Gift className="w-4 h-4 text-[var(--exodo-red)] shrink-0 mt-0.5" />
                           <div>
-                            <strong className="font-subtitle text-emerald-950 block">
+                            <strong className="font-subtitle text-[var(--preto)] block">
                               🎁 REGRA DO BÔNUS 720 DIAS: Acompanhamento WhatsApp Equipe 2x/semana é 100% Grátis!
                             </strong>
-                            <span className="text-emerald-800 text-[0.7rem] block mt-0.5">
+                            <span className="text-[var(--cinza-escuro)] text-[0.7rem] block mt-0.5">
                               O plano de 24 meses inclui 2 contatos semanais de acompanhamento e cobrança tática da sua recepcionista sem nenhum custo adicional.
                             </span>
                           </div>
                         </div>
-                        <span className="shrink-0 bg-emerald-700 text-white font-subtitle font-bold text-[0.65rem] uppercase px-2 py-1">
+                        <span className="shrink-0 bg-[var(--exodo-red)] text-white font-subtitle font-bold text-[0.65rem] uppercase px-2 py-1">
                           Bônus 720d Ativo (R$ 0)
                         </span>
                       </div>
                     </div>
                   ) : hasTeamRitualBonus ? (
                     <div className="flex flex-col gap-2">
-                      <div className="bg-emerald-50 border border-emerald-200 p-3.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs">
-                        <div className="flex items-start gap-2 text-emerald-950">
-                          <Gift className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                      <div className="bg-[var(--accent-tint)] border border-[var(--exodo-red)] p-3.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs">
+                        <div className="flex items-start gap-2 text-[var(--preto)]">
+                          <Gift className="w-4 h-4 text-[var(--exodo-red)] shrink-0 mt-0.5" />
                           <div>
-                            <strong className="font-subtitle text-emerald-950 block">
+                            <strong className="font-subtitle text-[var(--preto)] block">
                               🎁 REGRA DO BÔNUS ATIVADA: 1ª Frequência do WhatsApp para sua Equipe é 100% Grátis!
                             </strong>
-                            <span className="text-emerald-800 text-[0.7rem] block mt-0.5">
+                            <span className="text-[var(--cinza-escuro)] text-[0.7rem] block mt-0.5">
                               Como você contratou 1+ Rituais com Equipe, o 1º disparo semanal no WhatsApp da recepcionista é Bônus sem nenhum custo. Frequências adicionais somam R$ 94,75/mês cada.
                             </span>
                           </div>
                         </div>
-                        <span className="shrink-0 bg-emerald-700 text-white font-subtitle font-bold text-[0.65rem] uppercase px-2 py-1">
+                        <span className="shrink-0 bg-[var(--exodo-red)] text-white font-subtitle font-bold text-[0.65rem] uppercase px-2 py-1">
                           Bônus Ativo (R$ 0)
                         </span>
                       </div>
@@ -1417,7 +1417,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
             {/* ========================================================= */}
             <div id="step-6" className="bg-[var(--branco)] border border-[var(--border-default)] p-6 md:p-8 flex flex-col gap-5 relative overflow-hidden scroll-mt-24">
               <div className="flex items-start gap-3">
-                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[var(--preto)] text-[var(--branco)] font-subtitle font-bold text-xs shrink-0 mt-0.5">
+                <span className="flex items-center justify-center w-7 h-7 bg-[var(--preto)] text-[var(--branco)] font-subtitle font-bold text-xs shrink-0 mt-0.5">
                   6
                 </span>
                 <div>
@@ -1436,8 +1436,8 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
               </div>
 
               {simState.duration <= 90 && (
-                <div className="bg-amber-50/80 border border-amber-200 p-3.5 flex items-center gap-2.5 text-xs text-amber-950">
-                  <Info className="w-4 h-4 text-amber-700 shrink-0" />
+                <div className="bg-[var(--cinza-claro)] border border-[var(--border-default)] p-3.5 flex items-center gap-2.5 text-xs text-[var(--preto)]">
+                  <Info className="w-4 h-4 text-[var(--cinza-medio)] shrink-0" />
                   <span>
                     Para ciclos de <strong>60 e 90 dias</strong>, o limite máximo do Seguro SOS é de <strong>até 03 chamadas por mês</strong>.
                   </span>
@@ -1445,36 +1445,36 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
               )}
 
               {is720Plan ? (
-                <div className="bg-emerald-50 border border-emerald-200 p-3.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs">
-                  <div className="flex items-start gap-2 text-emerald-950">
-                    <Gift className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                <div className="bg-[var(--accent-tint)] border border-[var(--exodo-red)] p-3.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs">
+                  <div className="flex items-start gap-2 text-[var(--preto)]">
+                    <Gift className="w-4 h-4 text-[var(--exodo-red)] shrink-0 mt-0.5" />
                     <div>
-                      <strong className="font-subtitle text-emerald-950 block">
+                      <strong className="font-subtitle text-[var(--preto)] block">
                         🎁 REGRA DO BÔNUS 720 DIAS: 06 Chamadas do Seguro SOS Emergencial são 100% Grátis!
                       </strong>
-                      <span className="text-emerald-800 text-[0.7rem] block mt-0.5">
+                      <span className="text-[var(--cinza-escuro)] text-[0.7rem] block mt-0.5">
                         O plano de 24 meses inclui 06 chamadas emergenciais de resgate (20 min em até 24h) por mês sem nenhum custo adicional.
                       </span>
                     </div>
                   </div>
-                  <span className="shrink-0 bg-emerald-700 text-white font-subtitle font-bold text-[0.65rem] uppercase px-2 py-1">
+                  <span className="shrink-0 bg-[var(--exodo-red)] text-white font-subtitle font-bold text-[0.65rem] uppercase px-2 py-1">
                     Bônus 720d Ativo (R$ 0)
                   </span>
                 </div>
               ) : is360Plan ? (
-                <div className="bg-emerald-50 border border-emerald-200 p-3.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs">
-                  <div className="flex items-start gap-2 text-emerald-950">
-                    <Gift className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                <div className="bg-[var(--accent-tint)] border border-[var(--exodo-red)] p-3.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs">
+                  <div className="flex items-start gap-2 text-[var(--preto)]">
+                    <Gift className="w-4 h-4 text-[var(--exodo-red)] shrink-0 mt-0.5" />
                     <div>
-                      <strong className="font-subtitle text-emerald-950 block">
+                      <strong className="font-subtitle text-[var(--preto)] block">
                         🎁 REGRA DO BÔNUS 360 DIAS: 04 Chamadas do Seguro SOS Emergencial são 100% Grátis!
                       </strong>
-                      <span className="text-emerald-800 text-[0.7rem] block mt-0.5">
+                      <span className="text-[var(--cinza-escuro)] text-[0.7rem] block mt-0.5">
                         O plano de 12 meses inclui 04 chamadas emergenciais de resgate (20 min em até 24h) por mês sem nenhum custo adicional.
                       </span>
                     </div>
                   </div>
-                  <span className="shrink-0 bg-emerald-700 text-white font-subtitle font-bold text-[0.65rem] uppercase px-2 py-1">
+                  <span className="shrink-0 bg-[var(--exodo-red)] text-white font-subtitle font-bold text-[0.65rem] uppercase px-2 py-1">
                     Bônus 360d Ativo (R$ 0)
                   </span>
                 </div>
@@ -1549,7 +1549,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
           {/* ========================================================= */}
           {/* FINAL SUMMARY / DYNAMIC BUDGET RESULT BOX */}
           {/* ========================================================= */}
-          <div id="summary-box" className="mt-12 bg-[var(--preto)] text-white p-6 sm:p-8 md:p-10 border-2 border-[var(--exodo-red)] shadow-lg relative scroll-mt-24">
+          <div id="summary-box" className="mt-12 bg-[var(--preto)] text-white p-6 sm:p-8 md:p-10 border-2 border-[var(--exodo-red)] relative scroll-mt-24">
             
             {/* Header Badge */}
             <div className="flex flex-wrap items-center justify-between gap-2 border-b border-neutral-800 pb-4 mb-6">
@@ -1563,7 +1563,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
               </div>
 
               {discountRate > 0 && (
-                <span className="px-2.5 py-0.5 bg-emerald-900/80 text-emerald-300 border border-emerald-700 font-subtitle font-bold text-xs uppercase tracking-wider">
+                <span className="px-2.5 py-0.5 bg-[var(--preto)] text-[var(--exodo-red)] border border-[var(--exodo-red)] font-subtitle font-bold text-xs uppercase tracking-wider">
                   🔥 Desconto de {Math.round(discountRate * 100)}% Aplicado no Total do Plano
                 </span>
               )}
@@ -1656,15 +1656,15 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                   </div>
 
                   {bonusDiagnosticos > 0 && (
-                    <div className="bg-emerald-950/60 border border-emerald-800 p-3 col-span-2 sm:col-span-3">
-                      <span className="font-subtitle text-[0.65rem] text-emerald-400 font-bold uppercase block flex items-center gap-1">
-                        <Gift className="w-3 h-3 text-emerald-400" />
+                    <div className="bg-[var(--preto)] border border-[var(--exodo-red)] p-3 col-span-2 sm:col-span-3">
+                      <span className="font-subtitle text-[0.65rem] text-[var(--exodo-red)] font-bold uppercase block flex items-center gap-1">
+                        <Gift className="w-3 h-3 text-[var(--exodo-red)]" />
                         <span>Bônus Especial de Fidelidade</span>
                       </span>
                       <span className="font-subtitle text-xs font-bold text-white block mt-1">
                         🎁 {bonusDiagnosticos} Diagnóstico(s) Trimestral(is) Extra(s) Grátis!
                       </span>
-                      <span className="font-body text-[0.7rem] text-emerald-300 block mt-0.5">
+                      <span className="font-body text-[0.7rem] text-[var(--cinza-claro)] block mt-0.5">
                         Incluso no plano sem custo adicional.
                       </span>
                     </div>
@@ -1677,18 +1677,18 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                     <span>Subtotal mensal bruto das componentes:</span>
                     <strong className="text-white">{formatCurrency(monthlyRawSubtotal)}/mês</strong>
                   </div>
-                  <div className="flex justify-between items-center text-emerald-400 font-bold">
+                  <div className="flex justify-between items-center text-[var(--exodo-red)] font-bold">
                     <span>Desconto de Prazo ({simState.duration} dias):</span>
                     <span>-{Math.round(discountRate * 100)}%</span>
                   </div>
                   <div className="flex justify-between items-center pt-1 border-t border-neutral-800 text-xs font-bold text-white">
                     <span>Valor final líquido do ciclo ({months} meses):</span>
-                    <span className="text-emerald-400 text-sm">{formatCurrency(totalPrice)}</span>
+                    <span className="text-[var(--exodo-red)] text-sm">{formatCurrency(totalPrice)}</span>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2 text-xs text-neutral-300 mt-1">
-                  <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <Check className="w-4 h-4 text-[var(--exodo-red)] shrink-0" />
                   <span>Inclui Comunidade Êxodo + Área de Membros + ÊXODO Intelligence (I.A. Nutri)</span>
                 </div>
               </div>
@@ -1704,7 +1704,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                   <span className="font-subtitle text-xs text-neutral-400 font-normal">/mês</span>
                 </span>
 
-                <span className="font-subtitle text-xs text-emerald-400 font-bold block mt-1">
+                <span className="font-subtitle text-xs text-[var(--exodo-red)] font-bold block mt-1">
                   Valor Total do Ciclo ({months} meses): {formatCurrency(totalPrice)}
                 </span>
 
@@ -1713,7 +1713,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                     variant="primary"
                     size="lg"
                     onClick={handleSendWhatsapp}
-                    className="w-full justify-center py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white shadow-md font-bold"
+                    className="w-full justify-center py-3.5 bg-[var(--exodo-red)] hover:bg-[var(--preto)] text-white font-bold"
                   >
                     <Send className="w-4 h-4 mr-2" />
                     <span>Enviar Plano no WhatsApp</span>
@@ -1759,7 +1759,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
               </div>
               <button
                 onClick={() => setIsUnboxingOpen(false)}
-                className="p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors cursor-pointer rounded-full shrink-0"
+                className="p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors cursor-pointer shrink-0"
                 aria-label="Fechar modal"
               >
                 <X className="w-6 h-6" />
@@ -1769,13 +1769,13 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
             {/* Modal Scrollable Body */}
             <div className="p-5 sm:p-6 md:p-8 overflow-y-auto flex flex-col gap-8 bg-[var(--surface-card)]">
               
-              <div className="bg-emerald-50 border border-emerald-300 p-4 flex items-center gap-3 text-emerald-950 text-xs">
-                <Gift className="w-5 h-5 text-emerald-700 shrink-0" />
+              <div className="bg-[var(--accent-tint)] border border-[var(--exodo-red)] p-4 flex items-center gap-3 text-[var(--preto)] text-xs">
+                <Gift className="w-5 h-5 text-[var(--exodo-red)] shrink-0" />
                 <div>
-                  <strong className="font-subtitle text-emerald-950 block">
+                  <strong className="font-subtitle text-[var(--preto)] block">
                     Valor total avulso somado das 12 entregas: R$ 5.480,00
                   </strong>
-                  <span className="text-emerald-800 block mt-0.5">
+                  <span className="text-[var(--exodo-red)] block mt-0.5">
                     Ao contratar o A3, você recebe o pacote integral com 67% de desconto por apenas 3x de R$ 599,66 (ou R$ 1.799,00 à vista).
                   </span>
                 </div>
@@ -1828,11 +1828,11 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                           </div>
 
                           <div className="mt-3 pt-2 border-t border-[var(--border-default)] flex items-center justify-between text-[0.65rem]">
-                            <span className="font-subtitle font-bold text-emerald-700 flex items-center gap-1">
-                              <CheckCircle2 className="w-3 h-3 text-emerald-600 shrink-0" />
+                            <span className="font-subtitle font-bold text-[var(--exodo-red)] flex items-center gap-1">
+                              <CheckCircle2 className="w-3 h-3 text-[var(--exodo-red)] shrink-0" />
                               <span>INCLUSO NO PACOTE</span>
                             </span>
-                            <span className="font-subtitle font-bold text-emerald-800 bg-emerald-50 px-1.5 py-0.5 border border-emerald-200">
+                            <span className="font-subtitle font-bold text-[var(--exodo-red)] bg-[var(--accent-tint)] px-1.5 py-0.5 border border-[var(--exodo-red)]">
                               R$ 0,00 (100% OFF)
                             </span>
                           </div>
@@ -1849,7 +1849,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
             <div className="bg-[var(--preto)] text-white p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-neutral-800 shrink-0">
               <div className="flex items-center gap-3 text-xs">
                 <span className="font-subtitle text-neutral-300">
-                  Total das 12 Entregas: <strong className="text-emerald-400 font-display text-base">3x de R$ 599,66</strong> (R$ 1.799,00 à vista)
+                  Total das 12 Entregas: <strong className="text-[var(--exodo-red)] font-display text-base">3x de R$ 599,66</strong> (R$ 1.799,00 à vista)
                 </span>
               </div>
 
@@ -1867,7 +1867,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenBooking, o
                     setIsUnboxingOpen(false);
                     onOpenBooking();
                   }}
-                  className="bg-[var(--exodo-red)] hover:bg-[var(--exodo-red-hover)] text-white font-bold py-2.5"
+                  className="bg-[var(--exodo-red)] hover:bg-[var(--preto)] text-white font-bold py-2.5"
                 >
                   <Calendar className="w-4 h-4 mr-1.5" />
                   <span>Garantir Meus 12 Entregáveis</span>
