@@ -1,32 +1,33 @@
 import React from 'react';
-import { 
-  CheckCircle2, 
-  Lock, 
-  Sparkles, 
-  FileText, 
-  Award, 
-  Calendar, 
+import {
+  CheckCircle2,
+  Lock,
+  Sparkles,
+  FileText,
+  Award,
+  Calendar,
   ArrowRight,
   Eye,
   Compass,
   Zap,
   ChevronRight
 } from 'lucide-react';
-import { 
-  A3CurrentModel, 
-  A3ChosenConfigurationData, 
-  A3TacticalPlanData 
+import { Tag } from './UIPrimitives';
+import {
+  A3CurrentModel,
+  A3ChosenConfigurationData,
+  A3TacticalPlanData
 } from '../types';
 
-export type StageName = 
-  | 'products' 
+export type StageName =
+  | 'products'
   | 'patient-workload'
-  | 'schedule' 
+  | 'schedule'
   | 'other-activities'
-  | 'current-model' 
-  | 'expectations' 
-  | 'boundaries' 
-  | 'configuration-choice' 
+  | 'current-model'
+  | 'expectations'
+  | 'boundaries'
+  | 'configuration-choice'
   | 'tactical-plan';
 
 interface JourneyTrailProps {
@@ -110,34 +111,50 @@ export const JourneyTrail: React.FC<JourneyTrailProps> = ({
     }
   };
 
+  // Shared sub-step pill style
+  const subStepPillClass = (active: boolean) =>
+    `px-2.5 py-1 text-[0.62rem] font-subtitle font-bold uppercase tracking-wide cursor-pointer transition-colors ${
+      active
+        ? 'bg-[var(--preto)] text-[var(--branco)]'
+        : 'bg-[var(--branco)] border border-[var(--border-default)] text-[var(--cinza-escuro)] hover:border-[var(--exodo-red)]'
+    }`;
+
+  // Shared block card border/bg style
+  const blockCardClass = (locked: boolean, active: boolean, completed: boolean) => {
+    if (locked) return 'bg-[var(--cinza-claro)]/40 border-[var(--border-default)] text-[var(--cinza-medio)]';
+    if (active) return 'bg-[var(--accent-tint)] border-[var(--exodo-red)]';
+    if (completed) return 'bg-[var(--branco)] border-[var(--preto)]';
+    return 'bg-[var(--branco)] border-[var(--border-default)]';
+  };
+
   return (
-    <div className="bg-white border-2 border-[var(--preto)] rounded-2xl p-4 sm:p-5 shadow-sm space-y-4 mb-8">
+    <div className="bg-[var(--branco)] border-2 border-[var(--preto)] p-4 sm:p-5 space-y-4 mb-8">
       {/* MACRO HEADER */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-neutral-100 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[var(--border-default)] pb-3">
         <div className="flex items-center gap-2">
-          <span className="p-1.5 bg-[var(--preto)] text-white rounded-lg">
-            <Compass className="w-4 h-4 text-emerald-400" />
+          <span className="p-1.5 bg-[var(--preto)] text-[var(--branco)]">
+            <Compass className="w-4 h-4 text-[var(--exodo-red)]" />
           </span>
           <div>
-            <h2 className="font-title font-bold text-sm sm:text-base text-[var(--preto)] tracking-tight">
+            <h2 className="font-display font-bold text-sm sm:text-base text-[var(--preto)] tracking-tight">
               Trilha da Jornada • Fase 1 (Navegador Estratégico & Plano Tático)
             </h2>
-            <p className="text-[0.7rem] font-body text-neutral-500">
+            <p className="text-[0.7rem] font-body text-[var(--cinza-medio)]">
               Progresso estruturado em 3 blocos contínuos de clareza, escolha e ação.
             </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-1.5 text-[0.65rem] font-subtitle font-bold uppercase tracking-wider text-neutral-500">
-          <span className={`px-2 py-0.5 rounded ${isBlockACompleted ? 'bg-emerald-100 text-emerald-800' : 'bg-neutral-100'}`}>
+        <div className="flex items-center gap-1.5 text-[0.65rem] font-subtitle font-bold uppercase tracking-wide text-[var(--cinza-medio)]">
+          <span className={`px-2 py-0.5 ${isBlockACompleted ? 'bg-[var(--preto)] text-[var(--branco)]' : 'bg-[var(--cinza-claro)]'}`}>
             A: Clareza
           </span>
           <span>→</span>
-          <span className={`px-2 py-0.5 rounded ${isBlockBCompleted ? 'bg-emerald-100 text-emerald-800' : 'bg-neutral-100'}`}>
+          <span className={`px-2 py-0.5 ${isBlockBCompleted ? 'bg-[var(--preto)] text-[var(--branco)]' : 'bg-[var(--cinza-claro)]'}`}>
             B: Escolha
           </span>
           <span>→</span>
-          <span className={`px-2 py-0.5 rounded ${isBlockCCompleted ? 'bg-emerald-100 text-emerald-800' : 'bg-neutral-100'}`}>
+          <span className={`px-2 py-0.5 ${isBlockCCompleted ? 'bg-[var(--preto)] text-[var(--branco)]' : 'bg-[var(--cinza-claro)]'}`}>
             C: Ação
           </span>
         </div>
@@ -149,52 +166,44 @@ export const JourneyTrail: React.FC<JourneyTrailProps> = ({
         {/* ========================================================= */}
         {/* BLOCO A: ENXERGANDO SUA CLÍNICA                             */}
         {/* ========================================================= */}
-        <div 
-          className={`rounded-xl p-4 transition-all border-2 flex flex-col justify-between ${
-            isBlockAActive 
-              ? 'bg-emerald-50/60 border-emerald-600 shadow-xs' 
-              : isBlockACompleted 
-              ? 'bg-neutral-50/80 border-emerald-500/80' 
-              : 'bg-white border-neutral-200'
-          }`}
+        <div
+          className={`p-4 transition-all border-2 flex flex-col justify-between ${blockCardClass(false, isBlockAActive, isBlockACompleted)}`}
         >
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-[0.65rem] font-subtitle font-bold uppercase tracking-wider text-emerald-800 flex items-center gap-1">
+              <span className="text-[0.65rem] font-subtitle font-bold uppercase tracking-wide text-[var(--exodo-red)] flex items-center gap-1">
                 <Eye className="w-3.5 h-3.5" />
                 Bloco A • Call 01
               </span>
 
               {isBlockACompleted ? (
-                <span className="flex items-center gap-1 text-[0.65rem] font-subtitle font-bold uppercase text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-300">
-                  <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                <Tag tone="diagnostico" className="text-[0.62rem] px-2 py-0.5">
+                  <CheckCircle2 className="w-3 h-3 inline mr-1" />
                   Concluído
-                </span>
+                </Tag>
               ) : isBlockAActive ? (
-                <span className="text-[0.65rem] font-subtitle font-bold uppercase text-emerald-900 bg-emerald-200/80 px-2 py-0.5 rounded-full">
-                  Em Andamento
-                </span>
+                <Tag tone="evidencia" className="text-[0.62rem] px-2 py-0.5">Em Andamento</Tag>
               ) : (
-                <span className="text-[0.65rem] font-subtitle text-neutral-400">
+                <span className="text-[0.65rem] font-subtitle text-[var(--cinza-medio)]">
                   Pendente
                 </span>
               )}
             </div>
 
             <div>
-              <h3 className="font-title font-bold text-sm sm:text-base text-[var(--preto)]">
+              <h3 className="font-display font-bold text-sm sm:text-base text-[var(--preto)]">
                 Enxergando sua clínica
               </h3>
-              <p className="text-[0.72rem] font-body text-neutral-600 leading-snug">
+              <p className="text-[0.72rem] font-body text-[var(--cinza-escuro)] leading-snug">
                 Diagnóstico e consolidação da oferta, agenda e rotina real do Modelo Atual.
               </p>
             </div>
 
             {/* NESTED MICRO PROGRESS INDICATOR */}
             {isBlockAActive && (
-              <div className="p-2 bg-emerald-100/70 border border-emerald-300 rounded-lg text-[0.7rem] font-subtitle font-bold text-emerald-950 flex items-center justify-between">
+              <div className="p-2 bg-[var(--branco)] border border-[var(--exodo-red)] text-[0.7rem] font-subtitle font-bold text-[var(--preto)] flex items-center justify-between">
                 <span>{getBlockAMicroLabel()}</span>
-                <Sparkles className="w-3.5 h-3.5 text-emerald-700 animate-pulse" />
+                <Sparkles className="w-3.5 h-3.5 text-[var(--exodo-red)] animate-pulse" />
               </div>
             )}
 
@@ -211,11 +220,7 @@ export const JourneyTrail: React.FC<JourneyTrailProps> = ({
                   key={s.id}
                   type="button"
                   onClick={() => onSelectStage(s.id as StageName)}
-                  className={`px-2 py-1 text-[0.62rem] font-subtitle font-bold rounded cursor-pointer transition-all ${
-                    activeStage === s.id
-                      ? 'bg-emerald-800 text-white shadow-2xs'
-                      : 'bg-white border border-neutral-200 text-neutral-700 hover:border-emerald-500'
-                  }`}
+                  className={subStepPillClass(activeStage === s.id)}
                 >
                   {s.name}
                 </button>
@@ -225,13 +230,13 @@ export const JourneyTrail: React.FC<JourneyTrailProps> = ({
 
           {/* DELIVERABLE SHORTCUT FOR BLOCO A */}
           {isBlockACompleted && (
-            <div className="mt-3 pt-3 border-t border-emerald-200">
+            <div className="mt-3 pt-3 border-t border-[var(--border-default)]">
               <button
                 type="button"
                 onClick={() => onOpenDeliverable('retrato')}
-                className="w-full py-2 px-3 bg-emerald-800 hover:bg-emerald-900 text-white text-[0.7rem] font-subtitle font-bold rounded-lg flex items-center justify-center gap-1.5 cursor-pointer shadow-xs transition-colors"
+                className="w-full py-2 px-3 bg-[var(--preto)] hover:bg-[var(--exodo-red)] text-[var(--branco)] text-[0.7rem] font-subtitle font-bold uppercase tracking-wide flex items-center justify-center gap-1.5 cursor-pointer transition-colors"
               >
-                <FileText className="w-3.5 h-3.5 text-emerald-300" />
+                <FileText className="w-3.5 h-3.5" />
                 <span>Ver Retrato da Sua Clínica Hoje</span>
               </button>
             </div>
@@ -242,59 +247,49 @@ export const JourneyTrail: React.FC<JourneyTrailProps> = ({
         {/* ========================================================= */}
         {/* BLOCO B: ESCOLHENDO SEU CAMINHO                             */}
         {/* ========================================================= */}
-        <div 
+        <div
           onClick={isBlockBLocked ? handleBlockBClick : undefined}
-          className={`rounded-xl p-4 transition-all border-2 flex flex-col justify-between ${
-            isBlockBLocked
-              ? 'bg-neutral-50/80 border-neutral-200 text-neutral-400 opacity-90'
-              : isBlockBActive
-              ? 'bg-amber-50/60 border-amber-600 shadow-xs'
-              : isBlockBCompleted
-              ? 'bg-neutral-50/80 border-amber-500/80'
-              : 'bg-white border-neutral-200'
-          }`}
+          className={`p-4 transition-all border-2 flex flex-col justify-between ${blockCardClass(isBlockBLocked, isBlockBActive, isBlockBCompleted)}`}
         >
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className={`text-[0.65rem] font-subtitle font-bold uppercase tracking-wider flex items-center gap-1 ${
-                isBlockBLocked ? 'text-neutral-400' : 'text-amber-800'
+              <span className={`text-[0.65rem] font-subtitle font-bold uppercase tracking-wide flex items-center gap-1 ${
+                isBlockBLocked ? 'text-[var(--cinza-medio)]' : 'text-[var(--exodo-red)]'
               }`}>
                 <Compass className="w-3.5 h-3.5" />
                 Bloco B • Call 02
               </span>
 
               {isBlockBLocked ? (
-                <span className="flex items-center gap-1 text-[0.65rem] font-subtitle text-neutral-500 bg-neutral-200/80 px-2 py-0.5 rounded-full">
-                  <Lock className="w-3 h-3 text-neutral-500" />
+                <span className="flex items-center gap-1 text-[0.65rem] font-subtitle font-bold uppercase text-[var(--cinza-medio)] bg-[var(--cinza-claro)] px-2 py-0.5">
+                  <Lock className="w-3 h-3" />
                   Bloqueado
                 </span>
               ) : isBlockBCompleted ? (
-                <span className="flex items-center gap-1 text-[0.65rem] font-subtitle font-bold uppercase text-amber-900 bg-amber-100 px-2 py-0.5 rounded-full border border-amber-300">
-                  <CheckCircle2 className="w-3 h-3 text-amber-700" />
+                <Tag tone="diagnostico" className="text-[0.62rem] px-2 py-0.5">
+                  <CheckCircle2 className="w-3 h-3 inline mr-1" />
                   Concluído
-                </span>
+                </Tag>
               ) : isBlockBActive ? (
-                <span className="text-[0.65rem] font-subtitle font-bold uppercase text-amber-950 bg-amber-200/80 px-2 py-0.5 rounded-full">
-                  Em Andamento
-                </span>
+                <Tag tone="evidencia" className="text-[0.62rem] px-2 py-0.5">Em Andamento</Tag>
               ) : (
-                <span className="text-[0.65rem] font-subtitle text-neutral-400">
+                <span className="text-[0.65rem] font-subtitle text-[var(--cinza-medio)]">
                   Liberado
                 </span>
               )}
             </div>
 
             <div>
-              <h3 className={`font-title font-bold text-sm sm:text-base ${isBlockBLocked ? 'text-neutral-500' : 'text-[var(--preto)]'}`}>
+              <h3 className={`font-display font-bold text-sm sm:text-base ${isBlockBLocked ? 'text-[var(--cinza-medio)]' : 'text-[var(--preto)]'}`}>
                 Escolhendo seu caminho
               </h3>
-              
+
               {isBlockBLocked ? (
-                <p className="text-[0.72rem] font-body text-neutral-500 italic leading-snug pt-1">
+                <p className="text-[0.72rem] font-body text-[var(--cinza-medio)] italic leading-snug pt-1">
                   "Aqui você vai escolher entre caminhos diferentes para sua clínica."
                 </p>
               ) : (
-                <p className="text-[0.72rem] font-body text-neutral-600 leading-snug">
+                <p className="text-[0.72rem] font-body text-[var(--cinza-escuro)] leading-snug">
                   Navegador de Promessas: Expectativas, Restrições e Escolha da Configuração.
                 </p>
               )}
@@ -302,9 +297,9 @@ export const JourneyTrail: React.FC<JourneyTrailProps> = ({
 
             {/* NESTED MICRO PROGRESS INDICATOR */}
             {isBlockBActive && (
-              <div className="p-2 bg-amber-100/70 border border-amber-300 rounded-lg text-[0.7rem] font-subtitle font-bold text-amber-950 flex items-center justify-between">
+              <div className="p-2 bg-[var(--branco)] border border-[var(--exodo-red)] text-[0.7rem] font-subtitle font-bold text-[var(--preto)] flex items-center justify-between">
                 <span>{getBlockBMicroLabel()}</span>
-                <Sparkles className="w-3.5 h-3.5 text-amber-700 animate-pulse" />
+                <Sparkles className="w-3.5 h-3.5 text-[var(--exodo-red)] animate-pulse" />
               </div>
             )}
 
@@ -320,11 +315,7 @@ export const JourneyTrail: React.FC<JourneyTrailProps> = ({
                     key={s.id}
                     type="button"
                     onClick={() => onSelectStage(s.id as StageName)}
-                    className={`px-2 py-1 text-[0.62rem] font-subtitle font-bold rounded cursor-pointer transition-all ${
-                      activeStage === s.id
-                        ? 'bg-amber-800 text-white shadow-2xs'
-                        : 'bg-white border border-neutral-200 text-neutral-700 hover:border-amber-500'
-                    }`}
+                    className={subStepPillClass(activeStage === s.id)}
                   >
                     {s.name}
                   </button>
@@ -335,13 +326,13 @@ export const JourneyTrail: React.FC<JourneyTrailProps> = ({
 
           {/* DELIVERABLE SHORTCUT FOR BLOCO B */}
           {isBlockBCompleted && (
-            <div className="mt-3 pt-3 border-t border-amber-200">
+            <div className="mt-3 pt-3 border-t border-[var(--border-default)]">
               <button
                 type="button"
                 onClick={() => onOpenDeliverable('caminho')}
-                className="w-full py-2 px-3 bg-amber-800 hover:bg-amber-900 text-white text-[0.7rem] font-subtitle font-bold rounded-lg flex items-center justify-center gap-1.5 cursor-pointer shadow-xs transition-colors"
+                className="w-full py-2 px-3 bg-[var(--preto)] hover:bg-[var(--exodo-red)] text-[var(--branco)] text-[0.7rem] font-subtitle font-bold uppercase tracking-wide flex items-center justify-center gap-1.5 cursor-pointer transition-colors"
               >
-                <Award className="w-3.5 h-3.5 text-amber-300" />
+                <Award className="w-3.5 h-3.5" />
                 <span>Ver O Caminho que Você Escolheu</span>
               </button>
             </div>
@@ -352,59 +343,49 @@ export const JourneyTrail: React.FC<JourneyTrailProps> = ({
         {/* ========================================================= */}
         {/* BLOCO C: COLOCANDO EM PRÁTICA                               */}
         {/* ========================================================= */}
-        <div 
+        <div
           onClick={isBlockCLocked ? handleBlockCClick : undefined}
-          className={`rounded-xl p-4 transition-all border-2 flex flex-col justify-between ${
-            isBlockCLocked
-              ? 'bg-neutral-50/80 border-neutral-200 text-neutral-400 opacity-90'
-              : isBlockCActive
-              ? 'bg-indigo-50/60 border-indigo-600 shadow-xs'
-              : isBlockCCompleted
-              ? 'bg-neutral-50/80 border-indigo-500/80'
-              : 'bg-white border-neutral-200'
-          }`}
+          className={`p-4 transition-all border-2 flex flex-col justify-between ${blockCardClass(isBlockCLocked, isBlockCActive, isBlockCCompleted)}`}
         >
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className={`text-[0.65rem] font-subtitle font-bold uppercase tracking-wider flex items-center gap-1 ${
-                isBlockCLocked ? 'text-neutral-400' : 'text-indigo-800'
+              <span className={`text-[0.65rem] font-subtitle font-bold uppercase tracking-wide flex items-center gap-1 ${
+                isBlockCLocked ? 'text-[var(--cinza-medio)]' : 'text-[var(--exodo-red)]'
               }`}>
                 <Zap className="w-3.5 h-3.5" />
                 Bloco C • Call 03
               </span>
 
               {isBlockCLocked ? (
-                <span className="flex items-center gap-1 text-[0.65rem] font-subtitle text-neutral-500 bg-neutral-200/80 px-2 py-0.5 rounded-full">
-                  <Lock className="w-3 h-3 text-neutral-500" />
+                <span className="flex items-center gap-1 text-[0.65rem] font-subtitle font-bold uppercase text-[var(--cinza-medio)] bg-[var(--cinza-claro)] px-2 py-0.5">
+                  <Lock className="w-3 h-3" />
                   Bloqueado
                 </span>
               ) : isBlockCCompleted ? (
-                <span className="flex items-center gap-1 text-[0.65rem] font-subtitle font-bold uppercase text-indigo-900 bg-indigo-100 px-2 py-0.5 rounded-full border border-indigo-300">
-                  <CheckCircle2 className="w-3 h-3 text-indigo-700" />
+                <Tag tone="diagnostico" className="text-[0.62rem] px-2 py-0.5">
+                  <CheckCircle2 className="w-3 h-3 inline mr-1" />
                   Concluído
-                </span>
+                </Tag>
               ) : isBlockCActive ? (
-                <span className="text-[0.65rem] font-subtitle font-bold uppercase text-indigo-950 bg-indigo-200/80 px-2 py-0.5 rounded-full">
-                  Em Andamento
-                </span>
+                <Tag tone="evidencia" className="text-[0.62rem] px-2 py-0.5">Em Andamento</Tag>
               ) : (
-                <span className="text-[0.65rem] font-subtitle text-neutral-400">
+                <span className="text-[0.65rem] font-subtitle text-[var(--cinza-medio)]">
                   Liberado
                 </span>
               )}
             </div>
 
             <div>
-              <h3 className={`font-title font-bold text-sm sm:text-base ${isBlockCLocked ? 'text-neutral-500' : 'text-[var(--preto)]'}`}>
+              <h3 className={`font-display font-bold text-sm sm:text-base ${isBlockCLocked ? 'text-[var(--cinza-medio)]' : 'text-[var(--preto)]'}`}>
                 Colocando em prática
               </h3>
 
               {isBlockCLocked ? (
-                <p className="text-[0.72rem] font-body text-neutral-500 italic leading-snug pt-1">
+                <p className="text-[0.72rem] font-body text-[var(--cinza-medio)] italic leading-snug pt-1">
                   "Aqui você vai transformar a escolha em um plano de ação de 90 dias."
                 </p>
               ) : (
-                <p className="text-[0.72rem] font-body text-neutral-600 leading-snug">
+                <p className="text-[0.72rem] font-body text-[var(--cinza-escuro)] leading-snug">
                   Módulo Plano Tático: Roteiro operacional de 30/60/90 dias e checklist semanal.
                 </p>
               )}
@@ -412,9 +393,9 @@ export const JourneyTrail: React.FC<JourneyTrailProps> = ({
 
             {/* NESTED MICRO PROGRESS INDICATOR */}
             {isBlockCActive && (
-              <div className="p-2 bg-indigo-100/70 border border-indigo-300 rounded-lg text-[0.7rem] font-subtitle font-bold text-indigo-950 flex items-center justify-between">
+              <div className="p-2 bg-[var(--branco)] border border-[var(--exodo-red)] text-[0.7rem] font-subtitle font-bold text-[var(--preto)] flex items-center justify-between">
                 <span>Passo 1/1: Módulo Plano Tático</span>
-                <Sparkles className="w-3.5 h-3.5 text-indigo-700 animate-pulse" />
+                <Sparkles className="w-3.5 h-3.5 text-[var(--exodo-red)] animate-pulse" />
               </div>
             )}
 
@@ -424,11 +405,7 @@ export const JourneyTrail: React.FC<JourneyTrailProps> = ({
                 <button
                   type="button"
                   onClick={() => onSelectStage('tactical-plan')}
-                  className={`px-2.5 py-1 text-[0.62rem] font-subtitle font-bold rounded cursor-pointer transition-all ${
-                    activeStage === 'tactical-plan'
-                      ? 'bg-indigo-800 text-white shadow-2xs'
-                      : 'bg-white border border-neutral-200 text-neutral-700 hover:border-indigo-500'
-                  }`}
+                  className={subStepPillClass(activeStage === 'tactical-plan')}
                 >
                   10. Plano Tático 90 Dias
                 </button>
@@ -438,13 +415,13 @@ export const JourneyTrail: React.FC<JourneyTrailProps> = ({
 
           {/* DELIVERABLE SHORTCUT FOR BLOCO C */}
           {isBlockCCompleted && (
-            <div className="mt-3 pt-3 border-t border-indigo-200">
+            <div className="mt-3 pt-3 border-t border-[var(--border-default)]">
               <button
                 type="button"
                 onClick={() => onOpenDeliverable('plano')}
-                className="w-full py-2 px-3 bg-indigo-800 hover:bg-indigo-900 text-white text-[0.7rem] font-subtitle font-bold rounded-lg flex items-center justify-center gap-1.5 cursor-pointer shadow-xs transition-colors"
+                className="w-full py-2 px-3 bg-[var(--preto)] hover:bg-[var(--exodo-red)] text-[var(--branco)] text-[0.7rem] font-subtitle font-bold uppercase tracking-wide flex items-center justify-center gap-1.5 cursor-pointer transition-colors"
               >
-                <Calendar className="w-3.5 h-3.5 text-indigo-300" />
+                <Calendar className="w-3.5 h-3.5" />
                 <span>Ver Seu Plano de Ação (90 Dias)</span>
               </button>
             </div>

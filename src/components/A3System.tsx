@@ -1,23 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Sparkles, 
-  CheckCircle2, 
-  ArrowRight, 
-  ArrowLeft, 
-  HelpCircle, 
-  Lock, 
-  User, 
-  Building2, 
-  Mail, 
-  LogOut, 
-  Save, 
-  Check, 
-  ChevronRight, 
+import {
+  Sparkles,
+  ArrowRight,
+  ArrowLeft,
+  HelpCircle,
+  Lock,
+  User,
+  Building2,
+  Mail,
+  LogOut,
+  Save,
+  Check,
+  ChevronRight,
   ChevronDown,
-  BrainCircuit, 
-  Compass, 
-  Target, 
-  ShieldCheck, 
+  Compass,
+  ShieldCheck,
   Calculator,
   RefreshCw,
   Eye,
@@ -29,7 +26,7 @@ import {
   Users,
   Clock
 } from 'lucide-react';
-import { Button } from './UIPrimitives';
+import { Button, Tag, CornerAccent } from './UIPrimitives';
 import { Logo } from './Logo';
 import { ProductsStep } from './ProductsStep';
 import { PatientWorkloadStep } from './PatientWorkloadStep';
@@ -471,99 +468,97 @@ export const A3System: React.FC<A3SystemProps> = ({ onBackToLanding, onToast }) 
   // Render Login View if not logged in
   if (!user) {
     return (
-      <div className="min-h-[calc(100vh-76px)] bg-[var(--branco-off)] py-12 px-4 sm:px-6 md:px-12 flex flex-col justify-center items-center">
-        <div className="w-full max-w-md bg-white border-2 border-[var(--preto)] p-6 sm:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] relative">
-          <div className="flex justify-between items-center mb-6 pb-4 border-b border-neutral-200">
+      <div className="min-h-[calc(100vh-76px)] bg-[var(--cinza-claro)] py-12 px-4 sm:px-6 md:px-12 flex flex-col justify-center items-center">
+        <div className="w-full max-w-md bg-[var(--branco)] border-2 border-[var(--preto)] p-6 sm:p-10 relative">
+          <div className="flex justify-between items-center mb-6 pb-4 border-b border-[var(--border-default)]">
             <button
               onClick={onBackToLanding}
-              className="text-xs font-subtitle font-bold text-neutral-600 hover:text-[var(--exodo-red)] flex items-center gap-1 cursor-pointer bg-transparent border-none"
+              className="text-xs font-subtitle font-bold text-[var(--cinza-escuro)] hover:text-[var(--exodo-red)] flex items-center gap-1 cursor-pointer bg-transparent border-none"
             >
               <ArrowLeft className="w-3.5 h-3.5" /> Voltar ao site
             </button>
-            <span className="bg-[var(--exodo-red)] text-white text-[0.65rem] font-subtitle font-bold px-2.5 py-0.5 uppercase tracking-wider">
-              Área Exclusiva A3
-            </span>
+            <Tag tone="evidencia">Área Exclusiva A3</Tag>
           </div>
 
           <div className="text-center mb-6">
-            <div className="inline-flex items-center justify-center w-12 h-12 bg-red-50 text-[var(--exodo-red)] rounded-full mb-3 border border-red-100">
-              <Compass className="w-6 h-6" />
+            <div className="inline-flex items-center justify-center w-12 h-12 bg-[var(--preto)] text-[var(--branco)] mb-3">
+              <span className="font-display text-xl">A3</span>
             </div>
-            <h1 className="font-title text-2xl text-[var(--preto)] tracking-tight">
+            <h1 className="font-display text-2xl text-[var(--preto)] tracking-tight">
               Acesso ao Sistema A3
             </h1>
-            <p className="font-body text-xs text-neutral-600 mt-1 max-w-xs mx-auto">
+            <p className="font-body text-xs text-[var(--cinza-escuro)] mt-1 max-w-xs mx-auto">
               Apoio à Decisão Estratégica e Direcionamento Tático para Nutricionistas.
             </p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="block text-xs font-subtitle font-bold text-neutral-700 uppercase tracking-wider mb-1">
+              <label className="block text-xs font-subtitle font-bold text-[var(--cinza-escuro)] uppercase tracking-wider mb-1.5">
                 Seu Nome
               </label>
               <div className="relative">
-                <User className="w-4 h-4 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <User className="w-4 h-4 text-[var(--cinza-medio)] absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
                   required
                   placeholder="Ex: Dra. Juliana Costa"
                   value={loginName}
                   onChange={(e) => setLoginName(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2.5 border border-neutral-300 text-sm focus:border-[var(--exodo-red)] focus:ring-1 focus:ring-[var(--exodo-red)] outline-none"
+                  className="w-full pl-9 pr-3 py-3 border border-[var(--border-strong)] text-sm focus:border-[var(--exodo-red)] focus:ring-1 focus:ring-[var(--exodo-red)] outline-none"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-subtitle font-bold text-neutral-700 uppercase tracking-wider mb-1">
+              <label className="block text-xs font-subtitle font-bold text-[var(--cinza-escuro)] uppercase tracking-wider mb-1.5">
                 E-mail Cadastrado
               </label>
               <div className="relative">
-                <Mail className="w-4 h-4 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <Mail className="w-4 h-4 text-[var(--cinza-medio)] absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
                   type="email"
                   required
                   placeholder="seu@email.com"
                   value={loginEmail}
                   onChange={(e) => setLoginEmail(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2.5 border border-neutral-300 text-sm focus:border-[var(--exodo-red)] focus:ring-1 focus:ring-[var(--exodo-red)] outline-none"
+                  className="w-full pl-9 pr-3 py-3 border border-[var(--border-strong)] text-sm focus:border-[var(--exodo-red)] focus:ring-1 focus:ring-[var(--exodo-red)] outline-none"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-subtitle font-bold text-neutral-700 uppercase tracking-wider mb-1">
+              <label className="block text-xs font-subtitle font-bold text-[var(--cinza-escuro)] uppercase tracking-wider mb-1.5">
                 Nome da Clínica / Consultório (Opcional)
               </label>
               <div className="relative">
-                <Building2 className="w-4 h-4 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <Building2 className="w-4 h-4 text-[var(--cinza-medio)] absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
                   placeholder="Ex: Instituto Nutri & Saúde"
                   value={clinicName}
                   onChange={(e) => setClinicName(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2.5 border border-neutral-300 text-sm focus:border-[var(--exodo-red)] focus:ring-1 focus:ring-[var(--exodo-red)] outline-none"
+                  className="w-full pl-9 pr-3 py-3 border border-[var(--border-strong)] text-sm focus:border-[var(--exodo-red)] focus:ring-1 focus:ring-[var(--exodo-red)] outline-none"
                 />
               </div>
             </div>
 
-            <Button variant="primary" type="submit" fullWidth className="py-3 text-xs tracking-wider uppercase font-bold">
+            <Button variant="primary" type="submit" size="lg" className="w-full justify-center mt-1">
               Entrar no A3 <ArrowRight className="w-4 h-4 ml-1 inline" />
             </Button>
           </form>
 
-          <div className="relative my-5">
-            <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-neutral-200"></div></div>
+          <div className="relative my-6">
+            <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-[var(--border-default)]"></div></div>
             <div className="relative flex justify-center text-[0.65rem] uppercase font-subtitle font-bold">
-              <span className="bg-white px-2 text-neutral-400">ou entre com</span>
+              <span className="bg-[var(--branco)] px-3 text-[var(--cinza-medio)]">ou entre com</span>
             </div>
           </div>
 
           <button
             onClick={handleGoogleLogin}
             type="button"
-            className="w-full py-2.5 px-3 bg-white hover:bg-neutral-50 text-neutral-800 text-xs font-subtitle font-bold border border-neutral-300 cursor-pointer transition-colors flex items-center justify-center gap-2"
+            className="w-full py-3 px-3 bg-[var(--branco)] hover:bg-[var(--cinza-claro)] text-[var(--preto)] text-xs font-subtitle font-bold border border-[var(--border-strong)] cursor-pointer transition-colors flex items-center justify-center gap-2"
           >
             <svg className="w-4 h-4" viewBox="0 0 24 24">
               <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -574,15 +569,15 @@ export const A3System: React.FC<A3SystemProps> = ({ onBackToLanding, onToast }) 
             Entrar com Conta Google
           </button>
 
-          <div className="mt-6 pt-5 border-t border-neutral-200 text-center">
-            <p className="text-[0.7rem] text-neutral-500 mb-2 font-subtitle uppercase tracking-wider">
+          <div className="mt-6 pt-5 border-t border-[var(--border-default)] text-center">
+            <p className="text-[0.7rem] text-[var(--cinza-medio)] mb-2 font-subtitle font-bold uppercase tracking-wider">
               Primeiro acesso para testes?
             </p>
             <button
               onClick={handleDemoLogin}
-              className="w-full py-2.5 px-3 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-xs font-subtitle font-bold uppercase tracking-wider border border-neutral-300 cursor-pointer transition-colors flex items-center justify-center gap-2"
+              className="w-full py-3 px-3 bg-[var(--cinza-claro)] hover:bg-[var(--border-default)] text-[var(--preto)] text-xs font-subtitle font-bold uppercase tracking-wider border border-[var(--border-default)] cursor-pointer transition-colors flex items-center justify-center gap-2"
             >
-              <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+              <Sparkles className="w-3.5 h-3.5 text-[var(--exodo-red)]" />
               Acessar com Perfil de Teste (Dra. Amanda)
             </button>
           </div>
@@ -594,22 +589,35 @@ export const A3System: React.FC<A3SystemProps> = ({ onBackToLanding, onToast }) 
   // Count answered questions
   const answeredCount = Object.keys(answers).length;
 
+  const blocoAStages = ['products', 'patient-workload', 'schedule', 'other-activities', 'current-model'];
+  const blocoBStages = ['expectations', 'boundaries', 'configuration-choice'];
+  const navPillClass = (active: boolean) =>
+    `px-3 py-2 border flex items-center gap-1.5 text-[0.7rem] font-subtitle font-bold uppercase tracking-wide cursor-pointer transition-colors ${
+      active
+        ? 'bg-[var(--accent-tint)] text-[var(--preto)] border-[var(--exodo-red)]'
+        : 'bg-[var(--branco)] hover:bg-[var(--cinza-claro)] text-[var(--cinza-escuro)] border-[var(--border-default)]'
+    }`;
+  const navDropdownItemClass = (active: boolean) =>
+    `w-full text-left px-2.5 py-2 text-[0.72rem] font-subtitle font-bold cursor-pointer transition-colors flex items-center justify-between ${
+      active ? 'bg-[var(--accent-tint)] text-[var(--exodo-red)]' : 'text-[var(--cinza-escuro)] hover:bg-[var(--cinza-claro)]'
+    }`;
+
   return (
-    <div className="min-h-screen bg-[var(--branco-off)] pb-16">
+    <div className="min-h-screen bg-[var(--cinza-claro)] pb-16">
       {/* Standalone A3 App Module Header Navbar */}
-      <header className="bg-white border-b border-neutral-200 px-4 sm:px-6 md:px-8 py-2.5 sticky top-0 z-40 shadow-xs">
+      <header className="bg-[var(--branco)] border-b border-[var(--border-default)] px-4 sm:px-6 md:px-8 py-3 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
-          
+
           {/* Left: Brand Logo & Module Indicator */}
           <div className="flex items-center justify-between md:justify-start gap-3">
             <div className="flex items-center gap-2.5">
-              <Logo variant="color" height={24} />
-              <span className="font-title font-bold text-[0.65rem] uppercase px-2 py-0.5 bg-[var(--preto)] text-white tracking-wider rounded-xs">
+              <Logo variant="color" height={22} />
+              <span className="font-subtitle font-bold text-[0.65rem] uppercase px-2 py-0.5 bg-[var(--preto)] text-[var(--branco)] tracking-wide">
                 SISTEMA A3
               </span>
             </div>
-            <div className="hidden sm:block border-l border-neutral-300 pl-3">
-              <span className="text-[0.6rem] font-title font-bold text-neutral-400 uppercase tracking-wider block leading-none">
+            <div className="hidden sm:block border-l border-[var(--border-default)] pl-3">
+              <span className="text-[0.6rem] font-subtitle font-bold text-[var(--cinza-medio)] uppercase tracking-wide block leading-none">
                 Módulo do Assinante
               </span>
               <span className="text-xs font-subtitle font-bold text-[var(--preto)]">
@@ -622,26 +630,26 @@ export const A3System: React.FC<A3SystemProps> = ({ onBackToLanding, onToast }) 
           <div className="flex flex-wrap items-center gap-2 text-xs font-subtitle font-bold">
             {/* Dropdown / Menu for Bloco A */}
             <div className="relative group">
-              <button className={`px-2.5 py-1.5 rounded border flex items-center gap-1.5 text-[0.72rem] font-bold uppercase cursor-pointer transition-colors ${['products', 'patient-workload', 'schedule', 'other-activities', 'current-model'].includes(activeStage) ? 'bg-emerald-50 text-emerald-900 border-emerald-300 shadow-2xs' : 'bg-neutral-100 hover:bg-neutral-200 text-neutral-800 border-neutral-200'}`}>
-                <Eye className="w-3.5 h-3.5 text-emerald-600" />
+              <button className={navPillClass(blocoAStages.includes(activeStage))}>
+                <Eye className="w-3.5 h-3.5" />
                 <span>Bloco A: Clareza</span>
-                <ChevronDown className="w-3 h-3 text-neutral-500" />
+                <ChevronDown className="w-3 h-3" />
               </button>
-              <div className="absolute left-0 top-full mt-1 w-56 bg-white border border-neutral-300 shadow-xl rounded-lg p-1.5 hidden group-hover:block z-50 animate-fadeIn">
-                <div className="text-[0.62rem] font-bold uppercase text-neutral-400 px-2.5 py-1">Macro-Pilar A • Clareza</div>
-                <button onClick={() => { setActiveStage('products'); setStartedWizard(true); }} className={`w-full text-left px-2.5 py-1.5 text-[0.72rem] font-bold rounded cursor-pointer transition-colors flex items-center justify-between ${activeStage === 'products' ? 'bg-emerald-50 text-emerald-900' : 'text-neutral-700 hover:bg-neutral-100'}`}>
+              <div className="absolute left-0 top-full mt-1 w-56 bg-[var(--branco)] border border-[var(--border-strong)] p-1.5 hidden group-hover:block z-50">
+                <div className="text-[0.62rem] font-bold uppercase text-[var(--cinza-medio)] px-2.5 py-1">Macro-Pilar A • Clareza</div>
+                <button onClick={() => { setActiveStage('products'); setStartedWizard(true); }} className={navDropdownItemClass(activeStage === 'products')}>
                   <span>01. Catálogo de Produtos</span>
                 </button>
-                <button onClick={() => { setActiveStage('patient-workload'); setStartedWizard(true); }} className={`w-full text-left px-2.5 py-1.5 text-[0.72rem] font-bold rounded cursor-pointer transition-colors flex items-center justify-between ${activeStage === 'patient-workload' ? 'bg-emerald-50 text-emerald-900' : 'text-neutral-700 hover:bg-neutral-100'}`}>
+                <button onClick={() => { setActiveStage('patient-workload'); setStartedWizard(true); }} className={navDropdownItemClass(activeStage === 'patient-workload')}>
                   <span>02. Carga de Pacientes</span>
                 </button>
-                <button onClick={() => { setActiveStage('schedule'); setStartedWizard(true); }} className={`w-full text-left px-2.5 py-1.5 text-[0.72rem] font-bold rounded cursor-pointer transition-colors flex items-center justify-between ${activeStage === 'schedule' ? 'bg-emerald-50 text-emerald-900' : 'text-neutral-700 hover:bg-neutral-100'}`}>
+                <button onClick={() => { setActiveStage('schedule'); setStartedWizard(true); }} className={navDropdownItemClass(activeStage === 'schedule')}>
                   <span>03. Agenda Disponível</span>
                 </button>
-                <button onClick={() => { setActiveStage('other-activities'); setStartedWizard(true); }} className={`w-full text-left px-2.5 py-1.5 text-[0.72rem] font-bold rounded cursor-pointer transition-colors flex items-center justify-between ${activeStage === 'other-activities' ? 'bg-emerald-50 text-emerald-900' : 'text-neutral-700 hover:bg-neutral-100'}`}>
+                <button onClick={() => { setActiveStage('other-activities'); setStartedWizard(true); }} className={navDropdownItemClass(activeStage === 'other-activities')}>
                   <span>04. Outras Atividades</span>
                 </button>
-                <button onClick={() => { setActiveStage('current-model'); setStartedWizard(true); }} className={`w-full text-left px-2.5 py-1.5 text-[0.72rem] font-bold rounded cursor-pointer transition-colors flex items-center justify-between ${activeStage === 'current-model' ? 'bg-emerald-50 text-emerald-900' : 'text-neutral-700 hover:bg-neutral-100'}`}>
+                <button onClick={() => { setActiveStage('current-model'); setStartedWizard(true); }} className={navDropdownItemClass(activeStage === 'current-model')}>
                   <span>05. Modelo Atual</span>
                 </button>
               </div>
@@ -649,53 +657,55 @@ export const A3System: React.FC<A3SystemProps> = ({ onBackToLanding, onToast }) 
 
             {/* Dropdown / Menu for Bloco B */}
             <div className="relative group">
-              <button className={`px-2.5 py-1.5 rounded border flex items-center gap-1.5 text-[0.72rem] font-bold uppercase cursor-pointer transition-colors ${['expectations', 'boundaries', 'configuration-choice'].includes(activeStage) ? 'bg-amber-50 text-amber-900 border-amber-300 shadow-2xs' : 'bg-neutral-100 hover:bg-neutral-200 text-neutral-800 border-neutral-200'}`}>
-                <Compass className="w-3.5 h-3.5 text-amber-600" />
+              <button className={navPillClass(blocoBStages.includes(activeStage))}>
+                <Compass className="w-3.5 h-3.5" />
                 <span>Bloco B: Escolha</span>
-                <ChevronDown className="w-3 h-3 text-neutral-500" />
+                <ChevronDown className="w-3 h-3" />
               </button>
-              <div className="absolute left-0 top-full mt-1 w-56 bg-white border border-neutral-300 shadow-xl rounded-lg p-1.5 hidden group-hover:block z-50 animate-fadeIn">
-                <div className="text-[0.62rem] font-bold uppercase text-neutral-400 px-2.5 py-1">Macro-Pilar B • Escolha</div>
-                <button onClick={() => { setActiveStage('expectations'); setStartedWizard(true); }} className={`w-full text-left px-2.5 py-1.5 text-[0.72rem] font-bold rounded cursor-pointer transition-colors flex items-center justify-between ${activeStage === 'expectations' ? 'bg-amber-50 text-amber-900' : 'text-neutral-700 hover:bg-neutral-100'}`}>
+              <div className="absolute left-0 top-full mt-1 w-56 bg-[var(--branco)] border border-[var(--border-strong)] p-1.5 hidden group-hover:block z-50">
+                <div className="text-[0.62rem] font-bold uppercase text-[var(--cinza-medio)] px-2.5 py-1">Macro-Pilar B • Escolha</div>
+                <button onClick={() => { setActiveStage('expectations'); setStartedWizard(true); }} className={navDropdownItemClass(activeStage === 'expectations')}>
                   <span>06. Expectativas</span>
                 </button>
-                <button onClick={() => { setActiveStage('boundaries'); setStartedWizard(true); }} className={`w-full text-left px-2.5 py-1.5 text-[0.72rem] font-bold rounded cursor-pointer transition-colors flex items-center justify-between ${activeStage === 'boundaries' ? 'bg-amber-50 text-amber-900' : 'text-neutral-700 hover:bg-neutral-100'}`}>
+                <button onClick={() => { setActiveStage('boundaries'); setStartedWizard(true); }} className={navDropdownItemClass(activeStage === 'boundaries')}>
                   <span>07. Condições & Limites</span>
                 </button>
-                <button onClick={() => { setActiveStage('configuration-choice'); setStartedWizard(true); }} className={`w-full text-left px-2.5 py-1.5 text-[0.72rem] font-bold rounded cursor-pointer transition-colors flex items-center justify-between ${activeStage === 'configuration-choice' ? 'bg-amber-50 text-amber-900' : 'text-neutral-700 hover:bg-neutral-100'}`}>
+                <button onClick={() => { setActiveStage('configuration-choice'); setStartedWizard(true); }} className={navDropdownItemClass(activeStage === 'configuration-choice')}>
                   <span>08. Configuração Escolhida</span>
                 </button>
               </div>
             </div>
 
             {/* Quick Button for Bloco C */}
-            <button 
+            <button
               onClick={() => { setActiveStage('tactical-plan'); setStartedWizard(true); }}
-              className={`px-2.5 py-1.5 rounded border flex items-center gap-1.5 text-[0.72rem] font-bold uppercase cursor-pointer transition-colors ${activeStage === 'tactical-plan' ? 'bg-[var(--preto)] text-white border-[var(--preto)] shadow-2xs' : 'bg-neutral-100 hover:bg-neutral-200 text-neutral-800 border-neutral-200'}`}
+              className={activeStage === 'tactical-plan'
+                ? 'px-3 py-2 border flex items-center gap-1.5 text-[0.7rem] font-subtitle font-bold uppercase tracking-wide cursor-pointer transition-colors bg-[var(--preto)] text-[var(--branco)] border-[var(--preto)]'
+                : navPillClass(false)}
             >
-              <Zap className="w-3.5 h-3.5 text-indigo-500" />
+              <Zap className="w-3.5 h-3.5" />
               <span>Bloco C: Plano Tático</span>
             </button>
 
             {/* Modal Trigger for Entregas Formais */}
             <div className="relative group">
-              <button className="px-2.5 py-1.5 bg-amber-50/70 hover:bg-amber-100 text-amber-900 rounded border border-amber-300 flex items-center gap-1.5 text-[0.72rem] font-bold uppercase cursor-pointer transition-colors">
-                <FileText className="w-3.5 h-3.5 text-amber-700" />
+              <button className="px-3 py-2 bg-[var(--branco)] hover:bg-[var(--cinza-claro)] text-[var(--preto)] border border-[var(--border-strong)] flex items-center gap-1.5 text-[0.7rem] font-subtitle font-bold uppercase tracking-wide cursor-pointer transition-colors">
+                <FileText className="w-3.5 h-3.5 text-[var(--exodo-red)]" />
                 <span>Entregas Formais</span>
-                <ChevronDown className="w-3 h-3 text-amber-700" />
+                <ChevronDown className="w-3 h-3" />
               </button>
-              <div className="absolute right-0 md:left-0 top-full mt-1 w-60 bg-white border border-neutral-300 shadow-xl rounded-lg p-1.5 hidden group-hover:block z-50 animate-fadeIn">
-                <div className="text-[0.62rem] font-bold uppercase text-neutral-400 px-2.5 py-1">Documentos Estratégicos</div>
-                <button onClick={() => setActiveDeliverableModal('retrato')} className="w-full text-left px-2.5 py-1.5 text-[0.72rem] font-bold text-neutral-800 hover:bg-amber-50 rounded cursor-pointer transition-colors flex items-center gap-2">
-                  <Eye className="w-3.5 h-3.5 text-emerald-600" />
+              <div className="absolute right-0 md:left-0 top-full mt-1 w-60 bg-[var(--branco)] border border-[var(--border-strong)] p-1.5 hidden group-hover:block z-50">
+                <div className="text-[0.62rem] font-bold uppercase text-[var(--cinza-medio)] px-2.5 py-1">Documentos Estratégicos</div>
+                <button onClick={() => setActiveDeliverableModal('retrato')} className="w-full text-left px-2.5 py-2 text-[0.72rem] font-subtitle font-bold text-[var(--cinza-escuro)] hover:bg-[var(--accent-tint)] hover:text-[var(--exodo-red)] cursor-pointer transition-colors flex items-center gap-2">
+                  <Eye className="w-3.5 h-3.5" />
                   <span>01. Retrato da Clínica (Bloco A)</span>
                 </button>
-                <button onClick={() => setActiveDeliverableModal('caminho')} className="w-full text-left px-2.5 py-1.5 text-[0.72rem] font-bold text-neutral-800 hover:bg-amber-50 rounded cursor-pointer transition-colors flex items-center gap-2">
-                  <Compass className="w-3.5 h-3.5 text-amber-600" />
+                <button onClick={() => setActiveDeliverableModal('caminho')} className="w-full text-left px-2.5 py-2 text-[0.72rem] font-subtitle font-bold text-[var(--cinza-escuro)] hover:bg-[var(--accent-tint)] hover:text-[var(--exodo-red)] cursor-pointer transition-colors flex items-center gap-2">
+                  <Compass className="w-3.5 h-3.5" />
                   <span>02. O Caminho Escolhido (Bloco B)</span>
                 </button>
-                <button onClick={() => setActiveDeliverableModal('plano')} className="w-full text-left px-2.5 py-1.5 text-[0.72rem] font-bold text-neutral-800 hover:bg-amber-50 rounded cursor-pointer transition-colors flex items-center gap-2">
-                  <Zap className="w-3.5 h-3.5 text-indigo-600" />
+                <button onClick={() => setActiveDeliverableModal('plano')} className="w-full text-left px-2.5 py-2 text-[0.72rem] font-subtitle font-bold text-[var(--cinza-escuro)] hover:bg-[var(--accent-tint)] hover:text-[var(--exodo-red)] cursor-pointer transition-colors flex items-center gap-2">
+                  <Zap className="w-3.5 h-3.5" />
                   <span>03. Plano Tático 90 Dias (Bloco C)</span>
                 </button>
               </div>
@@ -704,14 +714,14 @@ export const A3System: React.FC<A3SystemProps> = ({ onBackToLanding, onToast }) 
 
           {/* Right: Subscriber Profile & Exit Button */}
           <div className="flex items-center justify-end gap-2 sm:gap-3 shrink-0">
-            <div className="hidden lg:flex items-center gap-2 bg-emerald-50/80 border border-emerald-200 text-emerald-900 px-2.5 py-1 text-[0.68rem] font-subtitle font-bold rounded-md">
-              <User className="w-3.5 h-3.5 text-emerald-600" />
+            <div className="hidden lg:flex items-center gap-2 border border-[var(--border-default)] text-[var(--cinza-escuro)] px-3 py-1.5 text-[0.68rem] font-subtitle font-bold">
+              <User className="w-3.5 h-3.5" />
               <span>{user?.name || 'Dra. Amanda'}</span>
             </div>
 
             <button
               onClick={onBackToLanding}
-              className="px-3 py-1.5 bg-neutral-900 hover:bg-[var(--exodo-red)] text-white text-[0.7rem] font-subtitle font-bold uppercase tracking-wider rounded-md transition-colors flex items-center gap-1.5 cursor-pointer min-h-[34px]"
+              className="px-3 py-2 bg-[var(--preto)] hover:bg-[var(--exodo-red)] text-[var(--branco)] text-[0.7rem] font-subtitle font-bold uppercase tracking-wide transition-colors flex items-center gap-1.5 cursor-pointer min-h-[34px]"
               title="Sair do módulo A3 e retornar à página de vendas"
             >
               <LogOut className="w-3.5 h-3.5" />
@@ -724,13 +734,13 @@ export const A3System: React.FC<A3SystemProps> = ({ onBackToLanding, onToast }) 
 
       {/* Floating Save Toast Confirmation */}
       {showSaveToast && (
-        <div className="fixed bottom-6 right-6 z-50 bg-[var(--preto)] text-white px-4 py-3 rounded shadow-2xl border-l-4 border-emerald-500 flex items-center gap-3 animate-fadeIn">
-          <div className="w-6 h-6 bg-emerald-500 text-white rounded-full flex items-center justify-center shrink-0">
+        <div className="fixed bottom-6 right-6 z-50 bg-[var(--preto)] text-[var(--branco)] px-4 py-3 border-l-4 border-[var(--exodo-red)] flex items-center gap-3 animate-fadeIn">
+          <div className="w-6 h-6 bg-[var(--exodo-red)] text-[var(--branco)] flex items-center justify-center shrink-0">
             <Check className="w-4 h-4 stroke-[3]" />
           </div>
           <div>
             <p className="font-subtitle font-bold text-xs">Informação salva com sucesso!</p>
-            <p className="font-body text-[0.7rem] text-neutral-300">
+            <p className="font-body text-[0.7rem] text-[var(--cinza-medio)]">
               {lastSavedField ? `Registo efetuado para: ${lastSavedField}` : 'Dados registrados na sua sessão segura.'}
             </p>
           </div>
@@ -741,78 +751,78 @@ export const A3System: React.FC<A3SystemProps> = ({ onBackToLanding, onToast }) 
       <main className={startedWizard ? "w-full max-w-7xl mx-auto px-2 sm:px-6 pt-4" : "max-w-[800px] mx-auto px-4 sm:px-6 pt-8"}>
         {!startedWizard ? (
           /* Welcome Card & Entry Point into Wizard */
-          <div className="bg-white border-2 border-[var(--preto)] p-6 sm:p-10 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-red-50 -mr-10 -mt-10 rounded-full pointer-events-none opacity-60" />
-            
-            <div className="flex items-center gap-2 mb-4">
-              <span className="bg-amber-100 text-amber-900 border border-amber-300 text-[0.68rem] font-subtitle font-bold px-2.5 py-1 uppercase tracking-wider flex items-center gap-1">
-                <BrainCircuit className="w-3.5 h-3.5 text-amber-700" />
-                Diagnóstico & Plano Tático A3
-              </span>
+          <div className="bg-[var(--branco)] border-2 border-[var(--preto)] p-6 sm:p-10 relative overflow-hidden">
+            <div className="absolute top-0 right-0 pointer-events-none">
+              <CornerAccent variant="arredondado" size={120} />
             </div>
 
-            <h1 className="font-title text-2xl sm:text-3xl text-[var(--preto)] tracking-tight leading-tight mb-3">
-              Olá, {user.name.split(' ')[0]}! Vamos desenhar o rumo estratégico do seu negócio.
-            </h1>
-
-            <p className="font-body text-sm sm:text-base text-neutral-700 leading-relaxed mb-6">
-              O <strong>A3</strong> é o seu assistente de apoio à decisão. Vamos conduzir uma conversa simples, etapa por etapa, para analisar os pilares do seu consultório e montar um <strong>Plano Tático Sob Medida</strong>.
-            </p>
-
-            {/* Principles Banner */}
-            <div className="bg-[var(--branco-off)] border border-neutral-300 p-4 sm:p-5 mb-8 space-y-3">
-              <h3 className="font-subtitle text-xs font-bold uppercase tracking-wider text-[var(--preto)] flex items-center gap-1.5">
-                <Target className="w-4 h-4 text-[var(--exodo-red)]" />
-                Como funciona a nossa conversa:
-              </h3>
-              <ul className="space-y-2 text-xs sm:text-sm font-body text-neutral-700">
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span><strong>Uma pergunta por vez:</strong> sem formulários longos ou cansativos.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span><strong>Estimativas são bem-vindas:</strong> se não souber um número exato, pode responder com um valor aproximado.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span><strong>Transparência total:</strong> sempre explicamos o porquê de cada pergunta antes de fazê-la.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span><strong>Salvamento automático:</strong> cada escolha é gravada instantaneamente e com segurança.</span>
-                </li>
-              </ul>
-            </div>
-
-            {answeredCount > 0 && (
-              <div className="mb-6 p-3.5 bg-emerald-50 border border-emerald-200 text-xs text-emerald-900 flex items-center justify-between gap-3">
-                <div className="flex items-center gap-2">
-                  <Save className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span>Você tem <strong>{answeredCount} resposta(s) anterior(es)</strong> salvas nesta sessão.</span>
-                </div>
-                <button
-                  onClick={() => {
-                    setAnswers({});
-                    onToast('Respostas zeradas.');
-                  }}
-                  className="text-[0.68rem] font-subtitle font-bold uppercase text-red-700 hover:underline cursor-pointer border-none bg-transparent"
-                >
-                  Reiniciar
-                </button>
+            <div className="relative z-10">
+              <div className="flex items-center gap-2 mb-4">
+                <Tag tone="evidencia">Diagnóstico & Plano Tático A3</Tag>
               </div>
-            )}
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-              <Button
-                variant="primary"
-                size="lg"
-                onClick={() => setStartedWizard(true)}
-                className="py-4 text-sm font-bold uppercase tracking-wider flex-1 flex items-center justify-center gap-2"
-              >
-                <span>{answeredCount > 0 ? 'Continuar Jornada A3' : 'Iniciar Diagnóstico A3'}</span>
-                <ArrowRight className="w-4 h-4" />
-              </Button>
+              <h1 className="font-display text-2xl sm:text-3xl text-[var(--preto)] tracking-tight leading-tight mb-3">
+                Olá, {user.name.split(' ')[0]}! Vamos desenhar o rumo estratégico do seu negócio.
+              </h1>
+
+              <p className="font-body text-sm sm:text-base text-[var(--cinza-escuro)] leading-relaxed mb-6 max-w-2xl">
+                O <strong>A3</strong> é o seu assistente de apoio à decisão. Vamos conduzir uma conversa simples, etapa por etapa, para analisar os pilares do seu consultório e montar um <strong>Plano Tático Sob Medida</strong>.
+              </p>
+
+              {/* Principles Banner */}
+              <div className="bg-[var(--cinza-claro)] p-4 sm:p-6 mb-8 space-y-3">
+                <h3 className="font-subtitle text-xs font-bold uppercase tracking-wide text-[var(--preto)]">
+                  Como funciona a nossa conversa:
+                </h3>
+                <ul className="space-y-2.5 text-xs sm:text-sm font-body text-[var(--cinza-escuro)]">
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[var(--exodo-red)] font-bold shrink-0">✓</span>
+                    <span><strong className="text-[var(--preto)]">Uma pergunta por vez:</strong> sem formulários longos ou cansativos.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[var(--exodo-red)] font-bold shrink-0">✓</span>
+                    <span><strong className="text-[var(--preto)]">Estimativas são bem-vindas:</strong> se não souber um número exato, pode responder com um valor aproximado.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[var(--exodo-red)] font-bold shrink-0">✓</span>
+                    <span><strong className="text-[var(--preto)]">Transparência total:</strong> sempre explicamos o porquê de cada pergunta antes de fazê-la.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[var(--exodo-red)] font-bold shrink-0">✓</span>
+                    <span><strong className="text-[var(--preto)]">Salvamento automático:</strong> cada escolha é gravada instantaneamente e com segurança.</span>
+                  </li>
+                </ul>
+              </div>
+
+              {answeredCount > 0 && (
+                <div className="mb-6 p-4 border border-[var(--border-default)] text-xs text-[var(--cinza-escuro)] flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2">
+                    <Save className="w-4 h-4 text-[var(--exodo-red)] shrink-0" />
+                    <span>Você tem <strong className="text-[var(--preto)]">{answeredCount} resposta(s) anterior(es)</strong> salvas nesta sessão.</span>
+                  </div>
+                  <button
+                    onClick={() => {
+                      setAnswers({});
+                      onToast('Respostas zeradas.');
+                    }}
+                    className="text-[0.68rem] font-subtitle font-bold uppercase text-[var(--exodo-red)] hover:underline cursor-pointer border-none bg-transparent"
+                  >
+                    Reiniciar
+                  </button>
+                </div>
+              )}
+
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  onClick={() => setStartedWizard(true)}
+                  className="flex-1 justify-center"
+                >
+                  <span>{answeredCount > 0 ? 'Continuar Jornada A3' : 'Iniciar Diagnóstico A3'}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </div>
             </div>
           </div>
         ) : (

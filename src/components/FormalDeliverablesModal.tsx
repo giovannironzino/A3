@@ -1,29 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  X, 
-  Printer, 
-  CheckCircle2, 
-  Calendar, 
-  Clock, 
-  Layers, 
-  Users, 
-  Award, 
-  ArrowRight, 
-  Sparkles, 
-  FileText, 
-  CheckSquare, 
-  Square, 
-  ShieldCheck, 
-  TrendingUp, 
-  Building2,
+import {
+  X,
+  Printer,
+  Calendar,
+  Award,
+  Sparkles,
+  FileText,
+  CheckSquare,
+  Square,
+  TrendingUp,
   Workflow,
   MessageSquare,
   BarChart2
 } from 'lucide-react';
-import { Button } from './UIPrimitives';
-import { 
-  A3CurrentModel, 
-  A3ChosenConfigurationData, 
+import { Button, Tag } from './UIPrimitives';
+import {
+  A3CurrentModel,
+  A3ChosenConfigurationData,
   A3TacticalPlanData,
   A3Product,
   A3TacticalActivity
@@ -70,21 +63,21 @@ export const FormalDeliverablesModal: React.FC<FormalDeliverablesModalProps> = (
 
   return (
     <div className="fixed inset-0 bg-black/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 z-50 overflow-y-auto animate-fadeIn print:bg-white print:p-0 print:static print:inset-auto">
-      <div className="bg-white border-2 border-[var(--preto)] rounded-2xl max-w-4xl w-full my-auto shadow-2xl overflow-hidden flex flex-col max-h-[92vh] print:max-h-none print:shadow-none print:border-none print:rounded-none">
-        
+      <div className="bg-[var(--branco)] border-2 border-[var(--preto)] max-w-4xl w-full my-auto overflow-hidden flex flex-col max-h-[92vh] print:max-h-none print:shadow-none print:border-none">
+
         {/* MODAL HEADER (Hidden on Print) */}
-        <div className="bg-[var(--preto)] text-white p-4 sm:p-5 flex items-center justify-between shrink-0 print:hidden">
+        <div className="bg-[var(--preto)] text-[var(--branco)] p-4 sm:p-5 flex items-center justify-between shrink-0 print:hidden">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-emerald-500/20 text-emerald-400 rounded-lg border border-emerald-500/30">
+            <div className="p-2 bg-[var(--branco)]/10 text-[var(--exodo-red)]">
               {type === 'retrato' && <FileText className="w-5 h-5" />}
-              {type === 'caminho' && <Award className="w-5 h-5 text-amber-400" />}
-              {type === 'plano' && <Calendar className="w-5 h-5 text-indigo-400" />}
+              {type === 'caminho' && <Award className="w-5 h-5" />}
+              {type === 'plano' && <Calendar className="w-5 h-5" />}
             </div>
             <div>
-              <span className="text-[0.65rem] font-subtitle font-bold uppercase tracking-widest text-neutral-400">
+              <span className="text-[0.65rem] font-subtitle font-bold uppercase tracking-wide text-[var(--cinza-medio)]">
                 Entrega Formal • {type === 'retrato' ? 'Bloco A' : type === 'caminho' ? 'Bloco B' : 'Bloco C'}
               </span>
-              <h3 className="font-title font-bold text-base sm:text-lg text-white">
+              <h3 className="font-display font-bold text-base sm:text-lg text-[var(--branco)]">
                 {type === 'retrato' && 'Retrato da Sua Clínica Hoje'}
                 {type === 'caminho' && 'O Caminho que Você Escolheu'}
                 {type === 'plano' && 'Seu Plano de Ação — Próximos 90 Dias'}
@@ -96,7 +89,7 @@ export const FormalDeliverablesModal: React.FC<FormalDeliverablesModalProps> = (
             <button
               type="button"
               onClick={handlePrint}
-              className="p-2 text-xs font-subtitle font-bold text-neutral-300 hover:text-white bg-neutral-800 hover:bg-neutral-700 rounded-lg flex items-center gap-1.5 cursor-pointer transition-colors"
+              className="p-2 text-xs font-subtitle font-bold text-[var(--cinza-claro)] hover:text-[var(--branco)] bg-[var(--branco)]/10 hover:bg-[var(--branco)]/20 flex items-center gap-1.5 cursor-pointer transition-colors"
               title="Imprimir ou Salvar em PDF"
             >
               <Printer className="w-4 h-4" />
@@ -106,7 +99,7 @@ export const FormalDeliverablesModal: React.FC<FormalDeliverablesModalProps> = (
             <button
               type="button"
               onClick={onClose}
-              className="p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-lg transition-colors cursor-pointer"
+              className="p-2 text-[var(--cinza-medio)] hover:text-[var(--branco)] hover:bg-[var(--branco)]/10 transition-colors cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
@@ -114,7 +107,7 @@ export const FormalDeliverablesModal: React.FC<FormalDeliverablesModalProps> = (
         </div>
 
         {/* MODAL BODY CONTENT */}
-        <div className="p-6 sm:p-8 overflow-y-auto space-y-8 flex-1 font-body text-neutral-800">
+        <div className="p-6 sm:p-8 overflow-y-auto space-y-8 flex-1 font-body text-[var(--cinza-escuro)]">
 
           {/* ========================================================= */}
           {/* DELIVERABLE A: RETRATO DA SUA CLÍNICA HOJE (BLOCO A)       */}
@@ -122,24 +115,22 @@ export const FormalDeliverablesModal: React.FC<FormalDeliverablesModalProps> = (
           {type === 'retrato' && (
             <div className="space-y-8">
               {/* Infographic Header Sheet */}
-              <div className="border-b-2 border-neutral-900 pb-6 flex flex-wrap justify-between items-end gap-4">
+              <div className="border-b-2 border-[var(--preto)] pb-6 flex flex-wrap justify-between items-end gap-4">
                 <div>
-                  <div className="text-[0.65rem] font-subtitle font-bold uppercase tracking-widest text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full inline-block mb-2">
-                    Infográfico Oficial • Diagnóstico Operacional
-                  </div>
-                  <h1 className="text-2xl sm:text-3xl font-title font-bold text-[var(--preto)]">
+                  <Tag tone="evidencia" className="mb-2">Infográfico Oficial • Diagnóstico Operacional</Tag>
+                  <h1 className="text-2xl sm:text-3xl font-display font-bold text-[var(--preto)]">
                     Retrato da Sua Clínica Hoje
                   </h1>
-                  <p className="text-xs font-subtitle text-neutral-600 mt-1">
+                  <p className="text-xs font-subtitle text-[var(--cinza-medio)] mt-1">
                     {clinicName} • {userName}
                   </p>
                 </div>
 
-                <div className="text-right text-xs font-subtitle text-neutral-500">
+                <div className="text-right text-xs font-subtitle text-[var(--cinza-medio)]">
                   <span>Data de Consolidação:</span>
-                  <strong className="block text-neutral-900 font-bold">
-                    {currentModelData?.approvedAt 
-                      ? new Date(currentModelData.approvedAt).toLocaleDateString('pt-BR') 
+                  <strong className="block text-[var(--preto)] font-bold">
+                    {currentModelData?.approvedAt
+                      ? new Date(currentModelData.approvedAt).toLocaleDateString('pt-BR')
                       : new Date().toLocaleDateString('pt-BR')}
                   </strong>
                 </div>
@@ -147,38 +138,38 @@ export const FormalDeliverablesModal: React.FC<FormalDeliverablesModalProps> = (
 
               {/* Summary KPIs Banner */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                <div className="p-4 bg-neutral-50 border border-neutral-200 rounded-xl space-y-1">
-                  <span className="text-[0.65rem] font-subtitle font-bold uppercase text-neutral-500">
+                <div className="p-4 bg-[var(--cinza-claro)] space-y-1">
+                  <span className="text-[0.65rem] font-subtitle font-bold uppercase text-[var(--cinza-medio)]">
                     Portfólio Ativo
                   </span>
-                  <div className="text-xl font-title font-bold text-[var(--preto)]">
+                  <div className="text-xl font-display font-bold text-[var(--preto)]">
                     {currentModelData?.totalProductsCount || currentModelData?.products?.length || 0} Produtos
                   </div>
                 </div>
 
-                <div className="p-4 bg-neutral-50 border border-neutral-200 rounded-xl space-y-1">
-                  <span className="text-[0.65rem] font-subtitle font-bold uppercase text-neutral-500">
+                <div className="p-4 bg-[var(--cinza-claro)] space-y-1">
+                  <span className="text-[0.65rem] font-subtitle font-bold uppercase text-[var(--cinza-medio)]">
                     Carga Horária Semanal
                   </span>
-                  <div className="text-xl font-title font-bold text-[var(--preto)]">
+                  <div className="text-xl font-display font-bold text-[var(--preto)]">
                     {Math.round(currentModelData?.totalWeeklyClinicalHours || 0)}h / sem
                   </div>
                 </div>
 
-                <div className="p-4 bg-neutral-50 border border-neutral-200 rounded-xl space-y-1">
-                  <span className="text-[0.65rem] font-subtitle font-bold uppercase text-neutral-500">
+                <div className="p-4 bg-[var(--cinza-claro)] space-y-1">
+                  <span className="text-[0.65rem] font-subtitle font-bold uppercase text-[var(--cinza-medio)]">
                     Entregas Mensais
                   </span>
-                  <div className="text-xl font-title font-bold text-[var(--preto)]">
+                  <div className="text-xl font-display font-bold text-[var(--preto)]">
                     {Math.round(currentModelData?.totalMonthlyDeliveryHours || 0)}h / mês
                   </div>
                 </div>
 
-                <div className="p-4 bg-neutral-50 border border-neutral-200 rounded-xl space-y-1">
-                  <span className="text-[0.65rem] font-subtitle font-bold uppercase text-neutral-500">
+                <div className="p-4 bg-[var(--cinza-claro)] space-y-1">
+                  <span className="text-[0.65rem] font-subtitle font-bold uppercase text-[var(--cinza-medio)]">
                     Pacientes Ativos
                   </span>
-                  <div className="text-xl font-title font-bold text-emerald-800">
+                  <div className="text-xl font-display font-bold text-[var(--exodo-red)]">
                     {currentModelData?.totalActivePatients || 0} Pacientes
                   </div>
                 </div>
@@ -186,90 +177,90 @@ export const FormalDeliverablesModal: React.FC<FormalDeliverablesModalProps> = (
 
               {/* The 4 Synthesis Panel Blocks (Infographic Grid) */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
+
                 {/* 1. Portfólio & Oferta */}
-                <div className="border border-neutral-300 rounded-2xl p-5 space-y-3 bg-white shadow-2xs">
-                  <div className="flex items-center gap-2 border-b border-neutral-100 pb-2">
-                    <span className="p-1.5 bg-neutral-900 text-white rounded-md text-xs font-bold">1</span>
-                    <h4 className="font-title font-bold text-sm text-[var(--preto)]">
+                <div className="border border-[var(--border-default)] p-5 space-y-3 bg-[var(--branco)]">
+                  <div className="flex items-center gap-2 border-b border-[var(--border-default)] pb-2">
+                    <span className="w-6 h-6 flex items-center justify-center bg-[var(--preto)] text-[var(--branco)] text-xs font-bold shrink-0">1</span>
+                    <h4 className="font-display font-bold text-sm text-[var(--preto)]">
                       Portfólio & Oferta de Serviços
                     </h4>
                   </div>
                   <div className="space-y-2">
                     {currentModelData?.products && currentModelData.products.length > 0 ? (
                       currentModelData.products.map((prod, idx) => (
-                        <div key={idx} className="p-2.5 bg-neutral-50 rounded-lg text-xs space-y-1">
-                          <div className="flex justify-between font-bold text-neutral-900">
+                        <div key={idx} className="p-2.5 bg-[var(--cinza-claro)] text-xs space-y-1">
+                          <div className="flex justify-between font-bold text-[var(--preto)]">
                             <span>{prod.name}</span>
                             <span>R$ {prod.price}</span>
                           </div>
-                          <div className="text-neutral-500 text-[0.7rem] flex gap-3">
+                          <div className="text-[var(--cinza-medio)] text-[0.7rem] flex gap-3">
                             <span>Formato: {prod.format}</span>
                             <span>Duração: {prod.durationLabel || `${prod.durationDays} dias`}</span>
                           </div>
                         </div>
                       ))
                     ) : (
-                      <p className="text-xs text-neutral-500 italic">Nenhum produto cadastrado.</p>
+                      <p className="text-xs text-[var(--cinza-medio)] italic">Nenhum produto cadastrado.</p>
                     )}
                   </div>
                 </div>
 
                 {/* 2. Agenda & Capacidade */}
-                <div className="border border-neutral-300 rounded-2xl p-5 space-y-3 bg-white shadow-2xs">
-                  <div className="flex items-center gap-2 border-b border-neutral-100 pb-2">
-                    <span className="p-1.5 bg-neutral-900 text-white rounded-md text-xs font-bold">2</span>
-                    <h4 className="font-title font-bold text-sm text-[var(--preto)]">
+                <div className="border border-[var(--border-default)] p-5 space-y-3 bg-[var(--branco)]">
+                  <div className="flex items-center gap-2 border-b border-[var(--border-default)] pb-2">
+                    <span className="w-6 h-6 flex items-center justify-center bg-[var(--preto)] text-[var(--branco)] text-xs font-bold shrink-0">2</span>
+                    <h4 className="font-display font-bold text-sm text-[var(--preto)]">
                       Agenda & Capacidade Estrutural
                     </h4>
                   </div>
-                  <div className="p-3 bg-neutral-50 rounded-lg text-xs space-y-2">
+                  <div className="p-3 bg-[var(--cinza-claro)] text-xs space-y-2">
                     <div className="flex justify-between">
-                      <span className="text-neutral-600">Disponibilidade Bruta Semanal:</span>
-                      <strong className="text-neutral-900 font-bold">{Math.round(currentModelData?.totalWeeklyClinicalHours || 0)} horas</strong>
+                      <span className="text-[var(--cinza-escuro)]">Disponibilidade Bruta Semanal:</span>
+                      <strong className="text-[var(--preto)] font-bold">{Math.round(currentModelData?.totalWeeklyClinicalHours || 0)} horas</strong>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-neutral-600">Organização da Grade:</span>
-                      <strong className="text-neutral-900 font-bold">Definida por Turnos e Bloqueios</strong>
+                      <span className="text-[var(--cinza-escuro)]">Organização da Grade:</span>
+                      <strong className="text-[var(--preto)] font-bold">Definida por Turnos e Bloqueios</strong>
                     </div>
                   </div>
                 </div>
 
                 {/* 3. Rotina & Entrega */}
-                <div className="border border-neutral-300 rounded-2xl p-5 space-y-3 bg-white shadow-2xs">
-                  <div className="flex items-center gap-2 border-b border-neutral-100 pb-2">
-                    <span className="p-1.5 bg-neutral-900 text-white rounded-md text-xs font-bold">3</span>
-                    <h4 className="font-title font-bold text-sm text-[var(--preto)]">
+                <div className="border border-[var(--border-default)] p-5 space-y-3 bg-[var(--branco)]">
+                  <div className="flex items-center gap-2 border-b border-[var(--border-default)] pb-2">
+                    <span className="w-6 h-6 flex items-center justify-center bg-[var(--preto)] text-[var(--branco)] text-xs font-bold shrink-0">3</span>
+                    <h4 className="font-display font-bold text-sm text-[var(--preto)]">
                       Rotina & Contratos de Entrega
                     </h4>
                   </div>
-                  <div className="p-3 bg-neutral-50 rounded-lg text-xs space-y-2">
+                  <div className="p-3 bg-[var(--cinza-claro)] text-xs space-y-2">
                     <div className="flex justify-between">
-                      <span className="text-neutral-600">Carga Horária Mensal Exigida:</span>
-                      <strong className="text-neutral-900 font-bold">{Math.round(currentModelData?.totalMonthlyDeliveryHours || 0)}h / mês</strong>
+                      <span className="text-[var(--cinza-escuro)]">Carga Horária Mensal Exigida:</span>
+                      <strong className="text-[var(--preto)] font-bold">{Math.round(currentModelData?.totalMonthlyDeliveryHours || 0)}h / mês</strong>
                     </div>
-                    <p className="text-[0.72rem] text-neutral-600">
+                    <p className="text-[0.72rem] text-[var(--cinza-escuro)]">
                       Horas totais dedicadas a consultas, retornos, elaboração de planos alimentares e suporte contínuo aos pacientes ativos.
                     </p>
                   </div>
                 </div>
 
                 {/* 4. Demanda & Carteira */}
-                <div className="border border-neutral-300 rounded-2xl p-5 space-y-3 bg-white shadow-2xs">
-                  <div className="flex items-center gap-2 border-b border-neutral-100 pb-2">
-                    <span className="p-1.5 bg-neutral-900 text-white rounded-md text-xs font-bold">4</span>
-                    <h4 className="font-title font-bold text-sm text-[var(--preto)]">
+                <div className="border border-[var(--border-default)] p-5 space-y-3 bg-[var(--branco)]">
+                  <div className="flex items-center gap-2 border-b border-[var(--border-default)] pb-2">
+                    <span className="w-6 h-6 flex items-center justify-center bg-[var(--preto)] text-[var(--branco)] text-xs font-bold shrink-0">4</span>
+                    <h4 className="font-display font-bold text-sm text-[var(--preto)]">
                       Demanda & Carteira Ativa
                     </h4>
                   </div>
-                  <div className="p-3 bg-neutral-50 rounded-lg text-xs space-y-2">
+                  <div className="p-3 bg-[var(--cinza-claro)] text-xs space-y-2">
                     <div className="flex justify-between">
-                      <span className="text-neutral-600">Total de Pacientes Ativos em Acompanhamento:</span>
-                      <strong className="text-emerald-800 font-bold">{currentModelData?.totalActivePatients || 0} pacientes</strong>
+                      <span className="text-[var(--cinza-escuro)]">Total de Pacientes Ativos em Acompanhamento:</span>
+                      <strong className="text-[var(--exodo-red)] font-bold">{currentModelData?.totalActivePatients || 0} pacientes</strong>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-neutral-600">Blocos de Validação Concluídos:</span>
-                      <strong className="text-neutral-900 font-bold">{currentModelData?.validatedBlocksCount || 4} de 4</strong>
+                      <span className="text-[var(--cinza-escuro)]">Blocos de Validação Concluídos:</span>
+                      <strong className="text-[var(--preto)] font-bold">{currentModelData?.validatedBlocksCount || 4} de 4</strong>
                     </div>
                   </div>
                 </div>
@@ -277,11 +268,11 @@ export const FormalDeliverablesModal: React.FC<FormalDeliverablesModalProps> = (
               </div>
 
               {/* Infographic Footer Stamp */}
-              <div className="p-4 bg-neutral-900 text-white rounded-xl text-center text-xs space-y-1">
-                <strong className="font-title font-bold text-emerald-400 block">
+              <div className="p-4 bg-[var(--preto)] text-[var(--branco)] text-center text-xs space-y-1">
+                <strong className="font-display font-bold text-[var(--exodo-red)] block">
                   A3 Sistema • Bloco A "Enxergando sua clínica" Finalizado
                 </strong>
-                <p className="text-neutral-300 text-[0.72rem]">
+                <p className="text-[var(--cinza-claro)] text-[0.72rem]">
                   Este documento consolida a fotografia exata do Modelo Atual de operação, servindo de base para o Navegador de Promessas.
                 </p>
               </div>
@@ -294,92 +285,90 @@ export const FormalDeliverablesModal: React.FC<FormalDeliverablesModalProps> = (
           {type === 'caminho' && (
             <div className="space-y-8">
               {/* Decision Card Header */}
-              <div className="border-b-2 border-neutral-900 pb-6 flex flex-wrap justify-between items-end gap-4">
+              <div className="border-b-2 border-[var(--preto)] pb-6 flex flex-wrap justify-between items-end gap-4">
                 <div>
-                  <div className="text-[0.65rem] font-subtitle font-bold uppercase tracking-widest text-amber-800 bg-amber-50 border border-amber-200 px-3 py-1 rounded-full inline-block mb-2">
-                    Cartão de Decisão One-Pager • Navegador de Promessas
-                  </div>
-                  <h1 className="text-2xl sm:text-3xl font-title font-bold text-[var(--preto)]">
+                  <Tag tone="evidencia" className="mb-2">Cartão de Decisão One-Pager • Navegador de Promessas</Tag>
+                  <h1 className="text-2xl sm:text-3xl font-display font-bold text-[var(--preto)]">
                     O Caminho que Você Escolheu
                   </h1>
-                  <p className="text-xs font-subtitle text-neutral-600 mt-1">
+                  <p className="text-xs font-subtitle text-[var(--cinza-medio)] mt-1">
                     {clinicName} • {userName}
                   </p>
                 </div>
 
-                <div className="text-right text-xs font-subtitle text-neutral-500">
+                <div className="text-right text-xs font-subtitle text-[var(--cinza-medio)]">
                   <span>Data da Confirmação:</span>
-                  <strong className="block text-neutral-900 font-bold">
-                    {chosenConfigData?.confirmedAt 
-                      ? new Date(chosenConfigData.confirmedAt).toLocaleDateString('pt-BR') 
+                  <strong className="block text-[var(--preto)] font-bold">
+                    {chosenConfigData?.confirmedAt
+                      ? new Date(chosenConfigData.confirmedAt).toLocaleDateString('pt-BR')
                       : new Date().toLocaleDateString('pt-BR')}
                   </strong>
                 </div>
               </div>
 
               {/* Signature Phrase Featured Box */}
-              <div className="bg-gradient-to-r from-amber-50 via-amber-100/60 to-amber-50 border-2 border-amber-300 rounded-2xl p-6 shadow-sm space-y-3">
-                <div className="flex items-center gap-2 text-amber-900 font-subtitle font-bold uppercase text-[0.7rem] tracking-wider">
-                  <Award className="w-4 h-4 text-amber-700" />
+              <div className="bg-[var(--branco)] border-2 border-[var(--exodo-red)] p-6 space-y-3">
+                <div className="flex items-center gap-2 text-[var(--exodo-red)] font-subtitle font-bold uppercase text-[0.7rem] tracking-wide">
+                  <Award className="w-4 h-4" />
                   Configuração Estratégica Selecionada
                 </div>
-                <h3 className="font-title font-bold text-xl sm:text-2xl text-[var(--preto)] leading-snug">
+                <h3 className="font-display font-bold text-xl sm:text-2xl text-[var(--preto)] leading-snug">
                   "{chosenConfigData?.chosenConfig?.name || 'Configuração Escolhida'}"
                 </h3>
-                <p className="text-sm font-title font-bold text-amber-950 italic border-l-4 border-amber-500 pl-4 py-1">
+                <p className="text-sm font-display text-[var(--preto)] border-l-4 border-[var(--exodo-red)] pl-4 py-1">
                   "{chosenConfigData?.reading?.signaturePhrase || 'Sua nova diretriz de trabalho para os próximos 90 dias.'}"
                 </p>
               </div>
 
               {/* Before vs After Contrast Table */}
               <div className="space-y-4">
-                <h4 className="font-title font-bold text-base text-[var(--preto)] flex items-center gap-2">
-                  <TrendingUp className="w-5 h-5 text-neutral-700" />
+                <h4 className="font-display font-bold text-base text-[var(--preto)] flex items-center gap-2">
+                  <TrendingUp className="w-5 h-5 text-[var(--exodo-red)]" />
                   Contraste Visual: O Que Muda na Sua Rotina
                 </h4>
 
-                <div className="border border-neutral-300 rounded-xl overflow-hidden shadow-2xs">
+                <div className="border border-[var(--border-strong)] overflow-hidden">
                   <table className="w-full text-xs text-left">
-                    <thead className="bg-neutral-900 text-white font-subtitle uppercase tracking-wider text-[0.65rem]">
+                    <thead className="bg-[var(--preto)] text-[var(--branco)] font-subtitle uppercase tracking-wide text-[0.65rem]">
                       <tr>
                         <th className="p-3.5">Dimensão Operacional</th>
-                        <th className="p-3.5 bg-neutral-800">Retrato Atual (Bloco A)</th>
-                        <th className="p-3.5 bg-emerald-900 text-emerald-300">Caminho Escolhido (Bloco B)</th>
+                        <th className="p-3.5 bg-[var(--cinza-escuro)]">Retrato Atual (Bloco A)</th>
+                        <th className="p-3.5 bg-[var(--exodo-red)]">Caminho Escolhido (Bloco B)</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-neutral-200 font-body">
+                    <tbody className="divide-y divide-[var(--border-default)] font-body">
                       <tr>
-                        <td className="p-3.5 font-bold text-neutral-900">Dias de Atendimento / Sem</td>
-                        <td className="p-3.5 text-neutral-600">Dispersos (5-6 dias)</td>
-                        <td className="p-3.5 font-bold text-emerald-900 bg-emerald-50/50">
+                        <td className="p-3.5 font-bold text-[var(--preto)]">Dias de Atendimento / Sem</td>
+                        <td className="p-3.5 text-[var(--cinza-escuro)]">Dispersos (5-6 dias)</td>
+                        <td className="p-3.5 font-bold text-[var(--preto)] bg-[var(--accent-tint)]">
                           {chosenConfigData?.chosenConfig?.workDaysCount} dias fixos/semana
                         </td>
                       </tr>
                       <tr>
-                        <td className="p-3.5 font-bold text-neutral-900">Carga Horária Clínica / Sem</td>
-                        <td className="p-3.5 text-neutral-600">~{Math.round(currentModelData?.totalWeeklyClinicalHours || 30)}h sem proteção</td>
-                        <td className="p-3.5 font-bold text-emerald-900 bg-emerald-50/50">
+                        <td className="p-3.5 font-bold text-[var(--preto)]">Carga Horária Clínica / Sem</td>
+                        <td className="p-3.5 text-[var(--cinza-escuro)]">~{Math.round(currentModelData?.totalWeeklyClinicalHours || 30)}h sem proteção</td>
+                        <td className="p-3.5 font-bold text-[var(--preto)] bg-[var(--accent-tint)]">
                           {chosenConfigData?.reading?.weeklyClinicalHours || chosenConfigData?.chosenConfig?.weeklyClinicalHours}h protegidas
                         </td>
                       </tr>
                       <tr>
-                        <td className="p-3.5 font-bold text-neutral-900">Tempo Reservado p/ Captação</td>
-                        <td className="p-3.5 text-neutral-600">Sem horário fixo reservado</td>
-                        <td className="p-3.5 font-bold text-emerald-900 bg-emerald-50/50">
+                        <td className="p-3.5 font-bold text-[var(--preto)]">Tempo Reservado p/ Captação</td>
+                        <td className="p-3.5 text-[var(--cinza-escuro)]">Sem horário fixo reservado</td>
+                        <td className="p-3.5 font-bold text-[var(--preto)] bg-[var(--accent-tint)]">
                           {chosenConfigData?.reading?.weeklyAcquisitionHours || chosenConfigData?.chosenConfig?.weeklyAcquisitionHours}h exclusivas/semana
                         </td>
                       </tr>
                       <tr>
-                        <td className="p-3.5 font-bold text-neutral-900">Teto de Pacientes Ativos</td>
-                        <td className="p-3.5 text-neutral-600">{currentModelData?.totalActivePatients || 0} pacientes atuais</td>
-                        <td className="p-3.5 font-bold text-emerald-900 bg-emerald-50/50">
+                        <td className="p-3.5 font-bold text-[var(--preto)]">Teto de Pacientes Ativos</td>
+                        <td className="p-3.5 text-[var(--cinza-escuro)]">{currentModelData?.totalActivePatients || 0} pacientes atuais</td>
+                        <td className="p-3.5 font-bold text-[var(--preto)] bg-[var(--accent-tint)]">
                           Até {chosenConfigData?.reading?.maxActivePatientCapacity || chosenConfigData?.chosenConfig?.maxActivePatientCapacity} pacientes ativos
                         </td>
                       </tr>
                       <tr>
-                        <td className="p-3.5 font-bold text-neutral-900">Modo de Alocação de Tempo</td>
-                        <td className="p-3.5 text-neutral-600">Mistura de clínica e gestão</td>
-                        <td className="p-3.5 font-bold text-emerald-900 bg-emerald-50/50">
+                        <td className="p-3.5 font-bold text-[var(--preto)]">Modo de Alocação de Tempo</td>
+                        <td className="p-3.5 text-[var(--cinza-escuro)]">Mistura de clínica e gestão</td>
+                        <td className="p-3.5 font-bold text-[var(--preto)] bg-[var(--accent-tint)]">
                           {chosenConfigData?.reading?.allocationModeText || chosenConfigData?.chosenConfig?.allocationMode}
                         </td>
                       </tr>
@@ -389,11 +378,11 @@ export const FormalDeliverablesModal: React.FC<FormalDeliverablesModalProps> = (
               </div>
 
               {/* Decision Stamp Footer */}
-              <div className="p-4 bg-neutral-900 text-white rounded-xl text-center text-xs space-y-1">
-                <strong className="font-title font-bold text-amber-400 block">
+              <div className="p-4 bg-[var(--preto)] text-[var(--branco)] text-center text-xs space-y-1">
+                <strong className="font-display font-bold text-[var(--exodo-red)] block">
                   A3 Navegador de Promessas • Decisão Estratégica Validada
                 </strong>
-                <p className="text-neutral-300 text-[0.72rem]">
+                <p className="text-[var(--cinza-claro)] text-[0.72rem]">
                   Este cartão oficializa a escolha realizada no Navegador. A partir deste ponto, o Plano Tático transforma esta escolha em ação.
                 </p>
               </div>
@@ -406,39 +395,37 @@ export const FormalDeliverablesModal: React.FC<FormalDeliverablesModalProps> = (
           {type === 'plano' && (
             <div className="space-y-8">
               {/* Deliverable Header */}
-              <div className="border-b-2 border-neutral-900 pb-6 flex flex-wrap justify-between items-end gap-4">
+              <div className="border-b-2 border-[var(--preto)] pb-6 flex flex-wrap justify-between items-end gap-4">
                 <div>
-                  <div className="text-[0.65rem] font-subtitle font-bold uppercase tracking-widest text-indigo-800 bg-indigo-50 border border-indigo-200 px-3 py-1 rounded-full inline-block mb-2">
-                    Checklist & Calendário Operacional • Próximos 90 Dias
-                  </div>
-                  <h1 className="text-2xl sm:text-3xl font-title font-bold text-[var(--preto)]">
+                  <Tag tone="evidencia" className="mb-2">Checklist & Calendário Operacional • Próximos 90 Dias</Tag>
+                  <h1 className="text-2xl sm:text-3xl font-display font-bold text-[var(--preto)]">
                     Seu Plano de Ação — Próximos 90 Dias
                   </h1>
-                  <p className="text-xs font-subtitle text-neutral-600 mt-1">
+                  <p className="text-xs font-subtitle text-[var(--cinza-medio)] mt-1">
                     {clinicName} • {userName}
                   </p>
                 </div>
 
-                <div className="text-right text-xs font-subtitle text-neutral-500">
+                <div className="text-right text-xs font-subtitle text-[var(--cinza-medio)]">
                   <span>Data de Aprovação:</span>
-                  <strong className="block text-neutral-900 font-bold">
-                    {tacticalPlanData?.approvedAt 
-                      ? new Date(tacticalPlanData.approvedAt).toLocaleDateString('pt-BR') 
+                  <strong className="block text-[var(--preto)] font-bold">
+                    {tacticalPlanData?.approvedAt
+                      ? new Date(tacticalPlanData.approvedAt).toLocaleDateString('pt-BR')
                       : new Date().toLocaleDateString('pt-BR')}
                   </strong>
                 </div>
               </div>
 
               {/* TOP FEATURED BANNER: First Action of Week 1 */}
-              <div className="bg-gradient-to-r from-emerald-900 via-emerald-800 to-emerald-900 text-white rounded-2xl p-6 shadow-md space-y-3">
-                <div className="flex items-center gap-2 font-subtitle font-bold uppercase text-[0.7rem] tracking-wider text-emerald-300">
-                  <Sparkles className="w-4 h-4 text-emerald-300" />
+              <div className="bg-[var(--preto)] text-[var(--branco)] p-6 space-y-3">
+                <div className="flex items-center gap-2 font-subtitle font-bold uppercase text-[0.7rem] tracking-wide text-[var(--exodo-red)]">
+                  <Sparkles className="w-4 h-4" />
                   Destaque Especial • Primeira Ação do Seu Plano (Semana 1)
                 </div>
-                <h3 className="font-title font-bold text-xl sm:text-2xl text-white">
+                <h3 className="font-display font-bold text-xl sm:text-2xl text-[var(--branco)]">
                   1. Reestruturação da Grade Horária & Bloqueio na Agenda
                 </h3>
-                <p className="text-xs sm:text-sm font-body text-emerald-100 leading-relaxed">
+                <p className="text-xs sm:text-sm font-body text-[var(--cinza-claro)] leading-relaxed">
                   Ajustar sua agenda oficial imediatamente para proteger as horas de atendimento e bloquear os horários de captação/gestão conforme a Configuração Escolhida.
                 </p>
               </div>
@@ -446,24 +433,24 @@ export const FormalDeliverablesModal: React.FC<FormalDeliverablesModalProps> = (
               {/* Interactive Weekly Activities Checklist */}
               <div className="space-y-6">
                 <div className="flex items-center justify-between">
-                  <h4 className="font-title font-bold text-base text-[var(--preto)] flex items-center gap-2">
-                    <CheckSquare className="w-5 h-5 text-neutral-700" />
+                  <h4 className="font-display font-bold text-base text-[var(--preto)] flex items-center gap-2">
+                    <CheckSquare className="w-5 h-5 text-[var(--exodo-red)]" />
                     Cronograma de Execução Semanal (Marque o que for concluindo):
                   </h4>
 
-                  <span className="text-xs font-subtitle text-neutral-500 font-bold bg-neutral-100 px-3 py-1 rounded-md">
+                  <span className="text-xs font-subtitle text-[var(--cinza-medio)] font-bold bg-[var(--cinza-claro)] px-3 py-1">
                     {Object.values(checkedActivities).filter(Boolean).length} de 12 Atividades Concluídas
                   </span>
                 </div>
 
                 {tacticalPlanData?.stages ? (
                   tacticalPlanData.stages.map((stage) => (
-                    <div key={stage.stageNumber} className="border border-neutral-300 rounded-2xl p-5 space-y-4 bg-neutral-50/50">
-                      <div className="flex items-center justify-between border-b border-neutral-200 pb-2">
-                        <span className="text-xs font-subtitle font-bold uppercase tracking-wider text-indigo-900 bg-indigo-50 px-2.5 py-1 rounded border border-indigo-200">
+                    <div key={stage.stageNumber} className="border border-[var(--border-default)] p-5 space-y-4 bg-[var(--branco)]">
+                      <div className="flex items-center justify-between border-b border-[var(--border-default)] pb-2">
+                        <span className="text-xs font-subtitle font-bold uppercase tracking-wide text-[var(--exodo-red)] bg-[var(--accent-tint)] px-2.5 py-1">
                           {stage.monthName}
                         </span>
-                        <h5 className="font-title font-bold text-sm text-[var(--preto)]">
+                        <h5 className="font-display font-bold text-sm text-[var(--preto)]">
                           {stage.title}
                         </h5>
                       </div>
@@ -476,41 +463,41 @@ export const FormalDeliverablesModal: React.FC<FormalDeliverablesModalProps> = (
                             <div
                               key={act.id}
                               onClick={() => toggleCheckActivity(act.id)}
-                              className={`p-4 rounded-xl border transition-all cursor-pointer flex items-start gap-3 ${
-                                isDone 
-                                  ? 'bg-emerald-50/80 border-emerald-300 text-emerald-950' 
-                                  : 'bg-white border-neutral-200 hover:border-neutral-400 text-neutral-900'
+                              className={`p-4 border transition-colors cursor-pointer flex items-start gap-3 ${
+                                isDone
+                                  ? 'bg-[var(--accent-tint)] border-[var(--exodo-red)] text-[var(--preto)]'
+                                  : 'bg-[var(--branco)] border-[var(--border-default)] hover:border-[var(--cinza-medio)] text-[var(--preto)]'
                               }`}
                             >
                               <div className="pt-0.5 shrink-0">
                                 {isDone ? (
-                                  <CheckSquare className="w-5 h-5 text-emerald-600" />
+                                  <CheckSquare className="w-5 h-5 text-[var(--exodo-red)]" />
                                 ) : (
-                                  <Square className="w-5 h-5 text-neutral-400" />
+                                  <Square className="w-5 h-5 text-[var(--cinza-medio)]" />
                                 )}
                               </div>
 
                               <div className="space-y-1 flex-1">
                                 <div className="flex items-center gap-2 flex-wrap">
-                                  <span className={`text-[0.65rem] font-subtitle font-bold uppercase px-2 py-0.5 rounded ${
-                                    isDone ? 'bg-emerald-200 text-emerald-900' : 'bg-neutral-200 text-neutral-800'
+                                  <span className={`text-[0.65rem] font-subtitle font-bold uppercase px-2 py-0.5 ${
+                                    isDone ? 'bg-[var(--exodo-red)] text-[var(--branco)]' : 'bg-[var(--cinza-claro)] text-[var(--cinza-escuro)]'
                                   }`}>
                                     Semana {act.weekNumber}
                                   </span>
-                                  <span className="text-[0.65rem] font-subtitle text-neutral-500">
+                                  <span className="text-[0.65rem] font-subtitle text-[var(--cinza-medio)]">
                                     {act.timeAllocationFormat}
                                   </span>
                                 </div>
 
-                                <h6 className={`font-title font-bold text-sm ${isDone ? 'line-through text-emerald-800' : 'text-neutral-900'}`}>
+                                <h6 className={`font-display font-bold text-sm ${isDone ? 'line-through text-[var(--cinza-escuro)]' : 'text-[var(--preto)]'}`}>
                                   {act.title}
                                 </h6>
 
-                                <p className="text-xs font-body leading-relaxed text-neutral-600">
+                                <p className="text-xs font-body leading-relaxed text-[var(--cinza-escuro)]">
                                   {act.description}
                                 </p>
 
-                                <div className="text-[0.72rem] font-subtitle text-emerald-800 font-bold pt-1">
+                                <div className="text-[0.72rem] font-subtitle text-[var(--preto)] font-bold pt-1">
                                   Resultado Esperado: {act.expectedResult}
                                 </div>
                               </div>
@@ -521,43 +508,43 @@ export const FormalDeliverablesModal: React.FC<FormalDeliverablesModalProps> = (
                     </div>
                   ))
                 ) : (
-                  <p className="text-xs text-neutral-500 italic">Carregando cronograma...</p>
+                  <p className="text-xs text-[var(--cinza-medio)] italic">Carregando cronograma...</p>
                 )}
               </div>
 
               {/* PHASE 2 TRANSITION OBLIGATORY NOTICE */}
-              <div className="bg-neutral-900 text-white rounded-2xl p-6 space-y-4 shadow-lg border-2 border-emerald-400">
-                <div className="flex items-center gap-2 text-emerald-400 font-subtitle font-bold uppercase text-[0.75rem] tracking-wider">
-                  <Workflow className="w-5 h-5 text-emerald-400" />
+              <div className="bg-[var(--preto)] text-[var(--branco)] p-6 space-y-4 border-2 border-[var(--exodo-red)]">
+                <div className="flex items-center gap-2 text-[var(--exodo-red)] font-subtitle font-bold uppercase text-[0.75rem] tracking-wide">
+                  <Workflow className="w-5 h-5" />
                   Transição Obrigatória de Jornada • Próximos Passos
                 </div>
 
                 <div className="space-y-2 text-xs font-body leading-relaxed">
-                  <h4 className="font-title font-bold text-base text-white">
+                  <h4 className="font-display font-bold text-base text-[var(--branco)]">
                     A jornada da sua clínica não termina no Plano Tático!
                   </h4>
-                  <p className="text-neutral-300">
+                  <p className="text-[var(--cinza-claro)]">
                     Com a conclusão da Fase 1 (Diagnóstico, Navegador de Promessas e Plano Tático), você inicia a <strong>Fase 2 (Acompanhamento Contínuo)</strong>. O sistema acompanhará a execução deste plano semanal e mensalmente:
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs font-subtitle">
-                  <div className="p-3.5 bg-neutral-800 border border-neutral-700 rounded-xl space-y-1">
-                    <div className="flex items-center gap-2 text-emerald-300 font-bold">
-                      <MessageSquare className="w-4 h-4 text-emerald-400" />
+                  <div className="p-3.5 bg-[var(--branco)]/5 border border-[var(--cinza-escuro)] space-y-1">
+                    <div className="flex items-center gap-2 text-[var(--exodo-red)] font-bold">
+                      <MessageSquare className="w-4 h-4" />
                       1. Ritual Semanal de WhatsApp
                     </div>
-                    <p className="text-[0.72rem] text-neutral-400 font-normal leading-normal">
+                    <p className="text-[0.72rem] text-[var(--cinza-medio)] font-normal leading-normal">
                       Check-in semanal automatizado para prestar contas da execução da semana e destravar eventuais gargalos.
                     </p>
                   </div>
 
-                  <div className="p-3.5 bg-neutral-800 border border-neutral-700 rounded-xl space-y-1">
-                    <div className="flex items-center gap-2 text-emerald-300 font-bold">
-                      <BarChart2 className="w-4 h-4 text-emerald-400" />
+                  <div className="p-3.5 bg-[var(--branco)]/5 border border-[var(--cinza-escuro)] space-y-1">
+                    <div className="flex items-center gap-2 text-[var(--exodo-red)] font-bold">
+                      <BarChart2 className="w-4 h-4" />
                       2. Ritual Mensal de Gestão
                     </div>
-                    <p className="text-[0.72rem] text-neutral-400 font-normal leading-normal">
+                    <p className="text-[0.72rem] text-[var(--cinza-medio)] font-normal leading-normal">
                       Encontro de balanço mensal de indicadores, acompanhamento da meta de pacientes e revisão do ciclo de 30/60/90 dias.
                     </p>
                   </div>
@@ -570,15 +557,12 @@ export const FormalDeliverablesModal: React.FC<FormalDeliverablesModalProps> = (
         </div>
 
         {/* MODAL FOOTER */}
-        <div className="bg-neutral-50 p-4 border-t border-neutral-200 flex items-center justify-between shrink-0 print:hidden">
-          <span className="text-xs font-subtitle text-neutral-500">
+        <div className="bg-[var(--cinza-claro)] p-4 border-t border-[var(--border-default)] flex items-center justify-between shrink-0 print:hidden">
+          <span className="text-xs font-subtitle text-[var(--cinza-medio)]">
             Éxodo A3 • Sistema de Gestão para Nutricionistas
           </span>
 
-          <Button
-            onClick={onClose}
-            className="bg-[var(--preto)] text-white hover:bg-neutral-800 text-xs py-2.5 px-5 rounded-xl cursor-pointer"
-          >
+          <Button variant="primary" size="md" onClick={onClose}>
             Fechar Visualização
           </Button>
         </div>
