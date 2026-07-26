@@ -1,34 +1,26 @@
 import React, { useState, useMemo } from 'react';
-import { 
-  Building2, 
-  Package, 
-  Calendar, 
-  Clock, 
-  Users, 
-  CheckCircle2, 
-  Edit3, 
-  ArrowRight, 
-  Check, 
-  Info, 
-  ShieldCheck, 
-  Layers, 
-  Sparkles, 
+import {
+  Building2,
+  Package,
+  Calendar,
+  Clock,
+  Users,
+  CheckCircle2,
+  Edit3,
+  Check,
+  ShieldCheck,
+  Layers,
   FileText,
-  PieChart,
-  BarChart3,
-  CalendarDays,
-  FileCheck2,
-  Lock,
-  RefreshCw
+  FileCheck2
 } from 'lucide-react';
-import { Button } from './UIPrimitives';
-import { 
-  A3Product, 
-  A3ScheduleData, 
-  A3TimeLibraryData, 
-  A3DeliveryContractsData, 
-  A3PortfolioData, 
-  A3CurrentModel 
+import { Button, Tag, Callout } from './UIPrimitives';
+import {
+  A3Product,
+  A3ScheduleData,
+  A3TimeLibraryData,
+  A3DeliveryContractsData,
+  A3PortfolioData,
+  A3CurrentModel
 } from '../types';
 
 interface CurrentModelStepProps {
@@ -135,23 +127,34 @@ export const CurrentModelStep: React.FC<CurrentModelStepProps> = ({
     }
   };
 
+  const blockNumberBadge = (n: string) => (
+    <div className="w-10 h-10 bg-[var(--preto)] text-white border border-[var(--preto)] flex items-center justify-center font-bold shrink-0">
+      {n}
+    </div>
+  );
+
+  const confirmButtonClass = (validated: boolean) =>
+    `text-xs font-subtitle font-bold px-3 py-1.5 border flex items-center gap-1.5 cursor-pointer transition-colors ${
+      validated
+        ? 'bg-[var(--accent-tint)] text-[var(--exodo-red)] border-[var(--exodo-red)]'
+        : 'bg-[var(--cinza-claro)] text-[var(--cinza-medio)] border-[var(--border-default)]'
+    }`;
+
   return (
     <div className="space-y-8 animate-fadeIn">
       {/* Header Banner */}
-      <div className="bg-white border border-neutral-200 rounded-2xl p-6 sm:p-8 shadow-sm relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-[var(--areia)]/60 to-transparent rounded-bl-full -z-0 pointer-events-none" />
-
-        <div className="relative z-10 space-y-4">
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-neutral-100 pb-4">
+      <div className="bg-[var(--branco)] border border-[var(--border-strong)] p-6 sm:p-8 relative overflow-hidden">
+        <div className="space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--border-default)] pb-4">
             <div className="flex items-center gap-3">
-              <div className="p-3 bg-[var(--preto)] text-white rounded-xl shadow-sm">
+              <div className="p-3 bg-[var(--preto)] text-white">
                 <Building2 className="w-6 h-6" />
               </div>
               <div>
-                <span className="text-xs font-subtitle font-bold uppercase tracking-widest text-neutral-500">
+                <span className="text-xs font-subtitle font-bold uppercase tracking-widest text-[var(--cinza-medio)]">
                   Consolidação Final • Anamnese Operacional
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-title font-bold text-[var(--preto)]">
+                <h2 className="text-2xl sm:text-3xl font-display font-bold text-[var(--preto)]">
                   Modelo Atual da Clínica
                 </h2>
               </div>
@@ -160,104 +163,96 @@ export const CurrentModelStep: React.FC<CurrentModelStepProps> = ({
             {/* Approved status pill */}
             <div className="flex items-center gap-2">
               {isApproved ? (
-                <div className="bg-emerald-100 border border-emerald-300 text-emerald-900 rounded-xl px-4 py-2 text-xs font-subtitle font-bold uppercase tracking-wider flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-700" />
+                <Tag tone="diagnostico" className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4" />
                   Modelo Atual Aprovado
-                </div>
+                </Tag>
               ) : (
-                <div className="bg-[var(--areia)]/80 border border-neutral-300 text-[var(--preto)] rounded-xl px-4 py-2 text-xs font-subtitle font-bold uppercase tracking-wider flex items-center gap-2">
-                  <FileCheck2 className="w-4 h-4 text-neutral-700" />
+                <Tag tone="informacao" className="flex items-center gap-2">
+                  <FileCheck2 className="w-4 h-4" />
                   Aguardando Validação
-                </div>
+                </Tag>
               )}
             </div>
           </div>
 
           {/* Introductory Explanation */}
-          <div className="bg-neutral-50 border border-neutral-200/80 rounded-xl p-4 text-xs font-body text-neutral-700 space-y-2">
-            <div className="flex items-center gap-2 font-subtitle font-bold text-[var(--preto)] uppercase text-[0.75rem] tracking-wider">
-              <Info className="w-4 h-4 text-blue-600" />
-              Retrato Integrado da Operação
-            </div>
-            <p className="leading-relaxed">
-              Reunimos automaticamente todas as informações das etapas anteriores (Produtos, Agenda, Biblioteca de Tempos, Contratos de Entrega e Carteira de Pacientes) em um <strong>retrato único e fiel da sua clínica hoje</strong>. Confira se as informações correspondem à sua rotina atual.
-            </p>
-          </div>
+          <Callout label="Retrato Integrado da Operação">
+            Reunimos automaticamente todas as informações das etapas anteriores (Produtos, Agenda, Biblioteca de Tempos, Contratos de Entrega e Carteira de Pacientes) em um <strong>retrato único e fiel da sua clínica hoje</strong>. Confira se as informações correspondem à sua rotina atual.
+          </Callout>
         </div>
       </div>
 
       {/* Operational Highlights Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Metric 1 */}
-        <div className="bg-white border border-neutral-200 rounded-2xl p-5 shadow-sm space-y-1">
-          <div className="flex items-center justify-between text-neutral-500">
+        <div className="bg-[var(--branco)] border border-[var(--border-default)] p-5 space-y-1">
+          <div className="flex items-center justify-between text-[var(--cinza-medio)]">
             <span className="text-[0.65rem] font-subtitle font-bold uppercase tracking-wider">Portfólio Ativo</span>
-            <Package className="w-4 h-4 text-blue-600" />
+            <Package className="w-4 h-4 text-[var(--exodo-red)]" />
           </div>
-          <div className="text-2xl font-title font-bold text-[var(--preto)]">
+          <div className="text-2xl font-display font-bold text-[var(--preto)]">
             {totalProductsCount} {totalProductsCount === 1 ? 'produto' : 'produtos'}
           </div>
-          <p className="text-[0.7rem] font-body text-neutral-500">Cadastrados no sistema</p>
+          <p className="text-[0.7rem] font-body text-[var(--cinza-medio)]">Cadastrados no sistema</p>
         </div>
 
         {/* Metric 2 */}
-        <div className="bg-white border border-neutral-200 rounded-2xl p-5 shadow-sm space-y-1">
-          <div className="flex items-center justify-between text-neutral-500">
+        <div className="bg-[var(--branco)] border border-[var(--border-default)] p-5 space-y-1">
+          <div className="flex items-center justify-between text-[var(--cinza-medio)]">
             <span className="text-[0.65rem] font-subtitle font-bold uppercase tracking-wider">Agenda Semanal</span>
-            <Calendar className="w-4 h-4 text-purple-600" />
+            <Calendar className="w-4 h-4 text-[var(--exodo-red)]" />
           </div>
-          <div className="text-2xl font-title font-bold text-[var(--preto)]">
-            {totalWeeklyClinicalHours}h <span className="text-xs font-normal text-neutral-500">/semana</span>
+          <div className="text-2xl font-display font-bold text-[var(--preto)]">
+            {totalWeeklyClinicalHours}h <span className="text-xs font-normal text-[var(--cinza-medio)]">/semana</span>
           </div>
-          <p className="text-[0.7rem] font-body text-neutral-500">Disponibilidade clínica total</p>
+          <p className="text-[0.7rem] font-body text-[var(--cinza-medio)]">Disponibilidade clínica total</p>
         </div>
 
         {/* Metric 3 */}
-        <div className="bg-white border border-neutral-200 rounded-2xl p-5 shadow-sm space-y-1">
-          <div className="flex items-center justify-between text-neutral-500">
+        <div className="bg-[var(--branco)] border border-[var(--border-default)] p-5 space-y-1">
+          <div className="flex items-center justify-between text-[var(--cinza-medio)]">
             <span className="text-[0.65rem] font-subtitle font-bold uppercase tracking-wider">Carga de Entrega</span>
-            <Clock className="w-4 h-4 text-amber-600" />
+            <Clock className="w-4 h-4 text-[var(--exodo-red)]" />
           </div>
-          <div className="text-2xl font-title font-bold text-[var(--preto)]">
-            {totalMonthlyDeliveryHours}h <span className="text-xs font-normal text-neutral-500">/mês</span>
+          <div className="text-2xl font-display font-bold text-[var(--preto)]">
+            {totalMonthlyDeliveryHours}h <span className="text-xs font-normal text-[var(--cinza-medio)]">/mês</span>
           </div>
-          <p className="text-[0.7rem] font-body text-neutral-500">Dedicadas à carteira de pacientes</p>
+          <p className="text-[0.7rem] font-body text-[var(--cinza-medio)]">Dedicadas à carteira de pacientes</p>
         </div>
 
         {/* Metric 4 */}
-        <div className="bg-white border border-neutral-200 rounded-2xl p-5 shadow-sm space-y-1">
-          <div className="flex items-center justify-between text-neutral-500">
+        <div className="bg-[var(--branco)] border border-[var(--border-default)] p-5 space-y-1">
+          <div className="flex items-center justify-between text-[var(--cinza-medio)]">
             <span className="text-[0.65rem] font-subtitle font-bold uppercase tracking-wider">Carteira de Pacientes</span>
-            <Users className="w-4 h-4 text-emerald-600" />
+            <Users className="w-4 h-4 text-[var(--exodo-red)]" />
           </div>
-          <div className="text-2xl font-title font-bold text-[var(--preto)]">
-            {totalActivePatients} <span className="text-xs font-normal text-neutral-500">ativos</span>
+          <div className="text-2xl font-display font-bold text-[var(--preto)]">
+            {totalActivePatients} <span className="text-xs font-normal text-[var(--cinza-medio)]">ativos</span>
           </div>
-          <p className="text-[0.7rem] font-body text-neutral-500">Distribuição total da clínica</p>
+          <p className="text-[0.7rem] font-body text-[var(--cinza-medio)]">Distribuição total da clínica</p>
         </div>
       </div>
 
       {/* 4 LARGE OPERATIONAL SYNTHESIS BLOCKS */}
       <div className="space-y-6">
-        <h3 className="text-lg font-title font-bold text-[var(--preto)] flex items-center gap-2">
-          <Layers className="w-5 h-5 text-neutral-700" />
+        <h3 className="text-lg font-display font-bold text-[var(--preto)] flex items-center gap-2">
+          <Layers className="w-5 h-5 text-[var(--exodo-red)]" />
           Revisão por Blocos da Operação
         </h3>
 
         {/* BLOCO 1: PORTFÓLIO E OFERTA */}
-        <div className={`bg-white border-2 rounded-2xl p-6 shadow-sm transition-all space-y-5 ${
-          validatedBlocks.block1_products ? 'border-neutral-200' : 'border-amber-300'
+        <div className={`bg-[var(--branco)] border-2 p-6 transition-colors space-y-5 ${
+          validatedBlocks.block1_products ? 'border-[var(--border-default)]' : 'border-[var(--exodo-red)]'
         }`}>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-neutral-100 pb-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-[var(--border-default)] pb-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 border border-blue-200 flex items-center justify-center font-bold">
-                01
-              </div>
+              {blockNumberBadge('01')}
               <div>
-                <h4 className="text-base font-title font-bold text-[var(--preto)] flex items-center gap-2">
+                <h4 className="text-base font-display font-bold text-[var(--preto)] flex items-center gap-2">
                   Portfólio de Produtos & Serviços
                 </h4>
-                <p className="text-xs font-body text-neutral-500">
+                <p className="text-xs font-body text-[var(--cinza-medio)]">
                   {products.length} {products.length === 1 ? 'produto cadastrado' : 'produtos cadastrados'}
                 </p>
               </div>
@@ -267,7 +262,7 @@ export const CurrentModelStep: React.FC<CurrentModelStepProps> = ({
               <button
                 type="button"
                 onClick={() => onNavigateToStage('products')}
-                className="text-xs font-subtitle font-bold text-neutral-600 hover:text-[var(--preto)] border border-neutral-200 rounded-lg px-3 py-1.5 hover:bg-neutral-50 flex items-center gap-1.5 cursor-pointer"
+                className="text-xs font-subtitle font-bold text-[var(--cinza-escuro)] hover:text-[var(--preto)] border border-[var(--border-default)] px-3 py-1.5 hover:bg-[var(--cinza-claro)] flex items-center gap-1.5 cursor-pointer"
               >
                 <Edit3 className="w-3.5 h-3.5" /> Editar no Passo 01
               </button>
@@ -275,11 +270,7 @@ export const CurrentModelStep: React.FC<CurrentModelStepProps> = ({
               <button
                 type="button"
                 onClick={() => toggleBlockValidation('block1_products')}
-                className={`text-xs font-subtitle font-bold rounded-lg px-3 py-1.5 border flex items-center gap-1.5 cursor-pointer transition-colors ${
-                  validatedBlocks.block1_products
-                    ? 'bg-emerald-50 text-emerald-800 border-emerald-300'
-                    : 'bg-neutral-100 text-neutral-600 border-neutral-200'
-                }`}
+                className={confirmButtonClass(validatedBlocks.block1_products)}
               >
                 <Check className="w-3.5 h-3.5" />
                 {validatedBlocks.block1_products ? 'Conferido' : 'Marcar Conferido'}
@@ -290,21 +281,21 @@ export const CurrentModelStep: React.FC<CurrentModelStepProps> = ({
           {/* Block Content */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {products.map((p) => (
-              <div key={p.id} className="bg-neutral-50 border border-neutral-200/80 rounded-xl p-4 space-y-2">
+              <div key={p.id} className="bg-[var(--cinza-claro)] p-4 space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-[0.65rem] font-subtitle uppercase tracking-wider px-2 py-0.5 bg-white border border-neutral-200 rounded font-bold text-neutral-600">
+                  <span className="text-[0.65rem] font-subtitle uppercase tracking-wider px-2 py-0.5 bg-[var(--branco)] border border-[var(--border-default)] font-bold text-[var(--cinza-escuro)]">
                     {p.format || 'Serviço'}
                   </span>
-                  <span className="text-xs font-title font-bold text-[var(--preto)]">
+                  <span className="text-xs font-display font-bold text-[var(--preto)]">
                     R$ {p.price?.toLocaleString('pt-BR')}
                   </span>
                 </div>
-                <h5 className="font-title font-bold text-sm text-[var(--preto)]">{p.name}</h5>
+                <h5 className="font-display font-bold text-sm text-[var(--preto)]">{p.name}</h5>
                 {p.durationLabel && (
-                  <p className="text-[0.7rem] font-body text-neutral-500">Duração: {p.durationLabel}</p>
+                  <p className="text-[0.7rem] font-body text-[var(--cinza-medio)]">Duração: {p.durationLabel}</p>
                 )}
                 {p.targetAudience && (
-                  <p className="text-[0.7rem] font-body text-neutral-600 italic line-clamp-2">
+                  <p className="text-[0.7rem] font-body text-[var(--cinza-escuro)] italic line-clamp-2">
                     "{p.targetAudience}"
                   </p>
                 )}
@@ -314,19 +305,17 @@ export const CurrentModelStep: React.FC<CurrentModelStepProps> = ({
         </div>
 
         {/* BLOCO 2: AGENDA E DISPONIBILIDADE */}
-        <div className={`bg-white border-2 rounded-2xl p-6 shadow-sm transition-all space-y-5 ${
-          validatedBlocks.block2_schedule ? 'border-neutral-200' : 'border-amber-300'
+        <div className={`bg-[var(--branco)] border-2 p-6 transition-colors space-y-5 ${
+          validatedBlocks.block2_schedule ? 'border-[var(--border-default)]' : 'border-[var(--exodo-red)]'
         }`}>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-neutral-100 pb-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-[var(--border-default)] pb-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-700 border border-purple-200 flex items-center justify-center font-bold">
-                02
-              </div>
+              {blockNumberBadge('02')}
               <div>
-                <h4 className="text-base font-title font-bold text-[var(--preto)] flex items-center gap-2">
+                <h4 className="text-base font-display font-bold text-[var(--preto)] flex items-center gap-2">
                   Agenda Atual & Disponibilidade Semanal
                 </h4>
-                <p className="text-xs font-body text-neutral-500">
+                <p className="text-xs font-body text-[var(--cinza-medio)]">
                   {totalWeeklyClinicalHours} horas clínicas semanais estruturadas
                 </p>
               </div>
@@ -336,7 +325,7 @@ export const CurrentModelStep: React.FC<CurrentModelStepProps> = ({
               <button
                 type="button"
                 onClick={() => onNavigateToStage('schedule')}
-                className="text-xs font-subtitle font-bold text-neutral-600 hover:text-[var(--preto)] border border-neutral-200 rounded-lg px-3 py-1.5 hover:bg-neutral-50 flex items-center gap-1.5 cursor-pointer"
+                className="text-xs font-subtitle font-bold text-[var(--cinza-escuro)] hover:text-[var(--preto)] border border-[var(--border-default)] px-3 py-1.5 hover:bg-[var(--cinza-claro)] flex items-center gap-1.5 cursor-pointer"
               >
                 <Edit3 className="w-3.5 h-3.5" /> Editar no Passo 02
               </button>
@@ -344,11 +333,7 @@ export const CurrentModelStep: React.FC<CurrentModelStepProps> = ({
               <button
                 type="button"
                 onClick={() => toggleBlockValidation('block2_schedule')}
-                className={`text-xs font-subtitle font-bold rounded-lg px-3 py-1.5 border flex items-center gap-1.5 cursor-pointer transition-colors ${
-                  validatedBlocks.block2_schedule
-                    ? 'bg-emerald-50 text-emerald-800 border-emerald-300'
-                    : 'bg-neutral-100 text-neutral-600 border-neutral-200'
-                }`}
+                className={confirmButtonClass(validatedBlocks.block2_schedule)}
               >
                 <Check className="w-3.5 h-3.5" />
                 {validatedBlocks.block2_schedule ? 'Conferido' : 'Marcar Conferido'}
@@ -360,22 +345,22 @@ export const CurrentModelStep: React.FC<CurrentModelStepProps> = ({
           {scheduleData && scheduleData.occupancy && scheduleData.occupancy.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {scheduleData.occupancy.map((occ) => (
-                <div key={occ.dayOfWeek} className="bg-neutral-50 border border-neutral-200/80 rounded-xl p-4 space-y-2">
-                  <div className="flex items-center justify-between border-b border-neutral-200/60 pb-2">
-                    <span className="font-title font-bold text-sm text-[var(--preto)]">
+                <div key={occ.dayOfWeek} className="bg-[var(--cinza-claro)] p-4 space-y-2">
+                  <div className="flex items-center justify-between border-b border-[var(--border-default)] pb-2">
+                    <span className="font-display font-bold text-sm text-[var(--preto)]">
                       {occ.dayLabel}
                     </span>
-                    <span className="text-xs font-subtitle font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded border border-purple-200">
+                    <span className="text-xs font-subtitle font-bold text-[var(--exodo-red)] bg-[var(--branco)] px-2 py-0.5 border border-[var(--exodo-red)]">
                       {occ.totalHoursPerWeek}h no dia
                     </span>
                   </div>
-                  <div className="text-xs font-body text-neutral-600 space-y-1">
+                  <div className="text-xs font-body text-[var(--cinza-escuro)] space-y-1">
                     <div className="flex justify-between">
                       <span>Períodos de Atendimento:</span>
                       <span className="font-bold text-[var(--preto)]">{occ.shifts?.join(', ') || 'Não informado'}</span>
                     </div>
                     {occ.dailyNotes && (
-                      <p className="text-[0.7rem] text-neutral-500 italic">
+                      <p className="text-[0.7rem] text-[var(--cinza-medio)] italic">
                         Nota: {occ.dailyNotes}
                       </p>
                     )}
@@ -384,26 +369,24 @@ export const CurrentModelStep: React.FC<CurrentModelStepProps> = ({
               ))}
             </div>
           ) : (
-            <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-xs font-body text-amber-900">
+            <div className="bg-[var(--cinza-claro)] p-4 text-xs font-body text-[var(--cinza-escuro)]">
               Agenda ainda não preenchida completamente. Clique em "Editar no Passo 02" para configurar seus horários de atendimento.
             </div>
           )}
         </div>
 
         {/* BLOCO 3: ROTINA OPERACIONAL, TEMPOS E CONTRATOS */}
-        <div className={`bg-white border-2 rounded-2xl p-6 shadow-sm transition-all space-y-5 ${
-          validatedBlocks.block3_activities ? 'border-neutral-200' : 'border-amber-300'
+        <div className={`bg-[var(--branco)] border-2 p-6 transition-colors space-y-5 ${
+          validatedBlocks.block3_activities ? 'border-[var(--border-default)]' : 'border-[var(--exodo-red)]'
         }`}>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-neutral-100 pb-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-[var(--border-default)] pb-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 border border-amber-200 flex items-center justify-center font-bold">
-                03
-              </div>
+              {blockNumberBadge('03')}
               <div>
-                <h4 className="text-base font-title font-bold text-[var(--preto)] flex items-center gap-2">
+                <h4 className="text-base font-display font-bold text-[var(--preto)] flex items-center gap-2">
                   Biblioteca de Tempos & Contratos de Entrega
                 </h4>
-                <p className="text-xs font-body text-neutral-500">
+                <p className="text-xs font-body text-[var(--cinza-medio)]">
                   {totalMonthlyDeliveryHours}h mensais estimadas de entrega clínica direta
                 </p>
               </div>
@@ -413,14 +396,14 @@ export const CurrentModelStep: React.FC<CurrentModelStepProps> = ({
               <button
                 type="button"
                 onClick={() => onNavigateToStage('time-library')}
-                className="text-xs font-subtitle font-bold text-neutral-600 hover:text-[var(--preto)] border border-neutral-200 rounded-lg px-3 py-1.5 hover:bg-neutral-50 flex items-center gap-1.5 cursor-pointer"
+                className="text-xs font-subtitle font-bold text-[var(--cinza-escuro)] hover:text-[var(--preto)] border border-[var(--border-default)] px-3 py-1.5 hover:bg-[var(--cinza-claro)] flex items-center gap-1.5 cursor-pointer"
               >
                 <Edit3 className="w-3.5 h-3.5" /> Editar Tempos (Passo 03)
               </button>
               <button
                 type="button"
                 onClick={() => onNavigateToStage('delivery-contracts')}
-                className="text-xs font-subtitle font-bold text-neutral-600 hover:text-[var(--preto)] border border-neutral-200 rounded-lg px-3 py-1.5 hover:bg-neutral-50 flex items-center gap-1.5 cursor-pointer"
+                className="text-xs font-subtitle font-bold text-[var(--cinza-escuro)] hover:text-[var(--preto)] border border-[var(--border-default)] px-3 py-1.5 hover:bg-[var(--cinza-claro)] flex items-center gap-1.5 cursor-pointer"
               >
                 <Edit3 className="w-3.5 h-3.5" /> Editar Contratos (Passo 04)
               </button>
@@ -428,11 +411,7 @@ export const CurrentModelStep: React.FC<CurrentModelStepProps> = ({
               <button
                 type="button"
                 onClick={() => toggleBlockValidation('block3_activities')}
-                className={`text-xs font-subtitle font-bold rounded-lg px-3 py-1.5 border flex items-center gap-1.5 cursor-pointer transition-colors ${
-                  validatedBlocks.block3_activities
-                    ? 'bg-emerald-50 text-emerald-800 border-emerald-300'
-                    : 'bg-neutral-100 text-neutral-600 border-neutral-200'
-                }`}
+                className={confirmButtonClass(validatedBlocks.block3_activities)}
               >
                 <Check className="w-3.5 h-3.5" />
                 {validatedBlocks.block3_activities ? 'Conferido' : 'Marcar Conferido'}
@@ -443,25 +422,25 @@ export const CurrentModelStep: React.FC<CurrentModelStepProps> = ({
           {/* Activities and Standard Times summary */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Standard Times Box */}
-            <div className="bg-neutral-50 border border-neutral-200/80 rounded-xl p-4 space-y-3">
-              <h5 className="font-title font-bold text-xs uppercase tracking-wider text-neutral-700 flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5 text-amber-600" />
+            <div className="bg-[var(--cinza-claro)] p-4 space-y-3">
+              <h5 className="font-display font-bold text-xs uppercase tracking-wider text-[var(--cinza-escuro)] flex items-center gap-1.5">
+                <Clock className="w-3.5 h-3.5 text-[var(--exodo-red)]" />
                 Tempos Padrão de Atendimento
               </h5>
-              <div className="space-y-1.5 text-xs font-body text-neutral-700">
-                <div className="flex justify-between border-b border-neutral-200/60 pb-1">
+              <div className="space-y-1.5 text-xs font-body text-[var(--cinza-escuro)]">
+                <div className="flex justify-between border-b border-[var(--border-default)] pb-1">
                   <span>Primeira Consulta / Anamnese:</span>
                   <span className="font-bold text-[var(--preto)]">
                     {timeLibraryData?.standardInitialConsultationMinutes || 60} min
                   </span>
                 </div>
-                <div className="flex justify-between border-b border-neutral-200/60 pb-1">
+                <div className="flex justify-between border-b border-[var(--border-default)] pb-1">
                   <span>Consulta de Retorno / Acompanhamento:</span>
                   <span className="font-bold text-[var(--preto)]">
                     {timeLibraryData?.standardFollowupConsultationMinutes || 40} min
                   </span>
                 </div>
-                <div className="flex justify-between border-b border-neutral-200/60 pb-1">
+                <div className="flex justify-between border-b border-[var(--border-default)] pb-1">
                   <span>Elaboração de Plano / Bastidores:</span>
                   <span className="font-bold text-[var(--preto)]">
                     {timeLibraryData?.standardPlanDraftingMinutes || 30} min
@@ -477,15 +456,15 @@ export const CurrentModelStep: React.FC<CurrentModelStepProps> = ({
             </div>
 
             {/* Delivery Contracts Box */}
-            <div className="bg-neutral-50 border border-neutral-200/80 rounded-xl p-4 space-y-3">
-              <h5 className="font-title font-bold text-xs uppercase tracking-wider text-neutral-700 flex items-center gap-1.5">
-                <FileText className="w-3.5 h-3.5 text-amber-600" />
+            <div className="bg-[var(--cinza-claro)] p-4 space-y-3">
+              <h5 className="font-display font-bold text-xs uppercase tracking-wider text-[var(--cinza-escuro)] flex items-center gap-1.5">
+                <FileText className="w-3.5 h-3.5 text-[var(--exodo-red)]" />
                 Entrega Prevista em Contrato
               </h5>
               {deliveryContractsData?.contracts && deliveryContractsData.contracts.length > 0 ? (
-                <div className="space-y-1.5 text-xs font-body text-neutral-700">
+                <div className="space-y-1.5 text-xs font-body text-[var(--cinza-escuro)]">
                   {deliveryContractsData.contracts.slice(0, 3).map((c) => (
-                    <div key={c.productId} className="flex justify-between border-b border-neutral-200/60 pb-1">
+                    <div key={c.productId} className="flex justify-between border-b border-[var(--border-default)] pb-1">
                       <span className="truncate max-w-[180px] font-bold">{c.productName}:</span>
                       <span>
                         {c.initialConsultationsCount} initial / {c.followupConsultationsCount} retornos ({c.totalHoursPerPatientInCycle}h/paciente)
@@ -493,13 +472,13 @@ export const CurrentModelStep: React.FC<CurrentModelStepProps> = ({
                     </div>
                   ))}
                   {deliveryContractsData.contracts.length > 3 && (
-                    <p className="text-[0.7rem] text-neutral-500 font-subtitle">
+                    <p className="text-[0.7rem] text-[var(--cinza-medio)] font-subtitle">
                       + {deliveryContractsData.contracts.length - 3} outros contratos cadastrados
                     </p>
                   )}
                 </div>
               ) : (
-                <p className="text-xs text-neutral-500 italic">
+                <p className="text-xs text-[var(--cinza-medio)] italic">
                   Contratos de entrega definidos com base na biblioteca de tempos padrão.
                 </p>
               )}
@@ -508,19 +487,17 @@ export const CurrentModelStep: React.FC<CurrentModelStepProps> = ({
         </div>
 
         {/* BLOCO 4: DEMANDA E CARTEIRA DE PACIENTES */}
-        <div className={`bg-white border-2 rounded-2xl p-6 shadow-sm transition-all space-y-5 ${
-          validatedBlocks.block4_portfolio ? 'border-neutral-200' : 'border-amber-300'
+        <div className={`bg-[var(--branco)] border-2 p-6 transition-colors space-y-5 ${
+          validatedBlocks.block4_portfolio ? 'border-[var(--border-default)]' : 'border-[var(--exodo-red)]'
         }`}>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-neutral-100 pb-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-[var(--border-default)] pb-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center justify-center font-bold">
-                04
-              </div>
+              {blockNumberBadge('04')}
               <div>
-                <h4 className="text-base font-title font-bold text-[var(--preto)] flex items-center gap-2">
+                <h4 className="text-base font-display font-bold text-[var(--preto)] flex items-center gap-2">
                   Demanda & Carteira de Pacientes
                 </h4>
-                <p className="text-xs font-body text-neutral-500">
+                <p className="text-xs font-body text-[var(--cinza-medio)]">
                   {totalActivePatients} pacientes ativos atualmente na clínica
                 </p>
               </div>
@@ -530,7 +507,7 @@ export const CurrentModelStep: React.FC<CurrentModelStepProps> = ({
               <button
                 type="button"
                 onClick={() => onNavigateToStage('portfolio')}
-                className="text-xs font-subtitle font-bold text-neutral-600 hover:text-[var(--preto)] border border-neutral-200 rounded-lg px-3 py-1.5 hover:bg-neutral-50 flex items-center gap-1.5 cursor-pointer"
+                className="text-xs font-subtitle font-bold text-[var(--cinza-escuro)] hover:text-[var(--preto)] border border-[var(--border-default)] px-3 py-1.5 hover:bg-[var(--cinza-claro)] flex items-center gap-1.5 cursor-pointer"
               >
                 <Edit3 className="w-3.5 h-3.5" /> Editar no Passo 05
               </button>
@@ -538,11 +515,7 @@ export const CurrentModelStep: React.FC<CurrentModelStepProps> = ({
               <button
                 type="button"
                 onClick={() => toggleBlockValidation('block4_portfolio')}
-                className={`text-xs font-subtitle font-bold rounded-lg px-3 py-1.5 border flex items-center gap-1.5 cursor-pointer transition-colors ${
-                  validatedBlocks.block4_portfolio
-                    ? 'bg-emerald-50 text-emerald-800 border-emerald-300'
-                    : 'bg-neutral-100 text-neutral-600 border-neutral-200'
-                }`}
+                className={confirmButtonClass(validatedBlocks.block4_portfolio)}
               >
                 <Check className="w-3.5 h-3.5" />
                 {validatedBlocks.block4_portfolio ? 'Conferido' : 'Marcar Conferido'}
@@ -556,17 +529,17 @@ export const CurrentModelStep: React.FC<CurrentModelStepProps> = ({
               {portfolioItems.map((item) => {
                 const pct = totalActivePatients > 0 ? Math.round((item.activePatients / totalActivePatients) * 100) : 0;
                 return (
-                  <div key={item.productId} className="bg-neutral-50 border border-neutral-200/80 rounded-xl p-3.5 space-y-1">
+                  <div key={item.productId} className="bg-[var(--cinza-claro)] p-3.5 space-y-1">
                     <div className="flex items-center justify-between">
-                      <span className="font-title font-bold text-xs text-[var(--preto)] truncate max-w-[160px]">
+                      <span className="font-display font-bold text-xs text-[var(--preto)] truncate max-w-[160px]">
                         {item.productName}
                       </span>
-                      <span className="text-[0.65rem] font-subtitle font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-900">
+                      <span className="text-[0.65rem] font-subtitle font-bold px-2 py-0.5 bg-[var(--accent-tint)] text-[var(--exodo-red)]">
                         {pct}%
                       </span>
                     </div>
-                    <div className="text-xl font-title font-bold text-[var(--preto)]">
-                      {item.activePatients} <span className="text-xs font-normal text-neutral-500">pacientes</span>
+                    <div className="text-xl font-display font-bold text-[var(--preto)]">
+                      {item.activePatients} <span className="text-xs font-normal text-[var(--cinza-medio)]">pacientes</span>
                     </div>
                   </div>
                 );
@@ -577,15 +550,15 @@ export const CurrentModelStep: React.FC<CurrentModelStepProps> = ({
       </div>
 
       {/* FINAL CONFIRMATION & APPROVAL BOX */}
-      <div className="bg-[var(--areia)]/60 border-2 border-[var(--preto)] rounded-2xl p-6 sm:p-8 shadow-md space-y-6">
+      <div className="bg-[var(--cinza-claro)] border-2 border-[var(--preto)] p-6 sm:p-8 space-y-6">
         <div className="space-y-2 text-center max-w-2xl mx-auto">
-          <div className="w-12 h-12 bg-[var(--preto)] text-white rounded-2xl flex items-center justify-center mx-auto shadow-sm">
+          <div className="w-12 h-12 bg-[var(--preto)] text-white flex items-center justify-center mx-auto">
             <ShieldCheck className="w-6 h-6" />
           </div>
-          <h3 className="text-xl sm:text-2xl font-title font-bold text-[var(--preto)]">
+          <h3 className="text-xl sm:text-2xl font-display font-bold text-[var(--preto)]">
             Esse retrato representa corretamente como sua clínica funciona hoje?
           </h3>
-          <p className="text-xs sm:text-sm font-body text-neutral-700 leading-relaxed">
+          <p className="text-xs sm:text-sm font-body text-[var(--cinza-escuro)] leading-relaxed">
             Ao aprovar o Modelo Atual, você confirma que a síntese acima é fiel à sua rotina presente. A partir deste ponto, utilizaremos essa estrutura como ponto de partida oficial para definir suas Expectativas e planejar a evolução da sua operação.
           </p>
         </div>
@@ -594,16 +567,13 @@ export const CurrentModelStep: React.FC<CurrentModelStepProps> = ({
           <button
             type="button"
             onClick={() => handleApproveAndSave(false)}
-            className="w-full sm:w-auto px-5 py-3 text-xs font-subtitle font-bold text-neutral-700 bg-white border border-neutral-300 rounded-xl hover:bg-neutral-50 transition-colors cursor-pointer"
+            className="w-full sm:w-auto px-5 py-3 text-xs font-subtitle font-bold text-[var(--cinza-escuro)] bg-[var(--branco)] border border-[var(--border-strong)] hover:bg-[var(--cinza-claro)] transition-colors cursor-pointer"
           >
             Salvar Rascunho sem Aprovação
           </button>
 
-          <Button
-            onClick={() => handleApproveAndSave(true)}
-            className="w-full sm:w-auto bg-[var(--preto)] text-white hover:bg-neutral-800 flex items-center justify-center gap-2.5 py-3.5 px-8 text-sm shadow-md"
-          >
-            Aprovar e Confirmar Retrato da Clínica <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+          <Button variant="primary" size="lg" onClick={() => handleApproveAndSave(true)} className="w-full sm:w-auto">
+            Aprovar e Confirmar Retrato da Clínica <CheckCircle2 className="w-5 h-5" />
           </Button>
         </div>
       </div>
