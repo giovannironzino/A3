@@ -59,9 +59,9 @@ const DAYS_OF_WEEK: Array<{ day: A3DaySchedule['day']; dayShort: A3DaySchedule['
 ];
 
 const DEFAULT_SHIFTS: Record<A3ShiftName, { startTime: string; endTime: string; label: string; icon: any; colorClass: string; bgClass: string; borderClass: string }> = {
-  'Manhã': { startTime: '07:00', endTime: '12:00', label: 'Manhã (07h - 12h)', icon: Sun, colorClass: 'text-amber-700', bgClass: 'bg-amber-100/90', borderClass: 'border-amber-400' },
-  'Tarde': { startTime: '12:00', endTime: '18:00', label: 'Tarde (12h - 18h)', icon: Sunset, colorClass: 'text-orange-700', bgClass: 'bg-orange-100/90', borderClass: 'border-orange-400' },
-  'Noite': { startTime: '18:00', endTime: '22:00', label: 'Noite (18h - 22h)', icon: Moon, colorClass: 'text-indigo-700', bgClass: 'bg-indigo-100/90', borderClass: 'border-indigo-400' },
+  'Manhã': { startTime: '07:00', endTime: '12:00', label: 'Manhã (07h - 12h)', icon: Sun, colorClass: 'text-[var(--exodo-red)]', bgClass: 'bg-[var(--accent-tint)]', borderClass: 'border-[var(--exodo-red)]' },
+  'Tarde': { startTime: '12:00', endTime: '18:00', label: 'Tarde (12h - 18h)', icon: Sunset, colorClass: 'text-[var(--exodo-red)]', bgClass: 'bg-[var(--accent-tint)]', borderClass: 'border-[var(--exodo-red)]' },
+  'Noite': { startTime: '18:00', endTime: '22:00', label: 'Noite (18h - 22h)', icon: Moon, colorClass: 'text-[var(--exodo-red)]', bgClass: 'bg-[var(--accent-tint)]', borderClass: 'border-[var(--exodo-red)]' },
 };
 
 const BLOCK_PRESETS = [
@@ -439,216 +439,8 @@ export const ScheduleStep: React.FC<ScheduleStepProps> = ({
   return (
     <div className="w-full text-[var(--preto)] font-body">
       {/* MAIN THREE-COLUMN GRID CONTAINER */}
-      <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-0 border border-neutral-200 bg-white shadow-xs rounded-xl overflow-hidden">
+      <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-0 border border-[var(--border-default)] bg-[var(--branco)] overflow-hidden">
         
-        {/* Left journey/trilha sidebar removed — now shown once via the shared <JourneyTrail> above this component */}
-        <aside className="hidden lg:col-span-3 xl:col-span-3 bg-white border-r border-b lg:border-b-0 border-neutral-200 p-4 shrink-0 space-y-5">
-          {/* HEADER TRILHA */}
-          <div className="flex items-center justify-between pb-2 border-b border-neutral-200">
-            <div className="flex items-center gap-1.5">
-              <Compass className="w-4 h-4 text-[var(--exodo-red)]" />
-              <span className="text-[0.7rem] font-title font-bold text-[var(--preto)] uppercase tracking-wider">
-                TRILHA DA JORNADA
-              </span>
-            </div>
-            <span className="text-[0.6rem] font-subtitle font-bold bg-neutral-100 text-neutral-700 px-1.5 py-0.5 rounded">
-              3 BLOCOS
-            </span>
-          </div>
-
-          {/* JORNADA DA RECONSTRUÇÃO DA AGENDA (MINI NAVIGATION) */}
-          <div className="p-3 bg-neutral-50 border border-neutral-300 rounded-lg space-y-3">
-            <div className="flex items-center justify-between">
-              <span className="text-[0.65rem] font-title font-bold uppercase tracking-wider text-[var(--preto)] flex items-center gap-1">
-                <Calendar className="w-3.5 h-3.5 text-[var(--exodo-red)]" />
-                RECONSTRUINDO SUA AGENDA
-              </span>
-              <span className="text-[0.6rem] font-mono text-emerald-800 font-bold bg-emerald-100 px-1.5 py-0.5 rounded">
-                {progressMeta.pct}%
-              </span>
-            </div>
-
-            {/* Circular / Line gauge progress */}
-            <div className="w-full bg-neutral-200 h-2 rounded-full overflow-hidden border border-neutral-300">
-              <div
-                className="bg-emerald-600 h-full transition-all duration-300"
-                style={{ width: `${progressMeta.pct}%` }}
-              />
-            </div>
-
-            <nav className="space-y-1">
-              {[
-                { stepNum: 1, label: 'Dias de Trabalho' },
-                { stepNum: 2, label: 'Turnos' },
-                { stepNum: 3, label: 'Horários' },
-                { stepNum: 4, label: 'Bloqueios' },
-                { stepNum: 5, label: 'Validação' },
-                { stepNum: 6, label: 'Revelação Operacional' },
-              ].map((item) => {
-                const isCurrent = wizardStep === item.stepNum;
-                const isPassed = wizardStep > item.stepNum;
-                return (
-                  <button
-                    key={item.stepNum}
-                    onClick={() => setWizardStep(item.stepNum)}
-                    className={`w-full text-left px-2 py-1 text-[0.68rem] font-subtitle font-bold transition-all flex items-center gap-2 rounded cursor-pointer ${
-                      isCurrent
-                        ? 'bg-[var(--preto)] text-white'
-                        : isPassed
-                        ? 'text-emerald-900 bg-emerald-50 hover:bg-emerald-100'
-                        : 'text-neutral-500 hover:bg-neutral-100'
-                    }`}
-                  >
-                    <span className="w-4 h-4 rounded-full flex items-center justify-center text-[0.6rem] font-mono border shrink-0">
-                      {isPassed ? '✓' : item.stepNum}
-                    </span>
-                    <span className="truncate">{item.label}</span>
-                  </button>
-                );
-              })}
-            </nav>
-
-            <span className="text-[0.6rem] text-neutral-500 font-subtitle block text-center">
-              {progressMeta.time}
-            </span>
-          </div>
-
-          {/* BLOCO A: CLAREZA (DIAGNÓSTICO) */}
-          <div className="space-y-1.5">
-            <div className="flex items-center justify-between">
-              <span className="text-[0.63rem] font-subtitle font-bold text-emerald-800 uppercase tracking-wider flex items-center gap-1">
-                <Eye className="w-3 h-3 text-emerald-600" />
-                BLOCO A • CLAREZA
-              </span>
-              <span className="text-[0.6rem] text-emerald-700 font-subtitle font-bold bg-emerald-50 px-1 rounded">
-                Diagnóstico
-              </span>
-            </div>
-            <nav className="space-y-0.5">
-              {[
-                { id: 'products', label: '01. Catálogo de Produtos', icon: Package },
-                { id: 'patient-workload', label: '02. Carga de Pacientes', icon: Users },
-                { id: 'schedule', label: '03. Agenda Disponível', icon: Calendar, active: true },
-                { id: 'other-activities', label: '04. Outras Atividades', icon: Clock },
-                { id: 'current-model', label: '05. Modelo Atual', icon: ShieldCheck },
-              ].map((item) => {
-                const IconComp = item.icon;
-                const isActive = item.active || activeStage === item.id;
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => {
-                      if (onNavigateToStage) {
-                        onNavigateToStage(item.id as StageName);
-                      }
-                    }}
-                    className={`w-full text-left px-2.5 py-1.5 text-[0.72rem] font-subtitle font-bold uppercase transition-all flex items-center justify-between cursor-pointer border-l-3 ${
-                      isActive
-                        ? 'border-[var(--exodo-red)] bg-red-50/80 text-[var(--preto)] shadow-2xs'
-                        : 'border-transparent text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900'
-                    }`}
-                  >
-                    <div className="flex items-center gap-1.5 truncate">
-                      <IconComp className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-[var(--exodo-red)]' : 'text-neutral-400'}`} />
-                      <span className="truncate">{item.label}</span>
-                    </div>
-                  </button>
-                );
-              })}
-            </nav>
-          </div>
-
-          {/* BLOCO B: ESCOLHA (NAVEGADOR) */}
-          <div className="space-y-1.5 pt-2 border-t border-neutral-200">
-            <div className="flex items-center justify-between">
-              <span className="text-[0.63rem] font-subtitle font-bold text-amber-800 uppercase tracking-wider flex items-center gap-1">
-                <Compass className="w-3 h-3 text-amber-600" />
-                BLOCO B • ESCOLHA
-              </span>
-              <span className="text-[0.6rem] text-amber-700 font-subtitle font-bold bg-amber-50 px-1 rounded">
-                Navegador
-              </span>
-            </div>
-            <nav className="space-y-0.5">
-              {[
-                { id: 'expectations', label: '06. Expectativas', icon: Target },
-                { id: 'boundaries', label: '07. Condições & Limites', icon: Lock },
-                { id: 'configuration-choice', label: '08. Escolha da Config.', icon: Award },
-              ].map((item) => {
-                const IconComp = item.icon;
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => {
-                      if (onNavigateToStage) {
-                        onNavigateToStage(item.id as StageName);
-                      }
-                    }}
-                    className="w-full text-left px-2.5 py-1.5 text-[0.72rem] font-subtitle font-bold uppercase transition-all flex items-center justify-between cursor-pointer border-l-3 border-transparent text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900"
-                  >
-                    <div className="flex items-center gap-1.5 truncate">
-                      <IconComp className="w-3.5 h-3.5 shrink-0 text-neutral-400" />
-                      <span className="truncate">{item.label}</span>
-                    </div>
-                  </button>
-                );
-              })}
-            </nav>
-          </div>
-
-          {/* BLOCO C: AÇÃO (PLANO TÁTICO) */}
-          <div className="space-y-1.5 pt-2 border-t border-neutral-200">
-            <div className="flex items-center justify-between">
-              <span className="text-[0.63rem] font-subtitle font-bold text-indigo-800 uppercase tracking-wider flex items-center gap-1">
-                <Zap className="w-3 h-3 text-indigo-600" />
-                BLOCO C • AÇÃO
-              </span>
-              <span className="text-[0.6rem] text-indigo-700 font-subtitle font-bold bg-indigo-50 px-1 rounded">
-                Execução
-              </span>
-            </div>
-            <nav className="space-y-0.5">
-              <button
-                onClick={() => onNavigateToStage && onNavigateToStage('tactical-plan')}
-                className="w-full text-left px-2.5 py-1.5 text-[0.72rem] font-subtitle font-bold uppercase transition-all flex items-center justify-between cursor-pointer border-l-3 border-transparent text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900"
-              >
-                <div className="flex items-center gap-1.5 truncate">
-                  <Calendar className="w-3.5 h-3.5 shrink-0 text-neutral-400" />
-                  <span className="truncate">09. Plano Tático 90 Dias</span>
-                </div>
-              </button>
-            </nav>
-          </div>
-
-          {/* ENTREGAS FORMAIS SHORTCUTS */}
-          <div className="pt-3 border-t border-neutral-200 space-y-1.5">
-            <span className="text-[0.6rem] font-subtitle font-bold text-neutral-400 uppercase tracking-wider block">
-              ENTREGAS FORMAIS
-            </span>
-            <button
-              onClick={() => onOpenDeliverable ? onOpenDeliverable('retrato') : onToast('Acessando Retrato da Clínica')}
-              className="w-full text-left px-2 py-1 text-[0.68rem] font-subtitle font-medium text-neutral-700 hover:text-emerald-900 hover:bg-emerald-50 rounded flex items-center gap-1.5 cursor-pointer transition-colors"
-            >
-              <FileText className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-              <span className="truncate">Retrato da Clínica</span>
-            </button>
-            <button
-              onClick={() => onOpenDeliverable ? onOpenDeliverable('caminho') : onToast('Acessando O Caminho Escolhido')}
-              className="w-full text-left px-2 py-1 text-[0.68rem] font-subtitle font-medium text-neutral-700 hover:text-amber-900 hover:bg-amber-50 rounded flex items-center gap-1.5 cursor-pointer transition-colors"
-            >
-              <Award className="w-3.5 h-3.5 text-amber-600 shrink-0" />
-              <span className="truncate">O Caminho Escolhido</span>
-            </button>
-            <button
-              onClick={() => onOpenDeliverable ? onOpenDeliverable('plano') : onToast('Acessando Plano Tático')}
-              className="w-full text-left px-2 py-1 text-[0.68rem] font-subtitle font-medium text-neutral-700 hover:text-indigo-900 hover:bg-indigo-50 rounded flex items-center gap-1.5 cursor-pointer transition-colors"
-            >
-              <Calendar className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
-              <span className="truncate">Plano Tático 90 Dias</span>
-            </button>
-          </div>
-        </aside>
-
         {/* ========================================================= */}
         {/* CENTER COLUMN: INTERACTIVE CONTROLS + AGENDA VIVA         */}
         {/* ========================================================= */}
@@ -685,7 +477,7 @@ export const ScheduleStep: React.FC<ScheduleStepProps> = ({
                       }`}
                     >
                       <span>{dayShort}</span>
-                      {isWork && <Check className="w-3.5 h-3.5 text-emerald-400" />}
+                      {isWork && <Check className="w-3.5 h-3.5 text-[var(--exodo-red)]" />}
                     </button>
                   );
                 })}
@@ -763,7 +555,7 @@ export const ScheduleStep: React.FC<ScheduleStepProps> = ({
                       <button
                         key={sName}
                         onClick={() => toggleShift(selectedDayObj.day, sName)}
-                        className={`p-3 text-left border-2 rounded-lg transition-all cursor-pointer flex flex-col justify-between space-y-2 ${
+                        className={`p-3 text-left border-2 transition-all cursor-pointer flex flex-col justify-between space-y-2 ${
                           isEnabled
                             ? `${shiftConfig.bgClass} ${shiftConfig.borderClass} shadow-2xs`
                             : 'bg-neutral-50 border-neutral-200 text-neutral-400 hover:border-neutral-400'
@@ -1094,30 +886,30 @@ export const ScheduleStep: React.FC<ScheduleStepProps> = ({
                 </p>
               </div>
 
-              <div className="p-4 bg-emerald-50 border-2 border-emerald-600 space-y-3">
-                <div className="flex items-center gap-2 text-emerald-950 font-title font-bold text-xs uppercase">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+              <div className="p-4 bg-[var(--accent-tint)] border-2 border-[var(--exodo-red)] space-y-3">
+                <div className="flex items-center gap-2 text-[var(--preto)] font-title font-bold text-xs uppercase">
+                  <CheckCircle2 className="w-4 h-4 text-[var(--exodo-red)]" />
                   <span>RESUMO DE REGISTRO CONCLUÍDO</span>
                 </div>
 
-                <div className="space-y-2 text-xs font-body text-emerald-900">
-                  <div className="flex items-center justify-between p-2 bg-white/80 rounded border border-emerald-200">
+                <div className="space-y-2 text-xs font-body text-[var(--preto)]">
+                  <div className="flex items-center justify-between p-2 bg-white/80 rounded border border-[var(--exodo-red)]">
                     <span className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-emerald-600 font-bold" />
+                      <Check className="w-4 h-4 text-[var(--exodo-red)] font-bold" />
                       <strong>Dias de trabalho definidos:</strong>
                     </span>
                     <span className="font-mono font-bold">{workingDaysCount} dias na semana</span>
                   </div>
-                  <div className="flex items-center justify-between p-2 bg-white/80 rounded border border-emerald-200">
+                  <div className="flex items-center justify-between p-2 bg-white/80 rounded border border-[var(--exodo-red)]">
                     <span className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-emerald-600 font-bold" />
+                      <Check className="w-4 h-4 text-[var(--exodo-red)] font-bold" />
                       <strong>Turnos e horários registrados:</strong>
                     </span>
                     <span className="font-mono font-bold">{totalGrossWeeklyHours}h brutas/semana</span>
                   </div>
-                  <div className="flex items-center justify-between p-2 bg-white/80 rounded border border-emerald-200">
+                  <div className="flex items-center justify-between p-2 bg-white/80 rounded border border-[var(--exodo-red)]">
                     <span className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-emerald-600 font-bold" />
+                      <Check className="w-4 h-4 text-[var(--exodo-red)] font-bold" />
                       <strong>Bloqueios cadastrados:</strong>
                     </span>
                     <span className="font-mono font-bold">{totalBlockWeeklyHours}h em intervalos</span>
@@ -1134,7 +926,7 @@ export const ScheduleStep: React.FC<ScheduleStepProps> = ({
                   <Button
                     variant="primary"
                     onClick={handleConfirmSchedule}
-                    className="py-3 px-6 text-xs font-title font-bold uppercase tracking-wider bg-emerald-700 hover:bg-emerald-800 border-none text-white shadow-md flex items-center gap-2"
+                    className="py-3 px-6 text-xs font-title font-bold uppercase tracking-wider bg-[var(--exodo-red)] hover:bg-[var(--preto)] border-none text-white flex items-center gap-2"
                   >
                     <span>CONFIRMAR AGENDA →</span>
                   </Button>
@@ -1172,34 +964,34 @@ export const ScheduleStep: React.FC<ScheduleStepProps> = ({
               {/* Side-by-side comparison cards */}
               <div className="grid grid-cols-1 sm:grid-cols-11 gap-3 items-center">
                 {/* Card 1: Sua Disponibilidade */}
-                <div className="sm:col-span-5 p-4 bg-emerald-50 border-2 border-emerald-600 rounded-xl space-y-1.5 text-center">
-                  <span className="text-[0.63rem] font-title font-bold text-emerald-800 uppercase tracking-wider block">
+                <div className="sm:col-span-5 p-4 bg-[var(--accent-tint)] border-2 border-[var(--exodo-red)] space-y-1.5 text-center">
+                  <span className="text-[0.63rem] font-title font-bold text-[var(--exodo-red)] uppercase tracking-wider block">
                     SUA DISPONIBILIDADE
                   </span>
-                  <div className="text-2xl font-title font-black text-emerald-900 font-mono">
+                  <div className="text-2xl font-title font-black text-[var(--preto)] font-mono">
                     {totalNetWeeklyHours}h <span className="text-xs font-normal">/ semana</span>
                   </div>
-                  <span className="text-[0.65rem] text-emerald-700 block">
+                  <span className="text-[0.65rem] text-[var(--cinza-escuro)] block">
                     Tempo realmente disponível após bloqueios
                   </span>
                 </div>
 
                 {/* VS Badge */}
                 <div className="sm:col-span-1 flex items-center justify-center py-1 sm:py-0">
-                  <span className="w-8 h-8 rounded-full bg-[var(--preto)] text-white text-xs font-title font-black flex items-center justify-center shadow-sm">
+                  <span className="w-8 h-8 bg-[var(--preto)] text-white text-xs font-title font-black flex items-center justify-center">
                     VS
                   </span>
                 </div>
 
                 {/* Card 2: Carga Atual dos Pacientes */}
-                <div className="sm:col-span-5 p-4 bg-red-50 border-2 border-red-500 rounded-xl space-y-1.5 text-center">
-                  <span className="text-[0.63rem] font-title font-bold text-red-800 uppercase tracking-wider block">
+                <div className="sm:col-span-5 p-4 bg-[var(--cinza-claro)] border-2 border-[var(--preto)] space-y-1.5 text-center">
+                  <span className="text-[0.63rem] font-title font-bold text-[var(--preto)] uppercase tracking-wider block">
                     CARGA ATUAL DOS PACIENTES
                   </span>
-                  <div className="text-2xl font-title font-black text-red-950 font-mono">
+                  <div className="text-2xl font-title font-black text-[var(--preto)] font-mono">
                     {currentPatientWorkload}h <span className="text-xs font-normal">/ semana</span>
                   </div>
-                  <span className="text-[0.65rem] text-red-700 block">
+                  <span className="text-[0.65rem] text-[var(--cinza-escuro)] block">
                     Tempo necessário para atender sua carteira atual
                   </span>
                 </div>
@@ -1263,7 +1055,7 @@ export const ScheduleStep: React.FC<ScheduleStepProps> = ({
             </div>
 
             {/* Weekly Schedule Visual Canvas Grid */}
-            <div className="bg-white border-2 border-[var(--preto)] rounded-lg p-3 shadow-inner overflow-x-auto">
+            <div className="bg-[var(--branco)] border-2 border-[var(--preto)] p-3 overflow-x-auto">
               <div className="min-w-[480px] grid grid-cols-7 gap-1.5 text-center">
                 {DAYS_OF_WEEK.map(({ day, dayShort }) => {
                   const dayObj = days.find((d) => d.day === day);
@@ -1277,7 +1069,7 @@ export const ScheduleStep: React.FC<ScheduleStepProps> = ({
                         isSelectedDay
                           ? 'border-[var(--preto)] bg-neutral-50 shadow-2xs'
                           : isWork
-                          ? 'border-neutral-300 bg-emerald-50/40'
+                          ? 'border-[var(--border-default)] bg-[var(--accent-tint)]'
                           : 'border-dashed border-neutral-200 bg-neutral-50/50 opacity-60'
                       }`}
                     >
@@ -1287,7 +1079,7 @@ export const ScheduleStep: React.FC<ScheduleStepProps> = ({
                           {dayShort}
                         </span>
                         {isWork ? (
-                          <Check className="w-3 h-3 text-emerald-600" />
+                          <Check className="w-3 h-3 text-[var(--exodo-red)]" />
                         ) : (
                           <span className="text-[0.55rem] text-neutral-400 uppercase font-mono">Folga</span>
                         )}
@@ -1351,7 +1143,7 @@ export const ScheduleStep: React.FC<ScheduleStepProps> = ({
               <Zap className="w-4 h-4 text-[var(--exodo-red)]" />
               LEITURA VIVA
             </span>
-            <span className="text-[0.6rem] font-mono font-bold text-emerald-800 bg-emerald-100 px-1.5 py-0.5 rounded">
+            <span className="text-[0.6rem] font-mono font-bold text-[var(--exodo-red)] bg-[var(--accent-tint)] px-1.5 py-0.5">
               TEMPO REAL
             </span>
           </div>
@@ -1370,19 +1162,19 @@ export const ScheduleStep: React.FC<ScheduleStepProps> = ({
 
             <div className="p-2.5 bg-neutral-50 border border-neutral-300 rounded flex items-center justify-between">
               <span className="text-[0.65rem] font-title font-bold uppercase text-neutral-500">Bloqueios</span>
-              <span className="text-sm font-mono font-bold text-amber-700">{totalBlockWeeklyHours}h</span>
+              <span className="text-sm font-mono font-bold text-[var(--cinza-escuro)]">{totalBlockWeeklyHours}h</span>
             </div>
 
-            <div className="p-3 bg-emerald-50 border-2 border-emerald-600 rounded flex items-center justify-between shadow-2xs">
-              <span className="text-[0.68rem] font-title font-bold uppercase text-emerald-900">Disponibilidade</span>
-              <span className="text-base font-mono font-black text-emerald-900">{totalNetWeeklyHours}h</span>
+            <div className="p-3 bg-[var(--accent-tint)] border-2 border-[var(--exodo-red)] rounded flex items-center justify-between shadow-2xs">
+              <span className="text-[0.68rem] font-title font-bold uppercase text-[var(--preto)]">Disponibilidade</span>
+              <span className="text-base font-mono font-black text-[var(--preto)]">{totalNetWeeklyHours}h</span>
             </div>
           </div>
 
           {/* Live System Commentary */}
-          <div className="p-3 bg-amber-50/80 border border-amber-300 rounded space-y-1.5 text-xs font-body text-amber-950">
-            <div className="flex items-center gap-1.5 font-title font-bold text-[0.65rem] text-amber-900 uppercase">
-              <Sparkles className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+          <div className="p-3 bg-[var(--cinza-claro)] space-y-1.5 text-xs font-body text-[var(--preto)]">
+            <div className="flex items-center gap-1.5 font-title font-bold text-[0.65rem] text-[var(--exodo-red)] uppercase">
+              <Sparkles className="w-3.5 h-3.5 shrink-0" />
               <span>LEITURA DA AGENDA</span>
             </div>
             <p className="text-[0.7rem] leading-relaxed">
@@ -1397,14 +1189,14 @@ export const ScheduleStep: React.FC<ScheduleStepProps> = ({
 
           {/* Module 06 Next Step Card */}
           {wizardStep === 6 && (
-            <div className="p-3 bg-indigo-50 border border-indigo-200 rounded space-y-2 text-xs font-body text-indigo-950">
-              <span className="font-title font-bold text-[0.65rem] uppercase text-indigo-900 block">
+            <div className="p-3 bg-[var(--accent-tint)] border border-[var(--exodo-red)] space-y-2 text-xs font-body text-[var(--preto)]">
+              <span className="font-title font-bold text-[0.65rem] uppercase text-[var(--exodo-red)] block">
                 PRÓXIMA ETAPA
               </span>
-              <p className="text-[0.68rem] text-indigo-900 leading-normal">
+              <p className="text-[0.68rem] text-[var(--preto)] leading-normal">
                 Na próxima fase, o Navegador Estratégico irá explorar configurações possíveis para reconciliar sua carga atual com sua disponibilidade real.
               </p>
-              <ul className="text-[0.65rem] space-y-1 text-indigo-800 list-disc pl-4 font-subtitle font-bold">
+              <ul className="text-[0.65rem] space-y-1 text-[var(--cinza-escuro)] list-disc pl-4 font-subtitle font-bold">
                 <li>Expectativas</li>
                 <li>Restrições</li>
                 <li>Escolha da configuração</li>
