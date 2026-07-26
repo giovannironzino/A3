@@ -441,208 +441,7 @@ export const ProductsStep: React.FC<ProductsStepProps> = ({
   return (
     <div className="w-full text-[var(--preto)] font-body">
       {/* MAIN THREE-COLUMN GRID CONTAINER WITH LEFT SIDEBAR + MAIN CONTENT + RIGHT DRAWER */}
-      <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-0 border border-neutral-200 bg-white shadow-xs rounded-xl overflow-hidden">
-        {/* Left journey/trilha sidebar removed — now shown once via the shared <JourneyTrail> above this component */}
-        <aside className="hidden lg:col-span-3 xl:col-span-3 bg-white border-r border-b lg:border-b-0 border-neutral-200 p-4 shrink-0 space-y-5">
-          {/* HEADER TRILHA */}
-          <div className="flex items-center justify-between pb-2 border-b border-neutral-200">
-            <div className="flex items-center gap-1.5">
-              <Compass className="w-4 h-4 text-[var(--exodo-red)]" />
-              <span className="text-[0.7rem] font-title font-bold text-[var(--preto)] uppercase tracking-wider">
-                TRILHA DA JORNADA
-              </span>
-            </div>
-            <span className="text-[0.6rem] font-subtitle font-bold bg-neutral-100 text-neutral-700 px-1.5 py-0.5 rounded">
-              3 BLOCOS
-            </span>
-          </div>
-
-          {/* BLOCO A: CLAREZA (DIAGNÓSTICO) */}
-          <div className="space-y-1.5">
-            <div className="flex items-center justify-between">
-              <span className="text-[0.63rem] font-subtitle font-bold text-emerald-800 uppercase tracking-wider flex items-center gap-1">
-                <Eye className="w-3 h-3 text-emerald-600" />
-                BLOCO A • CLAREZA
-              </span>
-              <span className="text-[0.6rem] text-emerald-700 font-subtitle font-bold bg-emerald-50 px-1 rounded">
-                Diagnóstico
-              </span>
-            </div>
-            <nav className="space-y-0.5">
-              {[
-                { id: 'products', label: '01. Catálogo de Produtos', icon: Package, badge: products.length },
-                { id: 'patient-workload', label: '02. Carga de Pacientes', icon: Users },
-                { id: 'schedule', label: '03. Agenda Disponível', icon: Calendar },
-                { id: 'other-activities', label: '04. Outras Atividades', icon: Clock },
-                { id: 'current-model', label: '05. Modelo Atual', icon: ShieldCheck },
-              ].map((item) => {
-                const IconComp = item.icon;
-                const isActive = activeStage === item.id || (!activeStage && item.id === 'products');
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => {
-                      if (item.id === 'products') {
-                        setMode('dashboard');
-                      }
-                      if (onNavigateToStage) {
-                        onNavigateToStage(item.id as StageName);
-                      }
-                    }}
-                    className={`w-full text-left px-2.5 py-1.5 text-[0.72rem] font-subtitle font-bold uppercase transition-all flex items-center justify-between cursor-pointer border-l-3 ${
-                      isActive
-                        ? 'border-[var(--exodo-red)] bg-red-50/80 text-[var(--preto)] shadow-2xs'
-                        : 'border-transparent text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900'
-                    }`}
-                  >
-                    <div className="flex items-center gap-1.5 truncate">
-                      <IconComp className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-[var(--exodo-red)]' : 'text-neutral-400'}`} />
-                      <span className="truncate">{item.label}</span>
-                    </div>
-                    {item.badge !== undefined && (
-                      <span className="text-[0.6rem] bg-neutral-100 text-neutral-800 px-1.5 py-0.2 rounded font-mono shrink-0">
-                        {item.badge}
-                      </span>
-                    )}
-                  </button>
-                );
-              })}
-            </nav>
-            {/* Action button inside products step */}
-            {mode === 'dashboard' && (
-              <button
-                onClick={handleStartNewProduct}
-                className="w-full text-left ml-2 py-1 text-[0.68rem] font-subtitle text-emerald-800 font-bold hover:text-emerald-950 flex items-center gap-1 cursor-pointer"
-              >
-                <Plus className="w-3 h-3 text-emerald-600" />
-                <span>+ Criar Novo Produto</span>
-              </button>
-            )}
-          </div>
-
-          {/* BLOCO B: ESCOLHA (NAVEGADOR) */}
-          <div className="space-y-1.5 pt-2 border-t border-neutral-200">
-            <div className="flex items-center justify-between">
-              <span className="text-[0.63rem] font-subtitle font-bold text-amber-800 uppercase tracking-wider flex items-center gap-1">
-                <Compass className="w-3 h-3 text-amber-600" />
-                BLOCO B • ESCOLHA
-              </span>
-              <span className="text-[0.6rem] text-amber-700 font-subtitle font-bold bg-amber-50 px-1 rounded">
-                Navegador
-              </span>
-            </div>
-            <nav className="space-y-0.5">
-              {[
-                { id: 'expectations', label: '06. Expectativas', icon: Target },
-                { id: 'boundaries', label: '07. Condições & Limites', icon: Lock },
-                { id: 'configuration-choice', label: '08. Escolha da Config.', icon: Award },
-              ].map((item) => {
-                const IconComp = item.icon;
-                const isActive = activeStage === item.id;
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => {
-                      if (onNavigateToStage) {
-                        onNavigateToStage(item.id as StageName);
-                      }
-                    }}
-                    className={`w-full text-left px-2.5 py-1.5 text-[0.72rem] font-subtitle font-bold uppercase transition-all flex items-center justify-between cursor-pointer border-l-3 ${
-                      isActive
-                        ? 'border-amber-600 bg-amber-50/80 text-[var(--preto)] shadow-2xs'
-                        : 'border-transparent text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900'
-                    }`}
-                  >
-                    <div className="flex items-center gap-1.5 truncate">
-                      <IconComp className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-amber-600' : 'text-neutral-400'}`} />
-                      <span className="truncate">{item.label}</span>
-                    </div>
-                  </button>
-                );
-              })}
-            </nav>
-          </div>
-
-          {/* BLOCO C: AÇÃO (PLANO TÁTICO) */}
-          <div className="space-y-1.5 pt-2 border-t border-neutral-200">
-            <div className="flex items-center justify-between">
-              <span className="text-[0.63rem] font-subtitle font-bold text-indigo-800 uppercase tracking-wider flex items-center gap-1">
-                <Zap className="w-3 h-3 text-indigo-600" />
-                BLOCO C • AÇÃO
-              </span>
-              <span className="text-[0.6rem] text-indigo-700 font-subtitle font-bold bg-indigo-50 px-1 rounded">
-                Execução
-              </span>
-            </div>
-            <nav className="space-y-0.5">
-              {[
-                { id: 'tactical-plan', label: '09. Plano Tático 90 Dias', icon: Calendar },
-              ].map((item) => {
-                const IconComp = item.icon;
-                const isActive = activeStage === item.id;
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => {
-                      if (onNavigateToStage) {
-                        onNavigateToStage(item.id as StageName);
-                      }
-                    }}
-                    className={`w-full text-left px-2.5 py-1.5 text-[0.72rem] font-subtitle font-bold uppercase transition-all flex items-center justify-between cursor-pointer border-l-3 ${
-                      isActive
-                        ? 'border-indigo-600 bg-indigo-50/80 text-[var(--preto)] shadow-2xs'
-                        : 'border-transparent text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900'
-                    }`}
-                  >
-                    <div className="flex items-center gap-1.5 truncate">
-                      <IconComp className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-indigo-600' : 'text-neutral-400'}`} />
-                      <span className="truncate">{item.label}</span>
-                    </div>
-                  </button>
-                );
-              })}
-            </nav>
-          </div>
-
-          {/* SHORTCUTS PARA ENTREGAS FORMAIS */}
-          <div className="pt-3 border-t border-neutral-200 space-y-1.5">
-            <span className="text-[0.6rem] font-subtitle font-bold text-neutral-400 uppercase tracking-wider block">
-              ENTREGAS FORMAIS
-            </span>
-            <button
-              onClick={() => onOpenDeliverable ? onOpenDeliverable('retrato') : onToast('Acessando Retrato da Clínica')}
-              className="w-full text-left px-2 py-1 text-[0.68rem] font-subtitle font-medium text-neutral-700 hover:text-emerald-900 hover:bg-emerald-50 rounded flex items-center gap-1.5 cursor-pointer transition-colors"
-            >
-              <FileText className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-              <span className="truncate">Retrato da Clínica</span>
-            </button>
-            <button
-              onClick={() => onOpenDeliverable ? onOpenDeliverable('caminho') : onToast('Acessando O Caminho Escolhido')}
-              className="w-full text-left px-2 py-1 text-[0.68rem] font-subtitle font-medium text-neutral-700 hover:text-amber-900 hover:bg-amber-50 rounded flex items-center gap-1.5 cursor-pointer transition-colors"
-            >
-              <Award className="w-3.5 h-3.5 text-amber-600 shrink-0" />
-              <span className="truncate">O Caminho Escolhido</span>
-            </button>
-            <button
-              onClick={() => onOpenDeliverable ? onOpenDeliverable('plano') : onToast('Acessando Plano Tático')}
-              className="w-full text-left px-2 py-1 text-[0.68rem] font-subtitle font-medium text-neutral-700 hover:text-indigo-900 hover:bg-indigo-50 rounded flex items-center gap-1.5 cursor-pointer transition-colors"
-            >
-              <Calendar className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
-              <span className="truncate">Plano Tático 90 Dias</span>
-            </button>
-          </div>
-
-          <div className="pt-3 border-t border-neutral-200">
-            <button
-              onClick={() => onToast('Central de apoio do Sistema A3')}
-              className="text-[0.68rem] font-subtitle text-neutral-500 hover:text-neutral-900 flex items-center gap-1.5 cursor-pointer bg-transparent border-none p-0"
-            >
-              <HelpCircle className="w-3.5 h-3.5 text-neutral-400 shrink-0" />
-              <span>Precisa de apoio? Ver guia</span>
-            </button>
-          </div>
-        </aside>
-
+      <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-0 border border-[var(--border-default)] bg-[var(--branco)] overflow-hidden">
         {/* ========================================================= */}
         {/* CENTER / MAIN PANEL CONTENT AREA                          */}
         {/* ========================================================= */}
@@ -684,7 +483,7 @@ export const ProductsStep: React.FC<ProductsStepProps> = ({
                       >
                         <div>
                           <div className="flex items-center justify-between mb-2">
-                            <span className="bg-emerald-100 text-emerald-800 border border-emerald-300 text-[0.65rem] font-subtitle font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                            <span className="bg-[var(--accent-tint)] text-[var(--exodo-red)] border border-[var(--exodo-red)] text-[0.65rem] font-subtitle font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
                               ATIVO
                             </span>
                             <div className="flex items-center gap-1">
@@ -721,7 +520,7 @@ export const ProductsStep: React.FC<ProductsStepProps> = ({
                             </div>
                             <div>
                               <span className="text-neutral-400 text-[0.6rem] uppercase block font-bold">PACIENTES</span>
-                              <strong className="text-emerald-700 font-bold">{prod.activePatients} pacientes</strong>
+                              <strong className="text-[var(--exodo-red)] font-bold">{prod.activePatients} pacientes</strong>
                             </div>
                           </div>
 
@@ -772,9 +571,9 @@ export const ProductsStep: React.FC<ProductsStepProps> = ({
               </div>
 
               {/* Action Banner to Proceed */}
-              <div className="bg-neutral-900 text-white p-5 border-2 border-[var(--preto)] flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md">
+              <div className="bg-[var(--preto)] text-white p-5 border-2 border-[var(--preto)] flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div>
-                  <h4 className="font-subtitle font-bold text-sm uppercase text-amber-300">
+                  <h4 className="font-subtitle font-bold text-sm uppercase text-[var(--exodo-red)]">
                     Catálogo de Produtos Estruturado
                   </h4>
                   <p className="font-body text-xs text-neutral-300 mt-0.5">
@@ -785,7 +584,7 @@ export const ProductsStep: React.FC<ProductsStepProps> = ({
                   variant="primary"
                   size="md"
                   onClick={onCompleteStep}
-                  className="py-3 px-6 text-xs uppercase font-bold tracking-wider shrink-0 bg-emerald-600 hover:bg-emerald-700 text-white border-none flex items-center gap-2"
+                  className="py-3 px-6 text-xs uppercase font-bold tracking-wider shrink-0 bg-[var(--exodo-red)] hover:bg-[var(--exodo-red)] text-white border-none flex items-center gap-2"
                 >
                   <span>Avançar para Agenda e Capacidade →</span>
                 </Button>
@@ -820,7 +619,7 @@ export const ProductsStep: React.FC<ProductsStepProps> = ({
                           mNum === currentModule
                             ? 'bg-[var(--exodo-red)] text-white border-[var(--exodo-red)]'
                             : mNum < currentModule
-                            ? 'bg-emerald-600 text-white border-emerald-600'
+                            ? 'bg-[var(--exodo-red)] text-white border-[var(--exodo-red)]'
                             : 'bg-neutral-100 text-neutral-400 border-neutral-300'
                         }`}
                       >
@@ -1271,7 +1070,7 @@ export const ProductsStep: React.FC<ProductsStepProps> = ({
                               <span className="text-[0.65rem] text-neutral-500">min por ocor.</span>
                             </div>
 
-                            <span className="text-[0.7rem] font-mono font-bold text-emerald-800 bg-emerald-50 px-2 py-1 rounded border border-emerald-200">
+                            <span className="text-[0.7rem] font-mono font-bold text-[var(--exodo-red)] bg-[var(--accent-tint)] px-2 py-1 rounded border border-[var(--exodo-red)]">
                               = {totalMins} min em 3 meses
                             </span>
 
@@ -1307,12 +1106,12 @@ export const ProductsStep: React.FC<ProductsStepProps> = ({
                   </div>
 
                   {/* Calculated Total Minutes Card */}
-                  <div className="bg-emerald-50 border border-emerald-300 p-4 rounded flex items-center justify-between">
+                  <div className="bg-[var(--accent-tint)] border border-[var(--exodo-red)] p-4 rounded flex items-center justify-between">
                     <div>
-                      <span className="text-[0.65rem] font-subtitle font-bold text-emerald-800 uppercase block">
+                      <span className="text-[0.65rem] font-subtitle font-bold text-[var(--exodo-red)] uppercase block">
                         Tempo total calculado
                       </span>
-                      <strong className="font-title text-xl text-emerald-950 font-bold">
+                      <strong className="font-title text-xl text-[var(--preto)] font-bold">
                         {calculatedTotalMinutes} min ({calculatedTotalHours} horas) em 3 meses
                       </strong>
                     </div>
@@ -1465,33 +1264,33 @@ export const ProductsStep: React.FC<ProductsStepProps> = ({
 
                     {/* 3 Calculated Financial Summary Cards */}
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3 border-t border-neutral-200">
-                      <div className="p-3 bg-emerald-50 border border-emerald-200 rounded">
-                        <span className="text-[0.62rem] font-subtitle font-bold text-emerald-800 uppercase block">
+                      <div className="p-3 bg-[var(--accent-tint)] border border-[var(--exodo-red)] rounded">
+                        <span className="text-[0.62rem] font-subtitle font-bold text-[var(--exodo-red)] uppercase block">
                           Receita mensal
                         </span>
-                        <strong className="font-title text-base text-emerald-950 font-bold block mt-0.5">
+                        <strong className="font-title text-base text-[var(--preto)] font-bold block mt-0.5">
                           R$ {monthlyRevenue.toLocaleString('pt-BR')}
                         </strong>
-                        <span className="text-[0.62rem] text-emerald-700">({numericPatients} pacientes)</span>
+                        <span className="text-[0.62rem] text-[var(--exodo-red)]">({numericPatients} pacientes)</span>
                       </div>
 
-                      <div className="p-3 bg-emerald-50 border border-emerald-200 rounded">
-                        <span className="text-[0.62rem] font-subtitle font-bold text-emerald-800 uppercase block">
+                      <div className="p-3 bg-[var(--accent-tint)] border border-[var(--exodo-red)] rounded">
+                        <span className="text-[0.62rem] font-subtitle font-bold text-[var(--exodo-red)] uppercase block">
                           Receita em 3 meses
                         </span>
-                        <strong className="font-title text-base text-emerald-950 font-bold block mt-0.5">
+                        <strong className="font-title text-base text-[var(--preto)] font-bold block mt-0.5">
                           R$ {threeMonthRevenue.toLocaleString('pt-BR')}
                         </strong>
                       </div>
 
-                      <div className="p-3 bg-amber-50 border border-amber-200 rounded">
-                        <span className="text-[0.62rem] font-subtitle font-bold text-amber-800 uppercase block">
+                      <div className="p-3 bg-[var(--cinza-claro)]">
+                        <span className="text-[0.62rem] font-subtitle font-bold text-[var(--cinza-escuro)] uppercase block">
                           Tempo por paciente
                         </span>
-                        <strong className="font-title text-base text-amber-950 font-bold block mt-0.5">
+                        <strong className="font-title text-base text-[var(--preto)] font-bold block mt-0.5">
                           {calculatedTotalHours} horas
                         </strong>
-                        <span className="text-[0.62rem] text-amber-800">em 3 meses</span>
+                        <span className="text-[0.62rem] text-[var(--cinza-escuro)]">em 3 meses</span>
                       </div>
                     </div>
                   </div>
@@ -1597,7 +1396,7 @@ export const ProductsStep: React.FC<ProductsStepProps> = ({
                     <div className="p-3 flex items-center justify-between hover:bg-neutral-50">
                       <div>
                         <span className="text-[0.65rem] font-bold text-neutral-400 uppercase block">Tempo total estimado</span>
-                        <strong className="text-emerald-800 font-mono">{calculatedTotalHours} horas em 3 meses</strong>
+                        <strong className="text-[var(--exodo-red)] font-mono">{calculatedTotalHours} horas em 3 meses</strong>
                       </div>
                       <button onClick={() => jumpToSubStep(6)} className="text-[0.7rem] font-bold text-[var(--exodo-red)] cursor-pointer bg-transparent border-none">
                         Editar
@@ -1635,8 +1434,8 @@ export const ProductsStep: React.FC<ProductsStepProps> = ({
                     </div>
                   </div>
 
-                  <div className="p-3 bg-emerald-50 border border-emerald-300 text-xs font-subtitle text-emerald-900 flex items-center gap-2 rounded">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <div className="p-3 bg-[var(--accent-tint)] border border-[var(--exodo-red)] text-xs font-subtitle text-[var(--preto)] flex items-center gap-2 rounded">
+                    <CheckCircle2 className="w-4 h-4 text-[var(--exodo-red)] shrink-0" />
                     <span>Tudo pronto! Este produto está completo e pronto para ser salvo.</span>
                   </div>
 
@@ -1664,7 +1463,7 @@ export const ProductsStep: React.FC<ProductsStepProps> = ({
           {/* VIEW 3: SAVED SUCCESS CANVAS VIEW */}
           {mode === 'saved_success' && (
             <div className="bg-white border-2 border-[var(--preto)] p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] text-center space-y-6">
-              <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto border-2 border-emerald-400">
+              <div className="w-16 h-16 bg-[var(--accent-tint)] text-[var(--exodo-red)] rounded-full flex items-center justify-center mx-auto border-2 border-[var(--exodo-red)]">
                 <CheckCircle2 className="w-10 h-10" />
               </div>
               <div className="space-y-2">
@@ -1720,14 +1519,14 @@ export const ProductsStep: React.FC<ProductsStepProps> = ({
               </div>
             </div>
           ) : mode === 'saved_success' ? (
-            <div className="p-4 bg-emerald-50 border border-emerald-300 rounded space-y-3">
+            <div className="p-4 bg-[var(--accent-tint)] border border-[var(--exodo-red)] rounded space-y-3">
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
-                <strong className="font-subtitle font-bold text-xs text-emerald-950 uppercase">
+                <CheckCircle2 className="w-5 h-5 text-[var(--exodo-red)] shrink-0" />
+                <strong className="font-subtitle font-bold text-xs text-[var(--preto)] uppercase">
                   Produto cadastrado com sucesso!
                 </strong>
               </div>
-              <p className="text-[0.72rem] text-emerald-800 font-body">
+              <p className="text-[0.72rem] text-[var(--exodo-red)] font-body">
                 Seu catálogo agora possui {products.length} {products.length === 1 ? 'produto cadastrado' : 'produtos cadastrados'}.
               </p>
               <div className="space-y-2 pt-2">
@@ -1760,7 +1559,7 @@ export const ProductsStep: React.FC<ProductsStepProps> = ({
                   <div className="flex items-center justify-between">
                     <span className="flex items-center gap-1.5 text-neutral-700">
                       {productName ? (
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[var(--exodo-red)] shrink-0" />
                       ) : (
                         <span className="w-2.5 h-2.5 rounded-full bg-red-500 shrink-0 inline-block" />
                       )}
@@ -1774,7 +1573,7 @@ export const ProductsStep: React.FC<ProductsStepProps> = ({
                   <div className="flex items-center justify-between">
                     <span className="flex items-center gap-1.5 text-neutral-700">
                       {selectedAudiences.length > 0 ? (
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[var(--exodo-red)] shrink-0" />
                       ) : (
                         <span className="w-2.5 h-2.5 rounded-full bg-neutral-300 shrink-0 inline-block" />
                       )}
@@ -1788,7 +1587,7 @@ export const ProductsStep: React.FC<ProductsStepProps> = ({
                   <div className="flex items-center justify-between">
                     <span className="flex items-center gap-1.5 text-neutral-700">
                       {selectedObjectives.length > 0 ? (
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[var(--exodo-red)] shrink-0" />
                       ) : (
                         <span className="w-2.5 h-2.5 rounded-full bg-neutral-300 shrink-0 inline-block" />
                       )}
@@ -1802,7 +1601,7 @@ export const ProductsStep: React.FC<ProductsStepProps> = ({
                   <div className="flex items-center justify-between">
                     <span className="flex items-center gap-1.5 text-neutral-700">
                       {format ? (
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[var(--exodo-red)] shrink-0" />
                       ) : (
                         <span className="w-2.5 h-2.5 rounded-full bg-neutral-300 shrink-0 inline-block" />
                       )}
@@ -1814,7 +1613,7 @@ export const ProductsStep: React.FC<ProductsStepProps> = ({
                   <div className="flex items-center justify-between">
                     <span className="flex items-center gap-1.5 text-neutral-700">
                       {durationLabel ? (
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[var(--exodo-red)] shrink-0" />
                       ) : (
                         <span className="w-2.5 h-2.5 rounded-full bg-neutral-300 shrink-0 inline-block" />
                       )}
@@ -1826,13 +1625,13 @@ export const ProductsStep: React.FC<ProductsStepProps> = ({
                   <div className="flex items-center justify-between">
                     <span className="flex items-center gap-1.5 text-neutral-700">
                       {deliverablesList.length > 0 ? (
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[var(--exodo-red)] shrink-0" />
                       ) : (
                         <span className="w-2.5 h-2.5 rounded-full bg-neutral-300 shrink-0 inline-block" />
                       )}
                       <span>Entregas</span>
                     </span>
-                    <strong className="text-[0.7rem] text-emerald-800 font-mono">
+                    <strong className="text-[0.7rem] text-[var(--exodo-red)] font-mono">
                       {deliverablesList.length} items ({calculatedTotalHours}h)
                     </strong>
                   </div>
@@ -1840,7 +1639,7 @@ export const ProductsStep: React.FC<ProductsStepProps> = ({
                   <div className="flex items-center justify-between">
                     <span className="flex items-center gap-1.5 text-neutral-700">
                       {price ? (
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[var(--exodo-red)] shrink-0" />
                       ) : (
                         <span className="w-2.5 h-2.5 rounded-full bg-neutral-300 shrink-0 inline-block" />
                       )}
@@ -1854,7 +1653,7 @@ export const ProductsStep: React.FC<ProductsStepProps> = ({
                   <div className="flex items-center justify-between">
                     <span className="flex items-center gap-1.5 text-neutral-700">
                       {currentSubStep === 8 ? (
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[var(--exodo-red)] shrink-0" />
                       ) : (
                         <span className="w-2.5 h-2.5 rounded-full bg-neutral-300 shrink-0 inline-block" />
                       )}
