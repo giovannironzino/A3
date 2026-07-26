@@ -57,11 +57,7 @@ export const A3System: React.FC<A3SystemProps> = ({ onBackToLanding, onToast }) 
   // Authentication & User State (Defaults to active subscriber profile)
   const [user, setUser] = useState<A3UserData | null>(() => {
     const saved = localStorage.getItem('exodo_a3_user');
-    return saved ? JSON.parse(saved) : {
-      name: 'Dra. Amanda Silva',
-      email: 'amanda@nutricao.com.br',
-      clinicName: 'Consultório de Nutrição',
-    };
+    return saved ? JSON.parse(saved) : null;
   });
 
   const [firebaseUid, setFirebaseUid] = useState<string | null>(null);
@@ -77,7 +73,7 @@ export const A3System: React.FC<A3SystemProps> = ({ onBackToLanding, onToast }) 
   });
 
   // Flow State
-  const [startedWizard, setStartedWizard] = useState(true);
+  const [startedWizard, setStartedWizard] = useState(false);
   const [activeStage, setActiveStage] = useState<StageName>('products');
   const [activeDeliverableModal, setActiveDeliverableModal] = useState<'retrato' | 'caminho' | 'plano' | null>(null);
   const [showSaveToast, setShowSaveToast] = useState(false);
