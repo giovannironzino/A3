@@ -442,10 +442,8 @@ export const ProductsStep: React.FC<ProductsStepProps> = ({
     <div className="w-full text-[var(--preto)] font-body">
       {/* MAIN THREE-COLUMN GRID CONTAINER WITH LEFT SIDEBAR + MAIN CONTENT + RIGHT DRAWER */}
       <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-0 border border-neutral-200 bg-white shadow-xs rounded-xl overflow-hidden">
-        {/* ========================================================= */}
-        {/* LEFT NAVIGATION SIDEBAR • TRILHA DA JORNADA COMPLETA      */}
-        {/* ========================================================= */}
-        <aside className="lg:col-span-3 xl:col-span-3 bg-white border-r border-b lg:border-b-0 border-neutral-200 p-4 shrink-0 space-y-5">
+        {/* Left journey/trilha sidebar removed — now shown once via the shared <JourneyTrail> above this component */}
+        <aside className="hidden lg:col-span-3 xl:col-span-3 bg-white border-r border-b lg:border-b-0 border-neutral-200 p-4 shrink-0 space-y-5">
           {/* HEADER TRILHA */}
           <div className="flex items-center justify-between pb-2 border-b border-neutral-200">
             <div className="flex items-center gap-1.5">
@@ -648,7 +646,7 @@ export const ProductsStep: React.FC<ProductsStepProps> = ({
         {/* ========================================================= */}
         {/* CENTER / MAIN PANEL CONTENT AREA                          */}
         {/* ========================================================= */}
-        <main className="lg:col-span-6 xl:col-span-6 p-4 sm:p-6 space-y-6 min-w-0">
+        <main className="lg:col-span-9 xl:col-span-9 p-4 sm:p-6 space-y-6 min-w-0">
           {/* VIEW 1: DASHBOARD DO CATÁLOGO (Screen 1) */}
           {mode === 'dashboard' && (
             <div className="space-y-6">

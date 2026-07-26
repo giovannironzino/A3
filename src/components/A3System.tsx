@@ -824,6 +824,16 @@ export const A3System: React.FC<A3SystemProps> = ({ onBackToLanding, onToast }) 
         ) : (
           /* Conversational Stage Shell */
           <div>
+            <JourneyTrail
+              activeStage={activeStage}
+              onSelectStage={(stg) => setActiveStage(stg)}
+              savedCurrentModelData={savedCurrentModelData}
+              savedChosenConfigData={savedChosenConfigData}
+              savedTacticalPlanData={savedTacticalPlanData}
+              onOpenDeliverable={(type) => setActiveDeliverableModal(type)}
+              onToast={onToast}
+            />
+
             {/* Stage Component Rendering */}
             {activeStage === 'products' && (
               <ProductsStep
