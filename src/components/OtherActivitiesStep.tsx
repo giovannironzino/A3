@@ -2451,15 +2451,15 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
             <div className="h-6 w-px bg-neutral-200 hidden sm:block" />
             <div className="flex items-center gap-2.5">
               <div className="relative">
-                <div className="w-8 h-8 rounded-full bg-emerald-900 border border-emerald-300 flex items-center justify-center text-emerald-200 shadow-2xs">
-                  <Bot className="w-5 h-5 text-emerald-300" />
+                <div className="w-8 h-8 bg-[var(--preto)] border border-[var(--exodo-red)] flex items-center justify-center text-white">
+                  <Bot className="w-5 h-5 text-[var(--exodo-red)]" />
                 </div>
-                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-white rounded-full" />
+                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-[var(--exodo-red)] border-2 border-white rounded-full" />
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
                   <span className="text-xs font-title font-bold text-neutral-900">Gio • Consultor Estratégico</span>
-                  <span className="bg-[#b91c1c] text-white text-[0.55rem] font-bold px-1.5 py-0.2 rounded uppercase">A3</span>
+                  <span className="bg-[var(--exodo-red)] text-white text-[0.55rem] font-bold px-1.5 py-0.2 rounded uppercase">A3</span>
                 </div>
                 <span className="text-[0.62rem] text-neutral-500 block">Investigação do Modelo Atual da Clínica</span>
               </div>
@@ -2483,16 +2483,16 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
                   key={axis.num}
                   className={`flex items-center gap-1 px-2 py-1 rounded-full border transition-all ${
                     isDone
-                      ? 'bg-emerald-50 border-emerald-300 text-emerald-800'
+                      ? 'bg-[var(--accent-tint)] border-[var(--exodo-red)] text-[var(--exodo-red)]'
                       : isCurrent
-                      ? 'bg-emerald-700 border-emerald-800 text-white shadow-2xs'
+                      ? 'bg-[var(--exodo-red)] border-[var(--preto)] text-white shadow-2xs'
                       : 'bg-neutral-100 border-neutral-200 text-neutral-400'
                   }`}
                 >
                   {isDone ? (
-                    <Check className="w-3 h-3 text-emerald-600 stroke-[3]" />
+                    <Check className="w-3 h-3 text-[var(--exodo-red)] stroke-[3]" />
                   ) : isCurrent ? (
-                    <span className="w-2 h-2 rounded-full bg-emerald-300 animate-pulse" />
+                    <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
                   ) : (
                     <span className="w-2 h-2 rounded-full bg-neutral-300" />
                   )}
@@ -2552,7 +2552,7 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
           <div className="space-y-3 relative before:absolute before:left-3.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-neutral-200">
             {/* PAST MILESTONE 1 */}
             <div className="relative pl-7 group">
-              <div className="absolute left-1.5 top-1.5 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white flex items-center justify-center text-white text-[0.55rem] font-bold shadow-2xs">
+              <div className="absolute left-1.5 top-1.5 w-4 h-4 rounded-full bg-[var(--accent-tint)]0 border-2 border-white flex items-center justify-center text-white text-[0.55rem] font-bold shadow-2xs">
                 ✓
               </div>
               <div className="bg-white border border-neutral-200 rounded-xl p-3 shadow-2xs space-y-1 hover:border-neutral-300 transition-all">
@@ -2563,8 +2563,8 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
                 <p className="text-[0.7rem] text-neutral-600 line-clamp-2 leading-snug">
                   "Para começarmos, qual é a promessa central que você faz aos seus pacientes?"
                 </p>
-                <div className="pt-1 flex items-center gap-1 text-[0.62rem] text-emerald-700 font-bold">
-                  <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                <div className="pt-1 flex items-center gap-1 text-[0.62rem] text-[var(--exodo-red)] font-bold">
+                  <CheckCircle2 className="w-3 h-3 text-[var(--exodo-red)]" />
                   <span>Promessa registrada</span>
                 </div>
               </div>
@@ -2572,7 +2572,7 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
 
             {/* PAST MILESTONE 2 */}
             <div className="relative pl-7 group">
-              <div className="absolute left-1.5 top-1.5 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white flex items-center justify-center text-white text-[0.55rem] font-bold shadow-2xs">
+              <div className="absolute left-1.5 top-1.5 w-4 h-4 rounded-full bg-[var(--accent-tint)]0 border-2 border-white flex items-center justify-center text-white text-[0.55rem] font-bold shadow-2xs">
                 ✓
               </div>
               <div className="bg-white border border-neutral-200 rounded-xl p-3 shadow-2xs space-y-1 hover:border-neutral-300 transition-all">
@@ -2583,8 +2583,8 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
                 <p className="text-[0.7rem] text-neutral-600 line-clamp-2 leading-snug">
                   "Quais canais e processos comerciais você utiliza para atrair e converter?"
                 </p>
-                <div className="pt-1 flex items-center gap-1 text-[0.62rem] text-emerald-700 font-bold">
-                  <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                <div className="pt-1 flex items-center gap-1 text-[0.62rem] text-[var(--exodo-red)] font-bold">
+                  <CheckCircle2 className="w-3 h-3 text-[var(--exodo-red)]" />
                   <span>Canais & Comercial OK</span>
                 </div>
               </div>
@@ -2592,21 +2592,21 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
 
             {/* CURRENT ACTIVE STEP MILESTONE */}
             <div className="relative pl-7">
-              <div className="absolute left-1.5 top-1.5 w-4 h-4 rounded-full bg-[#b91c1c] border-2 border-white flex items-center justify-center text-white text-[0.55rem] font-bold shadow-2xs animate-pulse">
+              <div className="absolute left-1.5 top-1.5 w-4 h-4 rounded-full bg-[var(--exodo-red)] border-2 border-white flex items-center justify-center text-white text-[0.55rem] font-bold shadow-2xs animate-pulse">
                 ●
               </div>
               <div className="bg-red-50/50 border border-red-200 rounded-xl p-3 shadow-2xs space-y-1.5">
                 <div className="flex items-center justify-between text-[0.65rem]">
-                  <span className="font-bold text-[#b91c1c] flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#b91c1c] animate-ping" />
+                  <span className="font-bold text-[var(--exodo-red)] flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--exodo-red)] animate-ping" />
                     Gio está investigando
                   </span>
-                  <span className="text-[#b91c1c] font-mono font-bold">Agora</span>
+                  <span className="text-[var(--exodo-red)] font-mono font-bold">Agora</span>
                 </div>
                 <p className="text-[0.72rem] font-subtitle font-bold text-neutral-900 leading-snug">
                   "{meta.context}"
                 </p>
-                <div className="pt-0.5 flex items-center gap-1 text-[0.62rem] text-[#b91c1c] font-bold bg-white/80 border border-red-200 px-2 py-0.5 rounded-md">
+                <div className="pt-0.5 flex items-center gap-1 text-[0.62rem] text-[var(--exodo-red)] font-bold bg-white/80 border border-red-200 px-2 py-0.5 rounded-md">
                   <span>Pergunta atual • {meta.axisTag.split('—')[1]}</span>
                 </div>
               </div>
@@ -2632,8 +2632,8 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
         <section className="lg:col-span-6 space-y-5">
           {/* TOP TAGS & COUNTER */}
           <div className="flex items-center justify-between gap-2">
-            <span className="bg-emerald-50 text-emerald-900 border border-emerald-300 text-[0.65rem] font-subtitle font-bold px-3 py-1 rounded-full uppercase tracking-wider inline-flex items-center gap-1.5 shadow-2xs">
-              <span className="w-2 h-2 rounded-full bg-emerald-600" />
+            <span className="bg-[var(--accent-tint)] text-[var(--preto)] border border-[var(--exodo-red)] text-[0.65rem] font-subtitle font-bold px-3 py-1 rounded-full uppercase tracking-wider inline-flex items-center gap-1.5 shadow-2xs">
+              <span className="w-2 h-2 rounded-full bg-[var(--exodo-red)]" />
               {meta.axisTag}
             </span>
             <span className="text-[0.65rem] font-mono font-bold text-neutral-500 bg-neutral-200/70 border border-neutral-300/80 px-2.5 py-0.5 rounded-full">
@@ -2652,12 +2652,12 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
           </div>
 
           {/* CONTEXTO DA INVESTIGAÇÃO BOX */}
-          <div className="bg-emerald-50/70 border border-emerald-200/80 rounded-xl p-4 space-y-2 relative overflow-hidden">
-            <div className="flex items-center gap-2 text-xs font-title font-bold text-emerald-900 uppercase tracking-wider">
-              <Lightbulb className="w-4 h-4 text-emerald-700 fill-emerald-200" />
+          <div className="bg-[var(--accent-tint)]/70 border border-[var(--exodo-red)]/80 rounded-xl p-4 space-y-2 relative overflow-hidden">
+            <div className="flex items-center gap-2 text-xs font-title font-bold text-[var(--preto)] uppercase tracking-wider">
+              <Lightbulb className="w-4 h-4 text-[var(--exodo-red)] fill-[var(--accent-tint)]" />
               <span>Contexto da investigação</span>
             </div>
-            <p className="text-xs text-emerald-950 font-body leading-relaxed">
+            <p className="text-xs text-[var(--preto)] font-body leading-relaxed">
               {meta.context}
             </p>
           </div>
@@ -2665,7 +2665,7 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
           {/* PERGUNTA ATUAL SEPARATOR & HEADING */}
           <div className="space-y-3 pt-1">
             <div className="flex items-center gap-2">
-              <span className="text-[0.65rem] font-subtitle font-bold text-[#b91c1c] uppercase tracking-widest">
+              <span className="text-[0.65rem] font-subtitle font-bold text-[var(--exodo-red)] uppercase tracking-widest">
                 PERGUNTA ATUAL
               </span>
               <div className="h-px bg-red-200 flex-1" />
@@ -2687,7 +2687,7 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
           <div className="bg-white border border-neutral-200 rounded-xl p-4 sm:p-5 shadow-2xs space-y-4">
             <div className="flex items-center justify-between border-b border-neutral-100 pb-2">
               <span className="text-[0.68rem] font-title font-bold text-neutral-900 uppercase tracking-wider flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-[#b91c1c]" />
+                <span className="w-2 h-2 rounded-full bg-[var(--exodo-red)]" />
                 SUA RESPOSTA
               </span>
               <span className="text-[0.62rem] text-neutral-400 italic">
@@ -2716,7 +2716,7 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
                           }
                         }}
                         placeholder="Digite sua resposta aqui..."
-                        className={`w-full bg-neutral-50 border border-neutral-300 rounded-xl py-2.5 text-xs font-body focus:outline-none focus:border-emerald-600 focus:bg-white transition-all ${
+                        className={`w-full bg-neutral-50 border border-neutral-300 rounded-xl py-2.5 text-xs font-body focus:outline-none focus:border-[var(--exodo-red)] focus:bg-white transition-all ${
                           currentStep.includes('COST') || currentStep.includes('VAL') || currentStep.includes('REVENUE') || currentStep.includes('RENT') || currentStep.includes('FEE') || currentStep.includes('ADS') ? 'pl-9 pr-3' : 'px-4'
                         }`}
                       />
@@ -2725,7 +2725,7 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
                       type="button"
                       onClick={() => userInputText.trim() && handleUserAnswer(userInputText)}
                       disabled={!userInputText.trim()}
-                      className="bg-[#b91c1c] hover:bg-red-800 text-white px-4 py-2.5 rounded-xl font-bold text-xs cursor-pointer disabled:opacity-50 flex items-center gap-1.5 transition-all shadow-2xs"
+                      className="bg-[var(--exodo-red)] hover:bg-[var(--preto)] text-white px-4 py-2.5 rounded-xl font-bold text-xs cursor-pointer disabled:opacity-50 flex items-center gap-1.5 transition-all shadow-2xs"
                     >
                       <span>Enviar</span>
                       <ArrowRight className="w-4 h-4" />
@@ -2742,10 +2742,10 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
                       key={opt}
                       type="button"
                       onClick={() => handleUserAnswer(opt)}
-                      className="w-full bg-neutral-50 hover:bg-emerald-50 hover:border-emerald-300 text-neutral-800 border border-neutral-200 text-xs font-subtitle font-bold p-3 rounded-xl cursor-pointer transition-all text-left flex items-center justify-between group"
+                      className="w-full bg-neutral-50 hover:bg-[var(--accent-tint)] hover:border-[var(--exodo-red)] text-neutral-800 border border-neutral-200 text-xs font-subtitle font-bold p-3 rounded-xl cursor-pointer transition-all text-left flex items-center justify-between group"
                     >
                       <span>{opt}</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-neutral-400 group-hover:text-emerald-700" />
+                      <ArrowRight className="w-3.5 h-3.5 text-neutral-400 group-hover:text-[var(--exodo-red)]" />
                     </button>
                   ))}
                 </div>
@@ -2770,7 +2770,7 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
                           }}
                           className={`text-xs font-subtitle font-bold px-3 py-2 rounded-xl cursor-pointer transition-all border ${
                             isSel
-                              ? 'bg-emerald-700 text-white border-emerald-800 shadow-2xs'
+                              ? 'bg-[var(--exodo-red)] text-white border-[var(--preto)] shadow-2xs'
                               : 'bg-neutral-50 text-neutral-800 border-neutral-200 hover:bg-neutral-100'
                           }`}
                         >
@@ -2787,7 +2787,7 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
                       setSelectedChannels(tempSelectedChannels);
                       handleUserAnswer(`Canais selecionados: ${tempSelectedChannels.join(', ')}`);
                     }}
-                    className="w-full py-2.5 uppercase font-bold text-xs bg-[#b91c1c] hover:bg-red-800 text-white rounded-xl border-none"
+                    className="w-full py-2.5 uppercase font-bold text-xs bg-[var(--exodo-red)] hover:bg-[var(--preto)] text-white rounded-xl border-none"
                   >
                     Confirmar Canais ({tempSelectedChannels.length})
                   </Button>
@@ -2808,13 +2808,13 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
                       }
                     }}
                     placeholder="Digite sua resposta..."
-                    className="flex-1 bg-neutral-50 border border-neutral-300 rounded-xl px-4 py-2.5 text-xs font-body focus:outline-none focus:border-emerald-600 focus:bg-white"
+                    className="flex-1 bg-neutral-50 border border-neutral-300 rounded-xl px-4 py-2.5 text-xs font-body focus:outline-none focus:border-[var(--exodo-red)] focus:bg-white"
                   />
                   <button
                     type="button"
                     onClick={() => userInputText.trim() && handleUserAnswer(userInputText)}
                     disabled={!userInputText.trim()}
-                    className="bg-[#b91c1c] hover:bg-red-800 text-white px-4 py-2.5 rounded-xl font-bold text-xs cursor-pointer disabled:opacity-50 flex items-center gap-1.5"
+                    className="bg-[var(--exodo-red)] hover:bg-[var(--preto)] text-white px-4 py-2.5 rounded-xl font-bold text-xs cursor-pointer disabled:opacity-50 flex items-center gap-1.5"
                   >
                     <span>Confirmar</span>
                     <ArrowRight className="w-4 h-4" />
@@ -2875,7 +2875,7 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
             <button
               type="button"
               onClick={handleFinishAndProceed}
-              className="bg-[#b91c1c] hover:bg-red-800 text-white text-xs font-subtitle font-bold px-5 py-2.5 rounded-xl transition-all cursor-pointer shadow-2xs flex items-center gap-2 uppercase tracking-wider"
+              className="bg-[var(--exodo-red)] hover:bg-[var(--preto)] text-white text-xs font-subtitle font-bold px-5 py-2.5 rounded-xl transition-all cursor-pointer shadow-2xs flex items-center gap-2 uppercase tracking-wider"
             >
               <span>Salvar resposta e continuar</span>
               <ArrowRight className="w-4 h-4" />
@@ -2892,7 +2892,7 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
               <span>📊</span>
               <span>Dados Extraídos</span>
             </h3>
-            <span className="text-[0.62rem] font-bold text-emerald-800 bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded-full">
+            <span className="text-[0.62rem] font-bold text-[var(--exodo-red)] bg-[var(--accent-tint)] border border-[var(--exodo-red)] px-2 py-0.5">
               6 Eixos
             </span>
           </div>
@@ -2901,7 +2901,7 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
             {/* EIXO 1 */}
             <div className="bg-white border border-neutral-200 rounded-xl p-3 shadow-2xs space-y-1 hover:border-neutral-300 transition-all">
               <div className="flex items-center justify-between">
-                <span className="text-[0.65rem] font-bold uppercase text-emerald-700">1. Promessa</span>
+                <span className="text-[0.65rem] font-bold uppercase text-[var(--exodo-red)]">1. Promessa</span>
                 <span className="text-[0.6rem] font-mono text-neutral-400">Eixo 1</span>
               </div>
               <p className="text-neutral-700 text-[0.72rem] line-clamp-2">
@@ -2915,7 +2915,7 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
             {/* EIXO 2 */}
             <div className="bg-white border border-neutral-200 rounded-xl p-3 shadow-2xs space-y-1 hover:border-neutral-300 transition-all">
               <div className="flex items-center justify-between">
-                <span className="text-[0.65rem] font-bold uppercase text-emerald-700">2. Marketing & Captação</span>
+                <span className="text-[0.65rem] font-bold uppercase text-[var(--exodo-red)]">2. Marketing & Captação</span>
                 <span className="text-[0.6rem] font-mono text-neutral-400">Eixo 2</span>
               </div>
               <p className="text-neutral-700 text-[0.72rem] truncate">
@@ -2929,7 +2929,7 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
             {/* EIXO 3 */}
             <div className="bg-white border border-neutral-200 rounded-xl p-3 shadow-2xs space-y-1 hover:border-neutral-300 transition-all">
               <div className="flex items-center justify-between">
-                <span className="text-[0.65rem] font-bold uppercase text-emerald-700">3. Vendas</span>
+                <span className="text-[0.65rem] font-bold uppercase text-[var(--exodo-red)]">3. Vendas</span>
                 <span className="text-[0.6rem] font-mono text-neutral-400">Eixo 3</span>
               </div>
               <p className="text-neutral-700 text-[0.72rem] truncate">
@@ -2943,7 +2943,7 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
             {/* EIXO 4 */}
             <div className="bg-white border border-neutral-200 rounded-xl p-3 shadow-2xs space-y-1 hover:border-neutral-300 transition-all">
               <div className="flex items-center justify-between">
-                <span className="text-[0.65rem] font-bold uppercase text-emerald-700">4. Entrega de Valor</span>
+                <span className="text-[0.65rem] font-bold uppercase text-[var(--exodo-red)]">4. Entrega de Valor</span>
                 <span className="text-[0.6rem] font-mono text-neutral-400">Eixo 4</span>
               </div>
               <p className="text-neutral-700 text-[0.72rem] truncate">
@@ -2957,7 +2957,7 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
             {/* EIXO 5 */}
             <div className="bg-white border border-neutral-200 rounded-xl p-3 shadow-2xs space-y-1 hover:border-neutral-300 transition-all">
               <div className="flex items-center justify-between">
-                <span className="text-[0.65rem] font-bold uppercase text-emerald-700">5. Financeiro</span>
+                <span className="text-[0.65rem] font-bold uppercase text-[var(--exodo-red)]">5. Financeiro</span>
                 <span className="text-[0.6rem] font-mono text-neutral-400">Eixo 5</span>
               </div>
               <p className="text-neutral-700 text-[0.72rem] truncate">
@@ -2971,7 +2971,7 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
             {/* EIXO 6 */}
             <div className="bg-white border border-neutral-200 rounded-xl p-3 shadow-2xs space-y-1 hover:border-neutral-300 transition-all">
               <div className="flex items-center justify-between">
-                <span className="text-[0.65rem] font-bold uppercase text-emerald-700">6. Equipe</span>
+                <span className="text-[0.65rem] font-bold uppercase text-[var(--exodo-red)]">6. Equipe</span>
                 <span className="text-[0.6rem] font-mono text-neutral-400">Eixo 6</span>
               </div>
               <p className="text-neutral-700 text-[0.72rem] truncate">
