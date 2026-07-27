@@ -2532,52 +2532,6 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
           </div>
         </div>
       </header>
-      {/* DRAWER FOR STRUCTURED DATA IF TOGGLED */}
-      {showStructuredDrawer && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">
-          <div className="bg-neutral-900 text-white rounded-xl p-4 shadow-lg border border-neutral-800 text-xs space-y-2">
-            <div className="flex items-center justify-between border-b border-neutral-800 pb-2">
-              <span className="font-bold text-emerald-400 uppercase tracking-wider text-[0.7rem] flex items-center gap-1.5">
-                <Layers className="w-4 h-4" /> Dados Estruturados Coletados em Tempo Real
-              </span>
-              <button
-                type="button"
-                onClick={() => setShowStructuredDrawer(false)}
-                className="text-neutral-400 hover:text-white underline text-[0.65rem] cursor-pointer"
-              >
-                Fechar
-              </button>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 pt-1">
-              <div className="bg-neutral-800/80 p-2.5 rounded-lg border border-neutral-700/60">
-                <span className="text-[0.62rem] text-emerald-400 font-bold block uppercase">1. Promessa</span>
-                <p className="text-neutral-300 truncate">{valueProp.promiseStatement || 'Em definição'}</p>
-              </div>
-              <div className="bg-neutral-800/80 p-2.5 rounded-lg border border-neutral-700/60">
-                <span className="text-[0.62rem] text-emerald-400 font-bold block uppercase">2. Marketing</span>
-                <p className="text-neutral-300 truncate">{selectedChannels.join(', ') || 'Nenhum'}</p>
-              </div>
-              <div className="bg-neutral-800/80 p-2.5 rounded-lg border border-neutral-700/60">
-                <span className="text-[0.62rem] text-emerald-400 font-bold block uppercase">3. Vendas</span>
-                <p className="text-neutral-300 truncate">{sales.usesSystem === 'Sim' ? sales.systemName : 'Sem CRM'}</p>
-              </div>
-              <div className="bg-neutral-800/80 p-2.5 rounded-lg border border-neutral-700/60">
-                <span className="text-[0.62rem] text-emerald-400 font-bold block uppercase">4. Entrega</span>
-                <p className="text-neutral-300 truncate">{delivery.electronicHealthRecord || 'Prontuário'}</p>
-              </div>
-              <div className="bg-neutral-800/80 p-2.5 rounded-lg border border-neutral-700/60">
-                <span className="text-[0.62rem] text-emerald-400 font-bold block uppercase">5. Financeiro</span>
-                <p className="text-neutral-300 truncate">{financial.tools.length} custo(s) mapeado(s)</p>
-              </div>
-              <div className="bg-neutral-800/80 p-2.5 rounded-lg border border-neutral-700/60">
-                <span className="text-[0.62rem] text-emerald-400 font-bold block uppercase">6. Equipe</span>
-                <p className="text-neutral-300 truncate">{teamMembers.length} integrante(s)</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* 2. MAIN 3-COLUMN INVESTIGATION LAYOUT */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
         
@@ -3033,56 +2987,66 @@ export const OtherActivitiesStep: React.FC<OtherActivitiesStepProps> = ({
 
 
 
-      {/* REAL-TIME STRUCTURED DATA DRAWER */}
+      {/* REAL-TIME STRUCTURED DATA DRAWER — slide-out overlay, matching the Gio mockup pattern */}
       {showStructuredDrawer && (
-        <div className="bg-neutral-900 text-white p-5 border-2 border-[var(--preto)] space-y-4 animate-fadeIn">
-          <div className="flex items-center justify-between border-b border-neutral-700 pb-2">
-            <h4 className="font-subtitle text-xs font-bold uppercase text-emerald-400 flex items-center gap-2">
-              <Layers className="w-4 h-4 text-emerald-400" />
-              Objeto Estruturado A3InvestigationData (6 Eixos)
-            </h4>
-            <span className="text-[0.65rem] font-mono text-neutral-400">Consolidado em 6 Eixos</span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs font-subtitle">
-            <div className="bg-neutral-800 p-3 border border-neutral-700 space-y-1">
-              <span className="text-[0.65rem] uppercase text-emerald-400 font-bold block">1. Promessa</span>
-              <p className="text-neutral-300"><strong>Frase:</strong> {valueProp.promiseStatement || 'Em preenchimento'}</p>
-              <p className="text-neutral-300"><strong>Diferencial:</strong> {valueProp.differentiator || 'Não informado'}</p>
+        <div
+          onClick={() => setShowStructuredDrawer(false)}
+          className="fixed inset-0 bg-black/50 z-[60]"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="absolute top-0 right-0 h-full w-full sm:w-[380px] bg-[var(--branco)] border-l-2 border-[var(--preto)] p-8 overflow-y-auto"
+          >
+            <div className="flex items-center justify-between mb-6 border-b border-[var(--border-default)] pb-4">
+              <span className="font-subtitle font-bold text-xs uppercase tracking-wider text-[var(--preto)]">
+                Resumo Estruturado
+              </span>
+              <button
+                type="button"
+                onClick={() => setShowStructuredDrawer(false)}
+                className="text-[var(--cinza-medio)] hover:text-[var(--preto)] cursor-pointer bg-transparent border-none text-lg"
+                aria-label="Fechar"
+              >
+                ✕
+              </button>
             </div>
 
-            <div className="bg-neutral-800 p-3 border border-neutral-700 space-y-1">
-              <span className="text-[0.65rem] uppercase text-emerald-400 font-bold block">2. Marketing & Captação</span>
-              <p className="text-neutral-300"><strong>Canais ({acqChannels.length}):</strong> {acqChannels.map((c) => c.name).join(', ') || 'Nenhum registrado'}</p>
-              <p className="text-neutral-300"><strong>Horas Mkt:</strong> {mktTime.totalWeeklyHours}h/semana</p>
-            </div>
+            <div className="divide-y divide-[var(--border-default)]">
+              <div className="py-3">
+                <span className="block text-[0.65rem] font-subtitle font-bold uppercase tracking-wider text-[var(--cinza-medio)] mb-1">Eixo 1 · Promessa</span>
+                <p className="text-sm text-[var(--preto)]">{valueProp.promiseStatement || 'Em definição'}</p>
+                {valueProp.differentiator && <p className="text-xs text-[var(--cinza-escuro)] mt-1">Diferencial: {valueProp.differentiator}</p>}
+              </div>
 
-            <div className="bg-neutral-800 p-3 border border-neutral-700 space-y-1">
-              <span className="text-[0.65rem] uppercase text-emerald-400 font-bold block">3. Vendas</span>
-              <p className="text-neutral-300"><strong>Script:</strong> {sales.usesScript}</p>
-              <p className="text-neutral-300"><strong>Formato:</strong> {sales.closingFormat}</p>
-              <p className="text-neutral-300"><strong>Efetividade:</strong> {sales.moreEffectiveFormat || 'Não mensurada'}</p>
-              <p className="text-neutral-300"><strong>Quem fecha:</strong> {sales.whoCloses}</p>
-            </div>
+              <div className="py-3">
+                <span className="block text-[0.65rem] font-subtitle font-bold uppercase tracking-wider text-[var(--cinza-medio)] mb-1">Eixo 2 · Marketing & Captação</span>
+                <p className="text-sm text-[var(--preto)]">{acqChannels.length > 0 ? acqChannels.map((c) => c.name).join(', ') : (selectedChannels.join(', ') || 'Nenhum canal registrado')}</p>
+                <p className="text-xs text-[var(--cinza-escuro)] mt-1">{mktTime.totalWeeklyHours}h/semana dedicadas</p>
+              </div>
 
-            <div className="bg-neutral-800 p-3 border border-neutral-700 space-y-1">
-              <span className="text-[0.65rem] uppercase text-emerald-400 font-bold block">4. Entrega de Valor</span>
-              <p className="text-neutral-300"><strong>Prontuário:</strong> {delivery.electronicHealthRecord}</p>
-              <p className="text-neutral-300"><strong>Contrato:</strong> {delivery.hasStandardContract}</p>
-              <p className="text-neutral-300"><strong>Renovações (90d):</strong> {delivery.renovation90dCount}</p>
-            </div>
+              <div className="py-3">
+                <span className="block text-[0.65rem] font-subtitle font-bold uppercase tracking-wider text-[var(--cinza-medio)] mb-1">Eixo 3 · Vendas</span>
+                <p className="text-sm text-[var(--preto)]">{sales.usesSystem === 'Sim' ? sales.systemName : 'Sem CRM'} · {sales.closingFormat}</p>
+                <p className="text-xs text-[var(--cinza-escuro)] mt-1">Quem fecha: {sales.whoCloses}</p>
+              </div>
 
-            <div className="bg-neutral-800 p-3 border border-neutral-700 space-y-1">
-              <span className="text-[0.65rem] uppercase text-emerald-400 font-bold block">5. Financeiro</span>
-              <p className="text-neutral-300"><strong>Média 3M:</strong> R$ {Math.round((financial.revenueM1 + financial.revenueM2 + financial.revenueM3) / 3)}/mês</p>
-              <p className="text-neutral-300"><strong>Estrutura:</strong> {financial.legalStructure}</p>
-              <p className="text-neutral-300"><strong>Atrasos:</strong> {financial.paymentDelayLevel}</p>
-            </div>
+              <div className="py-3">
+                <span className="block text-[0.65rem] font-subtitle font-bold uppercase tracking-wider text-[var(--cinza-medio)] mb-1">Eixo 4 · Entrega de Valor</span>
+                <p className="text-sm text-[var(--preto)]">{delivery.electronicHealthRecord || 'Prontuário não informado'}</p>
+                <p className="text-xs text-[var(--cinza-escuro)] mt-1">Renovações (90d): {delivery.renovation90dCount || 0}</p>
+              </div>
 
-            <div className="bg-neutral-800 p-3 border border-neutral-700 space-y-1">
-              <span className="text-[0.65rem] uppercase text-emerald-400 font-bold block">6. Equipe ({teamMembers.length})</span>
-              <p className="text-neutral-300"><strong>Delegados Clínicos:</strong> {teamMembers.filter((m) => m.isClinicalDelegate).length}</p>
-              <p className="text-neutral-300"><strong>Integrantes:</strong> {teamMembers.map((m) => m.name).join(', ') || 'Nenhum'}</p>
+              <div className="py-3">
+                <span className="block text-[0.65rem] font-subtitle font-bold uppercase tracking-wider text-[var(--cinza-medio)] mb-1">Eixo 5 · Financeiro</span>
+                <p className="text-sm text-[var(--preto)]">R$ {Math.round(((financial.revenueM1 || 0) + (financial.revenueM2 || 0) + (financial.revenueM3 || 0)) / 3)}/mês (média 3M)</p>
+                <p className="text-xs text-[var(--cinza-escuro)] mt-1">{financial.legalStructure || 'Estrutura não informada'}</p>
+              </div>
+
+              <div className="py-3">
+                <span className="block text-[0.65rem] font-subtitle font-bold uppercase tracking-wider text-[var(--cinza-medio)] mb-1">Eixo 6 · Equipe</span>
+                <p className="text-sm text-[var(--preto)]">{teamMembers.length} integrante(s), {teamMembers.filter((m) => m.isClinicalDelegate).length} delegado(s) clínico(s)</p>
+                {teamMembers.length > 0 && <p className="text-xs text-[var(--cinza-escuro)] mt-1">{teamMembers.map((m) => m.name).join(', ')}</p>}
+              </div>
             </div>
           </div>
         </div>
